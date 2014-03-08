@@ -1,6 +1,6 @@
 <Settings>
 	<Laser_Manager>
-		<UnknownName>IDLE</UnknownName>
+		<UnknownName>ETHERDREAM_IDLE</UnknownName>
 		<intensity>1</intensity>
 		<test_pattern>0</test_pattern>
 		<sync_delay>0</sync_delay>
