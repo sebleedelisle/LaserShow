@@ -41,7 +41,7 @@ void ofApp::setup(){
 	gui.load();
 	
 	
-	music.loadSound("02 Down the Road.aif");
+	music.loadSound("../../../Music/02 Down the Road.aif");
 	music.play(); 
 	
 		
