@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FoundWorkingCopyPaths</key>
+	<array>
+		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow</string>
+		<string>/Users/sebretina/Dropbox/openFrameworks</string>
+	</array>
+	<key>LastWorkingCopyScanDate</key>
+	<date>2014-03-08T17:53:52Z</date>
+	<key>MissingFilePaths</key>
+	<array>
+		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/bin/ValPlayDebug.app</string>
+	</array>
+	<key>Version</key>
+	<integer>4</integer>
+</dict>
+</plist>
