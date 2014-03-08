@@ -1,0 +1,18 @@
+<quad>
+    <upperLeft>
+        <x>204.800003052</x>
+        <y>153.600006104</y>
+    </upperLeft>
+    <upperRight>
+        <x>819.200012207</x>
+        <y>153.600006104</y>
+    </upperRight>
+    <lowerRight>
+        <x>819.200012207</x>
+        <y>614.400024414</y>
+    </lowerRight>
+    <lowerLeft>
+        <x>204.800003052</x>
+        <y>614.400024414</y>
+    </lowerLeft>
+</quad>
