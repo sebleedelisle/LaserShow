@@ -8,6 +8,8 @@
 
 #include "ofMain.h"
 #include "LaserManager.h"
+#include "Synchroniser.h"
+#include "TimedImage.h"
 
 class ofApp : public ofBaseApp{
 
@@ -28,10 +30,22 @@ class ofApp : public ofBaseApp{
 	int screenWidth, screenHeight;
 
 	ofxPanel gui;
+	
+	
 	LaserManager laserManager;
 	
+	ofFbo projectorFbo;
+	ofRectangle projectorPosition;
+	ofImage guideImage; 
+	bool previewProjector; 
 	
+
 	ofSoundPlayer music;
+	
+	Synchroniser sync; 
+	
+
+	TimedImage smashingTitle; 
 	
 
 		
