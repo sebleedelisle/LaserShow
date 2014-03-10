@@ -64,7 +64,7 @@ class LaserManager {
 	
 	void addLaserRectEased(const ofPoint&topLeft, const ofPoint&dimensions, ofFloatColor colour);
 
-	void moveLaser(const ofPoint & target);
+	void moveLaser(const ofPoint & currentPosition, const ofPoint & targetpoint);
 
 	
 	void addLaserText(string line, ofVec3f pos, float size, ofColor& colour, bool centred);
@@ -80,6 +80,8 @@ class LaserManager {
 	//void resetIldaPoints();
 	void addIldaPoint(ofPoint p, ofFloatColor c, float pointIntensity = 1, bool useCalibration = true);
 	
+	void addPoint(ofPoint p, ofFloatColor c, bool useCalibration); 
+	
 	ofxIlda::Point ofPointToIldaPoint(const ofPoint& ofpoint, ofFloatColor colour);
 	ofPoint ildaPointToOfPoint(const ofxIlda::Point& ildapoint);
 	
@@ -87,7 +89,11 @@ class LaserManager {
 	
 	//----------------------------------------
 	// converts openGL coords to screen coords //
-	static ofVec3f gLProject( float ax, float ay, float az ) {
+	ofVec3f gLProject(ofVec3f p) {
+		return gLProject(p.x, p.y, p.z);
+		
+	}
+	ofVec3f gLProject( float ax, float ay, float az ) {
 		GLdouble model_view[16];
 		glGetDoublev(GL_MODELVIEW_MATRIX, model_view);
 		
@@ -100,8 +106,13 @@ class LaserManager {
 		GLdouble X, Y, Z = 0;
 		gluProject( ax, ay, az, model_view, projection, viewport, &X, &Y, &Z);
 		
-		return ofVec3f(X, Y, 0.f);
-		//return ofVec3f(X, ofGetWindowHeight()-Y, 0.f);
+		//return ofVec3f(X, Y, 0.f);
+		return ofVec3f(X, appHeight-Y, 0.0f);
+	}
+	
+	float gLGetScaleForZ(float z) {
+		
+		return gLProject(appWidth/2 + 1, appHeight/2, z).x - appWidth/2;
 	}
 	
 	void connectButtonPressed();
@@ -131,7 +142,7 @@ class LaserManager {
 	
 	ofSoundPlayer beep; 
 	
-	ofPoint currentPosition;
+	//ofPoint currentPosition;
 	
 	ofxButton connectButton;
 	ofParameter<string> etherdreamStatus;
@@ -244,6 +255,11 @@ class LaserManager {
 	float appHeight;
 	
 	ofImage pointPreviewImage;
+	int previewPointIndex = 0; 
+	
+	bool offScreen;
+	ofVec2f offScreenPoint;
+	ofVec2f lastClampedOffScreenPoint;
 
 
 };

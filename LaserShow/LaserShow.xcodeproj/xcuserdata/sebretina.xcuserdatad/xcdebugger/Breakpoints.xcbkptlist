@@ -16,5 +16,18 @@
          landmarkName = "update(float position)"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../SharedCode/Laser/LaserManager.cpp"
+         timestampString = "416086932.240915"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1115"
+         endingLineNumber = "1115"
+         landmarkName = "LaserManager::addIldaPoint(ofPoint p, ofFloatColor c, float pointIntensity, bool useCalibration)"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

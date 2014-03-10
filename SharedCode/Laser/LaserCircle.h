@@ -14,7 +14,7 @@ class LaserCircle : public LaserShape{
 	public :
 	
 	LaserCircle(const ofPoint& position, ofFloatColor& colour, float circleRadius, float circleIntensity = 1, float overlap = 0){
-		reversable = true; 
+		reversable = false;
 		set(position, colour, circleRadius, circleIntensity, overlap);
 	}
 	
