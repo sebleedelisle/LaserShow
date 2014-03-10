@@ -53,6 +53,8 @@ class ofApp : public ofBaseApp{
 	SoundShape cube2;
 	SoundShape cube3;
 	
+	float soundPositionMS;
+	
 
 		
 };

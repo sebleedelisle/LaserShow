@@ -75,8 +75,9 @@ void ofApp::setup(){
 void ofApp::update(){
 	ofSoundUpdate();
 	laserManager.update();
-	
-	sync.update(music.getPositionMS());
+	if(music.getIsPlaying()) soundPositionMS = music.getPositionMS();
+
+	sync.update(soundPositionMS);
 }
 
 //--------------------------------------------------------------
@@ -117,8 +118,7 @@ void ofApp::draw(){
 	//ofRect(0, 668, numBands*barWidth, 100);
 		
 	
-	
-	float time = music.getPositionMS()/1000.0f;
+	float time = soundPositionMS/1000.0f;
 	//bar = time /
 	
 	ofDrawBitmapString(ofToString(time), 0,25);
@@ -151,9 +151,9 @@ void ofApp::draw(){
 	
 	//smashingTitle.draw(sync);
 	
-	cube1.draw(val[30] );
-	cube2.draw(val[20] );
-	cube3.draw(val[10] );
+	cube1.draw(val[30]*10 );
+	cube2.draw(val[20]*10 );
+	cube3.draw(val[10]*10 );
 	
 	ofPopStyle();
 	projectorFbo.end();
@@ -208,7 +208,7 @@ void ofApp::draw(){
 	ofPushMatrix();
 //	ofTranslate(screenWidth/2, screenHeight/2);
 	
-	ofCircle(circlePos, 300);
+	//ofCircle(circlePos, 300);
 	
 	laserManager.addLaserCircle(circlePos, ofColor::red, 300);
 	laserManager.addLaserLineEased(circlePos + ofVec3f(-100,-100,0), circlePos + ofVec3f(100,100,0), ofColor::blue);
@@ -216,11 +216,10 @@ void ofApp::draw(){
 	ofPopMatrix();
 	
 	laserManager.draw();
+	laserManager.renderLaserPreview = !previewProjector; 
 	if(!previewProjector) {
-		
 		laserManager.renderLaserPath(ofRectangle(0,0,screenWidth, screenHeight), false);
-		laserManager.renderPreview();
-
+		//laserManager.renderPreview();
 	}
 	
 	gui.draw();
@@ -238,6 +237,19 @@ void ofApp::keyPressed(int key){
 		music.setPosition(0);
 		music.play();
 	}
+	
+	if(key == 'p') {
+		if(music.getIsPlaying()) {
+			
+			music.stop();
+		} else {
+
+			music.play();
+			music.setPositionMS(soundPositionMS);
+		}
+	
+	}
+	
 	
 	if(key == 'a') cube1.visible = true;
 	if(key == 's') cube2.visible = true;
