@@ -11,6 +11,7 @@
 #include "Synchroniser.h"
 #include "SoundShape.h"
 #include "PipeOrganData.h"
+#include "DomeData.h"
 
 class ofApp : public ofBaseApp{
 
@@ -30,12 +31,14 @@ class ofApp : public ofBaseApp{
 	
 	void drawPipeOrgan(float * val, int numBands);
 	
-	PipeOrganData pipeOrganData; 
+	PipeOrganData pipeOrganData;
+	DomeData domeData; 
+	float currentPipeIndex = 0;
 	
 	int screenWidth, screenHeight;
 
 	ofxPanel gui;
-	
+
 	
 	LaserManager laserManager;
 	
@@ -58,6 +61,7 @@ class ofApp : public ofBaseApp{
 	
 	float soundPositionMS;
 	
+
 
 		
 };

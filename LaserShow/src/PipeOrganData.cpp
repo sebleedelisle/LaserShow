@@ -40,24 +40,24 @@ PipeOrganData::PipeOrganData() {
 };
 
 void PipeOrganData::draw() {
-
-	if (editable || true) {
+	if(!editable) return; 
+	
 		
-		for(int i = 0; i<pipes.size(); i++) {
-			pipes[i].draw();
-		
-		}
-		
-		
-		
+	for(int i = 0; i<pipes.size(); i++) {
+		pipes[i].draw();
+	
 	}
-
+	
+	
+	
+	
 
 }
 
 
 
 void PipeOrganData::mouseDragged(int x, int y){
+	if(!editable) return; 
 	for(int i = 0; i<pipes.size(); i++) {
 		pipes[i].mouseDragged(x, y);
 		
@@ -67,7 +67,7 @@ void PipeOrganData::mouseDragged(int x, int y){
 }
 
 void PipeOrganData::mousePressed(int x, int y){
-	
+	if(!editable) return; 
 	for(int i = 0; i<pipes.size(); i++) {
 		// only click the first one it finds
 		if (pipes[i].mousePressed(x, y)) break;
@@ -78,7 +78,7 @@ void PipeOrganData::mousePressed(int x, int y){
 }
 
 void PipeOrganData::mouseReleased(int x, int y){
-	
+	if(!editable) return; 
 	for(int i = 0; i<pipes.size(); i++) {
 		pipes[i].mouseReleased(x, y);
 		

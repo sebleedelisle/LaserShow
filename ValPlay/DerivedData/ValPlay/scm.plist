@@ -5,14 +5,13 @@
 	<key>FoundWorkingCopyPaths</key>
 	<array>
 		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow</string>
+		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/LaserShow</string>
 		<string>/Users/sebretina/Dropbox/openFrameworks</string>
 	</array>
 	<key>LastWorkingCopyScanDate</key>
-	<date>2014-03-08T17:53:52Z</date>
+	<date>2014-03-11T13:36:51Z</date>
 	<key>MissingFilePaths</key>
-	<array>
-		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/bin/ValPlayDebug.app</string>
-	</array>
+	<array/>
 	<key>Version</key>
 	<integer>4</integer>
 </dict>

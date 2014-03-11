@@ -51,7 +51,7 @@ void ofApp::setup(){
 	gui.add(laserManager.parameters);
 	
 	gui.load();
-		
+	
 	music.loadSound("../../../Music/02 Down the Road.aif");
 	
 	soundPositionMS = 70000;
@@ -63,7 +63,10 @@ void ofApp::setup(){
 	cube2.init(-200,200,ofColor::cyan);
 	cube3.init(-200,-200,ofColor::cyan);
 	
-	pipeOrganData.load(); 
+	pipeOrganData.load();
+	domeData.load();
+	
+	// can potentially use : ofSetupScreenPerspective();
 	
 }
 
@@ -81,6 +84,13 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofBackground(0);
 
+	
+	int numBands = 500;
+	float * val = ofSoundGetSpectrum(numBands);
+	
+	
+	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
+	
 	if(!previewProjector) {
 		ofSetColor(200);
 		guideImage.draw(0,0,screenWidth, screenHeight);
@@ -89,29 +99,33 @@ void ofApp::draw(){
 		projectorFbo.draw(projectorPosition);
 		
 		pipeOrganData.draw();
+		drawPipeOrgan(val, numBands);
+		
+		domeData.draw();
+		
 		
 		
 	} else {
 		projectorFbo.draw(screenWidth/2 - projectorFbo.getWidth()/2, screenHeight/2 - projectorFbo.getHeight()/2);
 		
 	}
+
+	
 	
 	ofDrawBitmapString(ofToString(round(ofGetFrameRate())), 0,10);
-		
-	int numBands = 500;
-	float * val = ofSoundGetSpectrum(numBands);
 	
-	
-	numBands = 100; 
+	numBands = 100;
 	int barWidth = (1024/numBands);
 	ofFill();
 	for(int i = 0; i<numBands; i++) {
 		
-		float size = val[i] * 100; 
+		float size = val[i] * 100;
 		//ofRect(i*barWidth, 768 - size, barWidth-1, size );
 		ofRect(i*barWidth, 0, barWidth-1, size );
-
+		
 	}
+
+	
 	ofNoFill();
 	
 	float time = soundPositionMS/1000.0f;
@@ -172,6 +186,8 @@ void ofApp::draw(){
 	ofDrawBitmapString(sync.getString(), 1000,10);
 	sync.draw(1100,10);
 	
+	
+	/*
 	ofPoint axis(0,1,0.6);
 	axis.normalize();
 	
@@ -220,6 +236,7 @@ void ofApp::draw(){
 	
 	laserManager.addLaserCircle(circlePos, ofColor::red, 300);
 	laserManager.addLaserLineEased(circlePos + ofVec3f(-100,-100,0), circlePos + ofVec3f(100,100,0), ofColor::blue);
+	 */
 	
 	ofPopMatrix();
 	
@@ -275,10 +292,10 @@ void ofApp::keyPressed(int key){
 void ofApp :: drawPipeOrgan(float * val, int numBands){
 
 	
-	pipeOrganData.draw();
+	//pipeOrganData.draw();
 
-	int numPipes = 20;
-	ofRectangle rect(506,631,270,190);
+	//int numPipes = 20;
+	//ofRectangle rect(506,631,270,190);
 
 	int bottom = 30;
 	int top = 70;
@@ -299,8 +316,19 @@ void ofApp :: drawPipeOrgan(float * val, int numBands){
 		}
 	}
 	
-	if(loudestIndex>0) ofRect(ofMap(loudestIndex, bottom, top, rect.getLeft(), rect.getRight()), rect.getTop(), 5, rect.getHeight());
+	if(loudestIndex>0) {
+		
 	
+		loudestIndex = floor(ofMap(loudestIndex, bottom, top, 0, pipeOrganData.pipes.size()));
+		if(loudestIndex>=pipeOrganData.pipes.size()) loudestIndex = pipeOrganData.pipes.size()-1;
+		
+		currentPipeIndex += (loudestIndex-currentPipeIndex) * 0.5;
+		
+		//if(currentPipeIndex<loudestIndex) currentPipeIndex++;
+		//else if(currentPipeIndex>loudestIndex) currentPipeIndex--;
+		
+		ofLine(pipeOrganData.pipes[(int)currentPipeIndex].top, pipeOrganData.pipes[(int)currentPipeIndex].bottom);
+	}
 	
 	
 }
@@ -354,7 +382,8 @@ void ofApp::gotMessage(ofMessage msg){
 
 void ofApp::exit() {
 	gui.save();
-	pipeOrganData.save(); 
+	pipeOrganData.save();
+	domeData.save();
 	laserManager.warp.saveSettings();
 
 }

@@ -32,4 +32,14 @@
 		<spiral_spacing>10</spiral_spacing>
 	</Laser_Manager>
 <Settings/>
+<Dome_data>
+		<group>
+			<pos>640.8, 480, -613.911</pos>
+			<rot>30, 0, 0</rot>
+			<start>-500, 300, 0</start>
+			<end>0, -220, 0</end>
+			<c1>-480, -50, 0</c1>
+			<c2>-350, -220, 0</c2>
+		</group>
+	</Dome_data>
 </Settings>

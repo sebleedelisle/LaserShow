@@ -169,4 +169,7 @@ dependencies: \
   ../../../libs/openFrameworks/video/ofVideoPlayer.h \
   ../../../libs/openFrameworks/video/ofQTKitPlayer.h \
   ../../../libs/openFrameworks/3d/ofCamera.h \
-  ../../../libs/openFrameworks/3d/ofEasyCam.h
+  ../../../libs/openFrameworks/3d/ofEasyCam.h \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/curveSquare.h \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/arrow.h \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/octoplusShape.h
