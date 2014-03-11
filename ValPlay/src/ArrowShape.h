@@ -4,19 +4,25 @@
 
 #include "ofMain.h"
 
-class arrow {
+class ArrowShape {
     
 public:
     
-    void update();
-    void draw();
+    void init(float x, float y, ofColor col);
+    void draw(float scale);
+    void drawPoly(float x, float y);
     
     // variables
-    float x;
-    float y;
-    ofPolyline arrowPoly;
     
-    arrow(); // constructor - used to initialize an object, if no properties are passed
+    bool visible;
+    ofPolyline arrowPoly;
+    ofVec3f pos;
+    float size;
+	ofColor colour;
+    
+    
+    ArrowShape();
+    ArrowShape(float x, float y, ofColor col);
    
     
 private:
