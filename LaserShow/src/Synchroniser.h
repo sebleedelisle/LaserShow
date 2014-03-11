@@ -71,7 +71,7 @@ class Synchroniser {
 	
 	string getString() {
 		
-		return ofToString(currentBar) + ":" +ofToString(currentBeat+1) + ":" + ofToString(current8th+1)+ ":" + ofToString(current16th+1);
+		return ofToString(currentBar) + "-:" +ofToString(currentBeat+1) + ":" + ofToString(current8th+1)+ ":" + ofToString(current16th+1);
 		
 		
 	}

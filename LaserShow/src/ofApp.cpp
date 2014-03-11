@@ -149,7 +149,7 @@ void ofApp::draw(){
 		
 	}
 	
-	//smashingTitle.draw(sync);
+	smashingTitle.draw(sync);
 	
 	cube1.draw(val[30]*10 );
 	cube2.draw(val[20]*10 );

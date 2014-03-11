@@ -1,0 +1,32 @@
+#ifndef _CURVE_SQUARE
+#define _CURVE_SQUARE
+
+
+#include "ofMain.h"
+
+class CurveSquare {
+    
+public:
+    
+    void init(float x, float y, ofColor col, float rotation);
+    void draw(float scale);
+    void drawPoly(float x, float y);
+       
+    // variables
+    
+    bool visible;
+    ofPolyline cSquare;
+    ofVec3f pos;
+    float size;
+    float rotation;
+	ofColor colour;
+  
+    
+    CurveSquare();
+    CurveSquare(float x, float y, ofColor col);
+    
+private:
+    
+};
+
+#endif

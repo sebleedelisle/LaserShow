@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "curveSquare.h"
-#include "arrow.h"
+#include "ArrowShape.h"
 #include "octoplusShape.h"
 
 class ofApp : public ofBaseApp{
@@ -12,9 +12,11 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
     
-        curveSquare cSq;
-        arrow arw;
-        octoplusShape octo;
+        CurveSquare cSq;
+        ArrowShape arrow;
+        OctoplusShape octo;
+    
+        vector<CurveSquare> squares;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
