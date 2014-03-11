@@ -9,8 +9,8 @@
 #include "ofMain.h"
 #include "LaserManager.h"
 #include "Synchroniser.h"
-#include "TimedImage.h"
 #include "SoundShape.h"
+#include "PipeOrganData.h"
 
 class ofApp : public ofBaseApp{
 
@@ -28,6 +28,9 @@ class ofApp : public ofBaseApp{
 	void gotMessage(ofMessage msg);
 	void exit();
 	
+	void drawPipeOrgan(float * val, int numBands);
+	
+	PipeOrganData pipeOrganData; 
 	
 	int screenWidth, screenHeight;
 
@@ -47,7 +50,7 @@ class ofApp : public ofBaseApp{
 	Synchroniser sync; 
 	
 
-	TimedImage smashingTitle;
+	ofImage smashingTitle;
 	
 	SoundShape cube1;
 	SoundShape cube2;

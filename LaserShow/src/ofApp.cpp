@@ -12,8 +12,8 @@ void ofApp::setup(){
 	screenHeight = 960;
 	
 	guideImage.loadImage("img/LaserableArea.jpg");
-	smashingTitle.init("img/SmashingLogo.png", 0, 2000);
-	
+	smashingTitle.loadImage("img/SmashingLogo.png");
+	smashingTitle.setAnchorPercent(.5, .5);
 	
 	previewProjector = false;
 	
@@ -31,8 +31,7 @@ void ofApp::setup(){
 	
 	laserManager.renderLaserPreview = true;
 	laserManager.showPostTransformPreview = true;
-	
-	
+
 	int panelwidth = 200;
 	
 	ofxBaseGui::setDefaultWidth(panelwidth);
@@ -51,22 +50,20 @@ void ofApp::setup(){
 	gui.add(&laserManager.connectButton);
 	gui.add(laserManager.parameters);
 	
-	
-	
 	gui.load();
-	
-	
+		
 	music.loadSound("../../../Music/02 Down the Road.aif");
-	//music.play();
 	
+	soundPositionMS = 70000;
 	
 	sync.tempo = 111;
-	sync.startPosition = 60000/111;
+	sync.startPosition = 60000/111; // start after 1 beat intro
+
+	cube1.init(200,200,ofColor::cyan);
+	cube2.init(-200,200,ofColor::cyan);
+	cube3.init(-200,-200,ofColor::cyan);
 	
-	
-	cube1.init(800,600,ofColor::cyan);
-	cube2.init(300,600,ofColor::cyan);
-	cube3.init(800,300,ofColor::cyan);
+	pipeOrganData.load(); 
 	
 }
 
@@ -91,6 +88,7 @@ void ofApp::draw(){
 		ofRect(projectorPosition.x-1, projectorPosition.y-1, projectorPosition.width+2, projectorPosition.height+2);
 		projectorFbo.draw(projectorPosition);
 		
+		pipeOrganData.draw();
 		
 		
 	} else {
@@ -115,21 +113,15 @@ void ofApp::draw(){
 
 	}
 	ofNoFill();
-	//ofRect(0, 668, numBands*barWidth, 100);
-		
 	
 	float time = soundPositionMS/1000.0f;
-	//bar = time /
-	
+
 	ofDrawBitmapString(ofToString(time), 0,25);
 
-/*
-	beatNumber = int((music.getPositionMS() - lastTime) / (60000.0f/tempo) - 1) ;
-	int barNumber = beatNumber/4;
+	//drawPipeOrgan(val, numBands);
+
 	
-	ofDrawBitmapString(ofToString(barNumber) + " " + ofToString(beatNumber%4+1), 0,40);
-*/
-	
+
 	//----------------- FBO BEGIN --------------------------------
 	projectorFbo.begin();
 	ofPushStyle();
@@ -137,31 +129,46 @@ void ofApp::draw(){
 	ofFill();
 	ofSetColor(0);
 	ofRect(0,0,1024,768);
-
-	if(sync.currentBar<=9) {
-		ofPushStyle();
-		ofSetColor(ofColor::cyan);
-		ofSetLineWidth(3);
-		float size = val[30] * 100;
-		ofNoFill(); 
-		ofCircle(512,384,size);
-		ofPopStyle();
+	ofSetColor(255);
+	
+	ofPushMatrix();
+	ofTranslate(512,384);
+	
+	if(sync.currentBarFloat<3) {
 		
+		
+		float progress = ofMap(sync.currentBarFloat, 0, 3, 0,1);
+		
+		ofPushMatrix();
+		ofPushStyle();
+		ofScale(0.5,0.5);
+		
+		ofSetColor(255);
+		if(progress<0.2) ofSetColor(ofMap(progress, 0, 0.2, 0, 255));
+		else if(progress>0.8) ofSetColor(ofMap(progress, 0.8, 1, 255, 0));
+		
+		smashingTitle.draw(0,0, ofMap(sync.currentBarFloat,0,4,-100,100));
+	
+		ofPopStyle();
+		ofPopMatrix();
+	
+	
 	}
 	
-	//smashingTitle.draw(sync);
+	if(sync.currentBar<8) {
+		cube1.draw(val[30]*10 );
+		cube2.draw(val[20]*10 );
+		cube3.draw(val[10]*10 );
+	}
 	
-	cube1.draw(val[30]*10 );
-	cube2.draw(val[20]*10 );
-	cube3.draw(val[10]*10 );
+	
+	ofPopMatrix(); 
 	
 	ofPopStyle();
 	projectorFbo.end();
 
 	//----------------- FBO END --------------------------------
 
-	
-	
 	ofDrawBitmapString(sync.getString(), 1000,10);
 	sync.draw(1100,10);
 	
@@ -182,12 +189,13 @@ void ofApp::draw(){
 
 	poly.clear();
 
-	for(int i = 0; i<180; i++) {
+	for(int i = 0; i<360; i++) {
 		tmp.set(380,0,0);
 		tmp.rotate(i, axis);
 		
 		poly.addVertex(tmp + ofPoint(screenWidth/2, 448));
 	}
+	//ofFill();
 	//poly.draw();
 	laserManager.addLaserPolyline(poly);
 	
@@ -237,6 +245,11 @@ void ofApp::keyPressed(int key){
 		music.setPosition(0);
 		music.play();
 	}
+	if(key == OF_KEY_LEFT) {
+		soundPositionMS = 69000;
+		music.setPositionMS(soundPositionMS);
+	}
+		
 	
 	if(key == 'p') {
 		if(music.getIsPlaying()) {
@@ -255,6 +268,40 @@ void ofApp::keyPressed(int key){
 	if(key == 's') cube2.visible = true;
 	if(key == 'd') cube3.visible = true;
 
+	
+}
+
+
+void ofApp :: drawPipeOrgan(float * val, int numBands){
+
+	
+	pipeOrganData.draw();
+
+	int numPipes = 20;
+	ofRectangle rect(506,631,270,190);
+
+	int bottom = 30;
+	int top = 70;
+	float threshold = 0.1;
+	
+	float loudestLevel = threshold;
+	int loudestIndex = 0;
+	
+	
+	for(int i = bottom; i<numBands && i<top; i++) {
+	
+		if(val[i]>loudestLevel) {
+			loudestIndex = i;
+			loudestLevel = val[i];
+		} else {
+			// feeble attempt at countering the low end weighting of FFT.
+			loudestLevel *=0.95;
+		}
+	}
+	
+	if(loudestIndex>0) ofRect(ofMap(loudestIndex, bottom, top, rect.getLeft(), rect.getRight()), rect.getTop(), 5, rect.getHeight());
+	
+	
 	
 }
 
@@ -282,15 +329,20 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
+	
+	pipeOrganData.mouseDragged(x,y); 
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	cout << "MOUSE : " << x << " " << y << endl;
+	pipeOrganData.mousePressed(x,y); 
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
+	pipeOrganData.mouseReleased(x,y);
 
 }
 
@@ -302,7 +354,7 @@ void ofApp::gotMessage(ofMessage msg){
 
 void ofApp::exit() {
 	gui.save();
-	
+	pipeOrganData.save(); 
 	laserManager.warp.saveSettings();
 
 }

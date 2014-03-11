@@ -141,7 +141,7 @@ bool ofxToggle::setValue(float mx, float my, bool bCheck){
 		bGuiActive = false;
 		return false;
 	}
-    ofLog( OF_LOG_NOTICE, "ofxToggle setValue %s %s", msg, name);
+  //  ofLog( OF_LOG_NOTICE, "ofxToggle setValue %s %s", msg, name);
 	
 	if( bCheck ){
 		ofRectangle checkRect = b;//checkboxRect;
@@ -157,7 +157,7 @@ bool ofxToggle::setValue(float mx, float my, bool bCheck){
 	if( bGuiActive ){
 		value = !value;
         const char* name = value.getName().c_str();
-        ofLog( OF_LOG_NOTICE, "setting value %s %s", ( value ? "true": "false" ), name);
+     //   ofLog( OF_LOG_NOTICE, "setting value %s %s", ( value ? "true": "false" ), name);
 
 		return true;
 	}
@@ -169,6 +169,6 @@ ofAbstractParameter & ofxToggle::getParameter(){
 }
 
 void ofxToggle::valueChanged(bool & value){
-    ofLog( OF_LOG_NOTICE, "value changed");
+    //ofLog( OF_LOG_NOTICE, "value changed");
 	generateDraw();
 }

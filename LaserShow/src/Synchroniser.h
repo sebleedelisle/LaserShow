@@ -64,6 +64,8 @@ class Synchroniser {
 		} 
 		//currentBar = (position-startPosition);
 		
+		currentBarFloat = (position-startPosition)/((60000.0f/tempo) * 4);
+		
 		currentPosition = position;
 		
 		
@@ -71,7 +73,7 @@ class Synchroniser {
 	
 	string getString() {
 		
-		return ofToString(currentBar) + ":" +ofToString(currentBeat+1) + ":" + ofToString(current8th+1)+ ":" + ofToString(current16th+1);
+		return ofToString(currentBar) + ":" +ofToString(currentBeat+1) + ":" + ofToString(current8th+1)+ ":" + ofToString(current16th+1);// + " " + ofToString(currentBarFloat);
 		
 		
 	}
@@ -121,6 +123,7 @@ class Synchroniser {
 	float sixteenthPulse;
 	
 	int currentBar;
+	float currentBarFloat; 
 	int currentBeat;
 	int current8th;
 	int current16th;
