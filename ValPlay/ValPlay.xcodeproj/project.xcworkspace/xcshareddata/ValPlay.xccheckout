@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>84862DB1-8908-47DA-BFB8-1CBD9B216021</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ValPlay</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5B5894FA-68D4-4238-8F05-FE0CC4F9CEB1</key>
+		<string>ssh://github.com/sebleedelisle/LaserShow.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ValPlay/ValPlay.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5B5894FA-68D4-4238-8F05-FE0CC4F9CEB1</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/sebleedelisle/LaserShow.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5B5894FA-68D4-4238-8F05-FE0CC4F9CEB1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5B5894FA-68D4-4238-8F05-FE0CC4F9CEB1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LaserShow</string>
+		</dict>
+	</array>
+</dict>
+</plist>
