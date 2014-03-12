@@ -1,16 +1,10 @@
 #include "ofApp.h"
 
 
-// these are global variables - better to make them properties of the ofApp object.
-// Also, pixel positions should probably be floating point numbers, or better still
-// an ofPoint or ofVec3f.
-
-int xpos;
-int ypos;
-
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofBackground(0,0,0);
+    ofEnableSmoothing();
     
     cSq.init(200,300,ofColor::pink, 0);
     octo.init(400,500,ofColor::magenta);
@@ -24,8 +18,6 @@ void ofApp::setup(){
         float deg;
         if (i%2==0){
             deg = 90;
-            y+=12; //adjust for non centered registration point
-     
         }else {
             deg =0;
         }
@@ -34,7 +26,7 @@ void ofApp::setup(){
         if (i%2==0){
             x+= 70;
         }else {
-            x+= 73;
+            x+= 74;
         }
         y = 200;
     }
@@ -48,14 +40,14 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     ofSetLineWidth(2);
-    //cSq.draw(1);
+    cSq.draw(1, true);
     //cSq.drawPoly(200, 200);
-    arrow.draw(1);
-    octo.draw(1);
+    arrow.draw(1, false);
+    octo.draw(1, false);
     //octo.drawPoly(100, 100);
     
     for (int i = 0; i < squares.size(); i++){
-        squares[i].draw(1);
+        squares[i].draw(1, false);
     }
     
   

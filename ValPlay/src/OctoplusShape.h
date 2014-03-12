@@ -8,7 +8,7 @@ class OctoplusShape {
     
 public:
     void init(float x, float y, ofColor col);
-    void draw(float scale);
+    void draw(float scale, bool fill);
     void drawPoly(float x, float y);
     
     // variables

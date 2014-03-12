@@ -18,15 +18,18 @@ void ArrowShape::init(float x, float y, ofColor col) {
 }
 
 
-void ArrowShape::draw(float scale = 1){
+void ArrowShape::draw(float scale = 1, bool fill = false){
     
     ofSetColor(colour);
     ofPushMatrix();
     ofPushStyle();
     ofTranslate(pos);
     ofScale(size*scale, size*scale);
-    ofNoFill();
-    ofSetLineWidth(2);
+    
+    if (!fill) {
+        ofNoFill();
+        ofSetLineWidth(2);
+    }
     
     ofBeginShape();
     ofVertex(0,0);

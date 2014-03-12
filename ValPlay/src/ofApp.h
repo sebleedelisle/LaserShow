@@ -17,6 +17,7 @@ class ofApp : public ofBaseApp{
         OctoplusShape octo;
     
         vector<CurveSquare> squares;
+        vector<ArrowShape> arrows;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
