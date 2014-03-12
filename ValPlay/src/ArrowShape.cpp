@@ -3,17 +3,18 @@
 
 
 ArrowShape::ArrowShape(){
-    init(0,0, ofColor::white);
+    init(0,0, ofColor::white, 0);
 }
 
 ArrowShape::ArrowShape(float x, float y, ofColor col) {
-    init(x,y, col);
+    init(x,y, col, 0);
 };
 
-void ArrowShape::init(float x, float y, ofColor col) {
+void ArrowShape::init(float x, float y, ofColor col, float rot) {
     pos.set(x,y);
     colour = col;
     visible = true;
+    rotation = rot;
     size = 1;
 }
 
@@ -25,6 +26,7 @@ void ArrowShape::draw(float scale = 1, bool fill = false){
     ofPushStyle();
     ofTranslate(pos);
     ofScale(size*scale, size*scale);
+    ofRotate(rotation);
     
     if (!fill) {
         ofNoFill();

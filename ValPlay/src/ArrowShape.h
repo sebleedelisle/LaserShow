@@ -8,7 +8,7 @@ class ArrowShape {
     
 public:
     
-    void init(float x, float y, ofColor col);
+    void init(float x, float y, ofColor col, float rotation);
     void draw(float scale, bool fill);
     void drawPoly(float x, float y);
     
@@ -18,6 +18,7 @@ public:
     ofPolyline arrowPoly;
     ofVec3f pos;
     float size;
+    float rotation;
 	ofColor colour;
     
     

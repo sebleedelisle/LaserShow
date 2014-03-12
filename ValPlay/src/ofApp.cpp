@@ -8,11 +8,12 @@ void ofApp::setup(){
     
     cSq.init(200,300,ofColor::pink, 0);
     octo.init(400,500,ofColor::magenta);
-    arrow.init(200,100,ofColor::yellow);
+    arrow.init(200,100,ofColor::yellow,0);
     
     float x = 100;
     float y = 200;
     
+
     for (int i = 0; i < 12; i++) {
         CurveSquare mySquare;
         float deg;
@@ -30,7 +31,15 @@ void ofApp::setup(){
         }
         y = 200;
     }
+    
+    
+    splitArrows();
+
+    
 }
+
+
+
 
 //--------------------------------------------------------------
 void ofApp::update(){
@@ -39,6 +48,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
     ofSetLineWidth(2);
     cSq.draw(1, true);
     //cSq.drawPoly(200, 200);
@@ -46,12 +56,38 @@ void ofApp::draw(){
     octo.draw(1, false);
     //octo.drawPoly(100, 100);
     
+    //just messing with drawing out some squares in a pattern
     for (int i = 0; i < squares.size(); i++){
         squares[i].draw(1, false);
     }
     
+    
+    //draw the arrows
+    for (int j = 0; j < arrows.size(); j++){
+        arrows[j].draw(1, false);
+    }
   
 }
+
+
+//--------------------------------------------------------------
+void ofApp::splitArrows(){
+    float x = 400;
+    float y = 400;
+    
+    float degs = 45;
+    float radius = 150;
+    
+    for (int j = 0; j < 4; j++) {
+        ArrowShape myArrow;
+    
+        myArrow.init(x,y, ofColor::cyan , degs);
+        arrows.push_back(myArrow);
+        degs+= 90;
+       // cout << "degrees" << degs << endl;
+    }
+}
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
