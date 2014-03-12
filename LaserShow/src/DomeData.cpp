@@ -16,6 +16,9 @@ void draw();
 
 DomeData :: DomeData() {
 	
+	
+	
+	/*
 	params.add(pos.set("pos", ofPoint(640,480), ofPoint(-1280,-960, -4000), ofPoint(2560,1920, 0)));
 	params.add(scale.set("scale", 1, 0.1, 4));
 	
@@ -32,6 +35,9 @@ DomeData :: DomeData() {
 	
 	params.add(scaleXY.set("scaleXY", ofPoint(1,1,1), ofPoint(0.1,0.1,1),ofPoint(3,3,1)));
 	params.add(divAngle.set("division angle",12, 0, 30));
+
+	*/ 
+	 
 	gui.setup("Dome data", "domeData.xml");
 	gui.setVisible(true);
 	
@@ -44,6 +50,13 @@ DomeData :: DomeData() {
 void DomeData :: draw() {
 	//if(!editable) return;
 
+	
+	level1.draw();
+	
+	
+	
+	
+	/*
 	ofSetupScreenPerspective(1280,960,50);
 
 	ofPushStyle();
@@ -131,7 +144,7 @@ void DomeData :: draw() {
 
 	ofPopStyle();
 	ofPopMatrix();
-	
+	*/
 	
 	gui.draw();
 	

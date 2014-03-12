@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/octoplusShape.cpp \
-  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/octoplusShape.h \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/OctoplusShape.cpp \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/OctoplusShape.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glew/include/GL/glew.h \

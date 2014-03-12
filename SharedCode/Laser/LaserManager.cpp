@@ -581,7 +581,7 @@ void LaserManager::addLaserDot(const ofPoint& ofpoint, ofFloatColor colour, floa
 
 
 void LaserManager:: addLaserLineEased(const ofPoint&startpoint, const ofPoint&endpoint, ofFloatColor colour) {
-	shapes.push_back(new LaserLine(gLProject(startpoint), gLProject(startpoint), colour, 1));
+	shapes.push_back(new LaserLine(gLProject(startpoint), gLProject(endpoint), colour, 1));
 }
 
 

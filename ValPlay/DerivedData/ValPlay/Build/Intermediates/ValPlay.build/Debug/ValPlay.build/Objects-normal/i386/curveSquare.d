@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/curveSquare.cpp \
-  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/curveSquare.h \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/CurveSquare.cpp \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/CurveSquare.h \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glew/include/GL/glew.h \
