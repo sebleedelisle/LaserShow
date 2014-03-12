@@ -17,10 +17,7 @@ void CurveSquare::init(float x, float y, ofColor col, float rot) {
     size = 1;
 }
 
-void CurveSquare::draw(float scale = 1){
-    
-    float x = pos.x;
-    float y = pos.y;
+void CurveSquare::draw(float scale = 1, bool fill=false){
     
     ofSetColor(colour);
     ofPushMatrix();
@@ -28,10 +25,12 @@ void CurveSquare::draw(float scale = 1){
     ofTranslate(pos);
     ofScale(size*scale, size*scale);
     ofRotate(rotation);
-    ofNoFill();
-    ofSetLineWidth(2);
     
-
+    if (!fill) {
+        ofNoFill();
+        ofSetLineWidth(2);
+    }
+    
     ofBeginShape();
     ofVertex(0,0);
     ofBezierVertex(0,0,-6,1,-9,6);
