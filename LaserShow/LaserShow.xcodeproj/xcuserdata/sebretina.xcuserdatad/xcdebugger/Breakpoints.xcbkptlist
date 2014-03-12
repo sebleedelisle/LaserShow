@@ -125,12 +125,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/DomeData.cpp"
-         timestampString = "416251058.783477"
+         timestampString = "416314241.574168"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
          landmarkName = "DomeData :: draw()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/EditableBezier.cpp"
+         timestampString = "416318271.884659"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
+         landmarkName = "EditableBezier::mousePressed(ofMouseEventArgs &amp;e)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
