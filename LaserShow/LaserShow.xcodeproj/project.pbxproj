@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12253C6218B3FA1900670880 /* TextWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12253C5F18B3FA1900670880 /* TextWriter.cpp */; };
+		12713DE518D46ED400C97118 /* AnimationSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713DE318D46ED400C97118 /* AnimationSequence.cpp */; };
 		1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1296BC4C18CF57C3004FCE27 /* DomeData.cpp */; };
 		12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512218D07A9E005BD577 /* EditableBezier.cpp */; };
 		12A6512718D09641005BD577 /* LaserBeamEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512518D09641005BD577 /* LaserBeamEffect.cpp */; };
@@ -60,6 +61,7 @@
 		12D0AD0418AE3BEB0028BAFC /* Quint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12D0ACE818AE3BEB0028BAFC /* Quint.cpp */; };
 		12D0AD0518AE3BEB0028BAFC /* Sine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12D0ACEA18AE3BEB0028BAFC /* Sine.cpp */; };
 		12D0AD0618AE3BEB0028BAFC /* RectangleUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12D0ACEC18AE3BEB0028BAFC /* RectangleUI.cpp */; };
+		12E56C4E18D23DBD00FE14F1 /* DragHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12E56C4C18D23DBD00FE14F1 /* DragHandle.cpp */; };
 		12E57DAB18CF3300008B8366 /* PipeOrganData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12E57DA918CF3300008B8366 /* PipeOrganData.cpp */; };
 		169d3c72fde6c5590a1616f500a456b4 /* ofxCvFloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7b6a03390302d5a2c9f0e4ab630ae8d6 /* ofxCvFloatImage.cpp */; };
 		1d5f3298c2fa073628012944b1efde88 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = c76de5c29bdbd2caa1dd0021a7376220 /* ofxCvContourFinder.cpp */; };
@@ -138,6 +140,8 @@
 		12253C5F18B3FA1900670880 /* TextWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextWriter.cpp; sourceTree = "<group>"; };
 		12253C6018B3FA1900670880 /* TextWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextWriter.h; sourceTree = "<group>"; };
 		12253C6118B3FA1900670880 /* VectorFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorFont.h; sourceTree = "<group>"; };
+		12713DE318D46ED400C97118 /* AnimationSequence.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationSequence.cpp; sourceTree = "<group>"; };
+		12713DE418D46ED400C97118 /* AnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSequence.h; sourceTree = "<group>"; };
 		1271DAF218CE031F00D7FDEA /* SoundShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundShape.h; sourceTree = "<group>"; };
 		1296BC4C18CF57C3004FCE27 /* DomeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomeData.cpp; sourceTree = "<group>"; };
 		1296BC4D18CF57C3004FCE27 /* DomeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeData.h; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 		12D0ACEB18AE3BEB0028BAFC /* Sine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sine.h; sourceTree = "<group>"; };
 		12D0ACEC18AE3BEB0028BAFC /* RectangleUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RectangleUI.cpp; sourceTree = "<group>"; };
 		12D0ACED18AE3BEB0028BAFC /* RectangleUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RectangleUI.h; sourceTree = "<group>"; };
+		12E56C4C18D23DBD00FE14F1 /* DragHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DragHandle.cpp; sourceTree = "<group>"; };
+		12E56C4D18D23DBD00FE14F1 /* DragHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragHandle.h; sourceTree = "<group>"; };
 		12E57DA918CF3300008B8366 /* PipeOrganData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PipeOrganData.cpp; sourceTree = "<group>"; };
 		12E57DAA18CF3300008B8366 /* PipeOrganData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PipeOrganData.h; sourceTree = "<group>"; };
 		12E57DAC18CF339D008B8366 /* Pipe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pipe.h; sourceTree = "<group>"; };
@@ -1184,6 +1190,10 @@
 				12E57DAA18CF3300008B8366 /* PipeOrganData.h */,
 				1296BC4C18CF57C3004FCE27 /* DomeData.cpp */,
 				1296BC4D18CF57C3004FCE27 /* DomeData.h */,
+				12E56C4C18D23DBD00FE14F1 /* DragHandle.cpp */,
+				12E56C4D18D23DBD00FE14F1 /* DragHandle.h */,
+				12713DE318D46ED400C97118 /* AnimationSequence.cpp */,
+				12713DE418D46ED400C97118 /* AnimationSequence.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1442,6 +1452,8 @@
 				1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */,
 				12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */,
 				12A6512718D09641005BD577 /* LaserBeamEffect.cpp in Sources */,
+				12E56C4E18D23DBD00FE14F1 /* DragHandle.cpp in Sources */,
+				12713DE518D46ED400C97118 /* AnimationSequence.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

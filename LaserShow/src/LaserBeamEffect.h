@@ -12,25 +12,29 @@
 
 struct LaserBeam {
 	
-	
+	LaserBeam() {
+		pos.set(0,0,0);
+		length = 300;
+		colour = ofColor::white;
+		intensity = 0;
+		
+	};
 	ofPoint pos;
 	float length;
-	
+	ofColor colour;
+	float intensity; 
 	
 	
 };
 
 class LaserBeamEffect {
 	
-
-	
-	
 	public :
 	
 	LaserBeamEffect(); 
 	
 	void update();
-	void draw(LaserManager& lm);
+	void draw(LaserManager& lm, float intensity);
 	
 	deque<LaserBeam> beams;
 	float speed;
@@ -40,7 +44,12 @@ class LaserBeamEffect {
 	float emitRate;
 	int maxBeams;
 	
-	bool running; 
+	bool running;
+	bool multiColoured;
+	float currentHue;
+	bool rotateEmission;
+	float currentAngle;
+	bool respondToVolume;
 	
 
 	

@@ -11,6 +11,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "EditableBezier.h"
+#include "DragHandle.h"
 
 class DomeData {
 
@@ -31,15 +32,17 @@ class DomeData {
 	ofXml settings;
 	bool editable;
 
-	/*ofParameter<ofPoint> pos;
+	ofParameter<ofPoint> pos;
 	ofParameter<ofPoint> rotation;
 	ofParameter<ofPoint> start, end, c1, c2, scaleXY;
 	ofParameter<float> scale, divAngle;
 	
-	ofParameter<ofPoint> level1, level2, level3, level4;
-	*/
+	ofParameter<ofVec3f> level1, level2, level3, level4;
+	//ofPoint level1Point, level2Point, level3Point, level4Point;//, level2, level3, level4;
 	
-	EditableBezier level1; 
+	DragHandle level1Handle, level2Handle, level3Handle, level4Handle;
+	
+	//EditableBezier level1;
 	
 	
 	ofxPanel gui;

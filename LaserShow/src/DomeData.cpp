@@ -18,7 +18,7 @@ DomeData :: DomeData() {
 	
 	
 	
-	/*
+	
 	params.add(pos.set("pos", ofPoint(640,480), ofPoint(-1280,-960, -4000), ofPoint(2560,1920, 0)));
 	params.add(scale.set("scale", 1, 0.1, 4));
 	
@@ -36,32 +36,36 @@ DomeData :: DomeData() {
 	params.add(scaleXY.set("scaleXY", ofPoint(1,1,1), ofPoint(0.1,0.1,1),ofPoint(3,3,1)));
 	params.add(divAngle.set("division angle",12, 0, 30));
 
-	*/ 
-	 
 	gui.setup("Dome data", "domeData.xml");
 	gui.setVisible(true);
 	
 	gui.add(params);
-	
+	gui.load();
 
+	level1Handle.setPoint(&level1, ofPoint(-640,-480));
+	level2Handle.setPoint(&level2, ofPoint(-640,-480));
+	level3Handle.setPoint(&level3, ofPoint(-640,-480));
+	level4Handle.setPoint(&level4, ofPoint(-640,-480));
+	
 	
 }
 
 void DomeData :: draw() {
 	//if(!editable) return;
 
+	//level1.draw();
 	
-	level1.draw();
-	
-	
-	
-	
-	/*
 	ofSetupScreenPerspective(1280,960,50);
 
 	ofPushStyle();
 	ofPushMatrix();
 	ofTranslate(640,480);
+	
+	level1Handle.render();
+	level2Handle.render();
+	level3Handle.render();
+	level4Handle.render();
+	
 	
 	ofSetLineWidth(3);
 	ofSetColor(255,0,255);
@@ -75,6 +79,7 @@ void DomeData :: draw() {
 	ofCircle(end, 3);
 
 	ofSetColor(0,255,255);
+
 	ofCircle(level1, 3);
 	ofCircle(level2, 3);
 	ofCircle(level3, 3);
@@ -115,7 +120,7 @@ void DomeData :: draw() {
 			ofScale(scaleXY->x, scaleXY->y, scaleXY->z);
 			ofSetLineWidth(0.5);
 
-			//ofBezier(start, c1, c2, end);
+			ofBezier(start, c1, c2, end);
 			ofSetLineWidth(3);
 			
 			ofCircle(level1, 1);
@@ -144,7 +149,7 @@ void DomeData :: draw() {
 
 	ofPopStyle();
 	ofPopMatrix();
-	*/
+	
 	
 	gui.draw();
 	
