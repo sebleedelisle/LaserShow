@@ -24,8 +24,6 @@ void ofApp::setup(){
 	ofSetColor(0);
 	ofRect(0,0,1024,768);
 	projectorFbo.end();
-
-	
 	
 	ofSetColor(255);
 	projectorPosition.set(screenWidth/5*2, screenHeight*4/5, screenWidth/5, screenHeight/5);
@@ -48,13 +46,15 @@ void ofApp::setup(){
 	
 	ofxBaseGui::loadFont("VeraMoIt.ttf",8, true);
 	
-	gui.setup("Settings");
-	gui.setPosition(ofPoint(screenWidth+220 - panelwidth - 10,10));
-	gui.setVisible(true);
-	gui.add(&laserManager.connectButton);
-	gui.add(laserManager.parameters);
+	laserGui.setup("LaserManager");
+	laserGui.setPosition(ofPoint(screenWidth+220 - panelwidth - 10,10));
+	laserGui.setVisible(true);
+	laserGui.add(&laserManager.connectButton);
+	laserGui.add(laserManager.parameters);
 	
-	gui.load();
+	laserGui.load();
+	panels.push_back(laserGui);
+	
 	
 	music.loadSound("../../../Music/02 Down the Road.aif");
 	
@@ -68,9 +68,16 @@ void ofApp::setup(){
 	cube3.init(-200,-200,ofColor::cyan);
 	
 	pipeOrganData.load();
+	domeData.init();
 	domeData.load();
 	
-	effectLateralLines.setDomeData(&domeData);
+	domeData.gui.setPosition(ofPoint(screenWidth+220 - panelwidth - 10,10));
+	domeData.gui.setVisible(false);
+	
+	panels.push_back(domeData.gui);
+	
+	
+	effectDomeLines.setDomeData(&domeData);
 	
 	// can potentially use : ofSetupScreenPerspective();
 	
@@ -88,7 +95,7 @@ void ofApp::update(){
 	
 	screenAnimation.update();
 	
-	effectLateralLines.update(); 
+	effectDomeLines.update(); 
 }
 
 //--------------------------------------------------------------
@@ -113,6 +120,8 @@ void ofApp::draw(){
 	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
 	
 	uiFbo.begin();
+	ofSetupScreenPerspective(1280,960,50);
+
 	ofSetColor(0);
 	ofFill(); 
 	ofRect(0,0,screenWidth, screenHeight);
@@ -130,11 +139,12 @@ void ofApp::draw(){
 		drawPipeOrgan(val, numBands);
 		
 		domeData.draw();
-		laserBeamEffect.draw(laserManager,vol);
-		effectLateralLines.draw(sync, vol, laserManager);
 		
 		
 	} else {
+		ofSetColor(255);
+		ofRect(screenWidth/2 - projectorFbo.getWidth()/2 -1, screenHeight/2 - projectorFbo.getHeight()/2-1, projectorFbo.getWidth()+2, projectorFbo.getHeight()+2);
+
 		projectorFbo.draw(screenWidth/2 - projectorFbo.getWidth()/2, screenHeight/2 - projectorFbo.getHeight()/2);
 		
 	}
@@ -277,6 +287,12 @@ void ofApp::draw(){
 	ofPopMatrix();
 	
 	uiFbo.begin();
+	ofSetupScreenPerspective(1280,960,50);
+
+	laserBeamEffect.draw(laserManager,vol);
+	effectDomeLines.draw(sync, vol, laserManager);
+	
+	
 	laserManager.draw();
 	laserManager.renderLaserPreview = !previewProjector; 
 	if(!previewProjector) {
@@ -285,15 +301,30 @@ void ofApp::draw(){
 	}
 	uiFbo.end();
 	uiFbo.draw(0,0);
-	gui.draw();
-
+	for(int i = 0; i<panels.size(); i++) {
+		panels[i].draw();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	
 	if(key == 'f') ofToggleFullscreen();
-	if(key == '\t') gui.toggleVisible();
+	if(key == '\t') {
+		
+		int activePanelIndex = -1; 
+		for(int i =0; i<panels.size(); i++) {
+			if(panels[i].getVisible()) activePanelIndex = i;
+			panels[i].setVisible(false); 
+			
+		}
+		if(activePanelIndex ==-1) {
+			panels[0].setVisible(true);
+		} else if(activePanelIndex<panels.size()-1) {
+			panels[activePanelIndex+1].setVisible(true);
+		}
+			
+	}
 	if(key == 'w') laserManager.showWarpPoints = !laserManager.showWarpPoints;
 	if(key == ' ') previewProjector = !previewProjector;
 	if(key == OF_KEY_DOWN) {
@@ -420,7 +451,7 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 void ofApp::exit() {
-	gui.save();
+	laserGui.save();
 	pipeOrganData.save();
 	domeData.save();
 	laserManager.warp.saveSettings();
