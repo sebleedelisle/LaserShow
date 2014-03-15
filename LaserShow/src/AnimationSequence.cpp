@@ -58,7 +58,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (bar >1 && bar < 4) {
         ofSetColor(225);
         string fontString ="HEY I HAVE SOME FONT STUFFS!";
-        proximaNovaL.drawString(fontString, -350, 0);
+        proximaNovaL.drawString(fontString, -250, 0);
     }
     
     if (bar > 4 && bar < 8) {
