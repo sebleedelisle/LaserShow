@@ -12,8 +12,7 @@ void ofApp::setup(){
 	screenHeight = 960;
 	
 	guideImage.loadImage("img/LaserableArea.jpg");
-	smashingTitle.loadImage("img/SmashingLogo.png");
-	smashingTitle.setAnchorPercent(.5, .5);
+	
 	
 	previewProjector = false;
 	
@@ -197,7 +196,7 @@ void ofApp::draw(){
 		else if(progress>0.8) ofSetColor(ofMap(progress, 0.8, 1, 255, 0));
 		
 		
-        //smashingTitle.draw(0,0, ofMap(sync.currentBarFloat,0,4,-100,100));
+        
 	
 		ofPopStyle();
 		ofPopMatrix();
@@ -205,12 +204,12 @@ void ofApp::draw(){
 	
 	}
 	
-	if(sync.currentBar<8) {
-		cube1.draw(val[30]*10 );
-		cube2.draw(val[20]*10 );
-		cube3.draw(val[10]*10 );
-	}
-	
+//	if(sync.currentBar<8) {
+//		cube1.draw(val[30]*10 );
+//		cube2.draw(val[20]*10 );
+//		cube3.draw(val[10]*10 );
+//	}
+//	
 	
 	ofPopMatrix(); 
 	

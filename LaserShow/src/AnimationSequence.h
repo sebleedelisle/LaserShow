@@ -24,8 +24,11 @@ class AnimationSequence {
 	
 	void update();
 	void draw(Synchroniser& sync, float volume);
-   
+    void writeinPNL(string message);
+    
     ofTrueTypeFont	proximaNovaL;
+    ofImage smashingTitle;
+    
 
 	AnimationSequence();
 	
