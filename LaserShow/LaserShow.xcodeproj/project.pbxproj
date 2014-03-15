@@ -10,6 +10,7 @@
 		12253C6218B3FA1900670880 /* TextWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12253C5F18B3FA1900670880 /* TextWriter.cpp */; };
 		12713DE518D46ED400C97118 /* AnimationSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713DE318D46ED400C97118 /* AnimationSequence.cpp */; };
 		12713DE818D4A7A900C97118 /* EffectDomeLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713DE618D4A7A800C97118 /* EffectDomeLines.cpp */; };
+		12713DEC18D504F400C97118 /* EffectPipeOrganLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713DEA18D504F400C97118 /* EffectPipeOrganLines.cpp */; };
 		1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1296BC4C18CF57C3004FCE27 /* DomeData.cpp */; };
 		12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512218D07A9E005BD577 /* EditableBezier.cpp */; };
 		12A6512718D09641005BD577 /* LaserBeamEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512518D09641005BD577 /* LaserBeamEffect.cpp */; };
@@ -148,6 +149,8 @@
 		12713DE418D46ED400C97118 /* AnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationSequence.h; sourceTree = "<group>"; };
 		12713DE618D4A7A800C97118 /* EffectDomeLines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectDomeLines.cpp; sourceTree = "<group>"; };
 		12713DE718D4A7A900C97118 /* EffectDomeLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectDomeLines.h; sourceTree = "<group>"; };
+		12713DEA18D504F400C97118 /* EffectPipeOrganLines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectPipeOrganLines.cpp; sourceTree = "<group>"; };
+		12713DEB18D504F400C97118 /* EffectPipeOrganLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectPipeOrganLines.h; sourceTree = "<group>"; };
 		1271DAF218CE031F00D7FDEA /* SoundShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundShape.h; sourceTree = "<group>"; };
 		1296BC4C18CF57C3004FCE27 /* DomeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomeData.cpp; sourceTree = "<group>"; };
 		1296BC4D18CF57C3004FCE27 /* DomeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeData.h; sourceTree = "<group>"; };
@@ -502,6 +505,17 @@
 				12253C6118B3FA1900670880 /* VectorFont.h */,
 			);
 			path = LetterWriter;
+			sourceTree = "<group>";
+		};
+		12713DED18D504FC00C97118 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				12713DEA18D504F400C97118 /* EffectPipeOrganLines.cpp */,
+				12713DEB18D504F400C97118 /* EffectPipeOrganLines.h */,
+				12713DE618D4A7A800C97118 /* EffectDomeLines.cpp */,
+				12713DE718D4A7A900C97118 /* EffectDomeLines.h */,
+			);
+			name = Effects;
 			sourceTree = "<group>";
 		};
 		12A8CEC618B82671006E42BA /* ofxSvg */ = {
@@ -1188,6 +1202,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				12713DED18D504FC00C97118 /* Effects */,
 				3AA668B218D4A4DF007CF55D /* ArrowShape.cpp */,
 				3AA668B318D4A4DF007CF55D /* ArrowShape.h */,
 				3AA668B418D4A4DF007CF55D /* CurveSquare.cpp */,
@@ -1212,8 +1227,6 @@
 				12E56C4D18D23DBD00FE14F1 /* DragHandle.h */,
 				12713DE318D46ED400C97118 /* AnimationSequence.cpp */,
 				12713DE418D46ED400C97118 /* AnimationSequence.h */,
-				12713DE618D4A7A800C97118 /* EffectDomeLines.cpp */,
-				12713DE718D4A7A900C97118 /* EffectDomeLines.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1478,6 +1491,7 @@
 				12E56C4E18D23DBD00FE14F1 /* DragHandle.cpp in Sources */,
 				12713DE518D46ED400C97118 /* AnimationSequence.cpp in Sources */,
 				12713DE818D4A7A900C97118 /* EffectDomeLines.cpp in Sources */,
+				12713DEC18D504F400C97118 /* EffectPipeOrganLines.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

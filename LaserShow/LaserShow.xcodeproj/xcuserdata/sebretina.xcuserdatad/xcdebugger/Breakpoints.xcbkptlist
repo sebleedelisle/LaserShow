@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605952.097617"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "174"
-         endingLineNumber = "174"
+         startingLineNumber = "179"
+         endingLineNumber = "179"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605023.508801"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "138"
-         endingLineNumber = "138"
+         startingLineNumber = "143"
+         endingLineNumber = "143"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605023.508801"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "139"
-         endingLineNumber = "139"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605952.097617"
+         timestampString = "416618203.185801"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "386"
-         endingLineNumber = "386"
+         startingLineNumber = "345"
+         endingLineNumber = "345"
          landmarkName = "ofApp :: drawPipeOrgan(float * val, int numBands)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/DomeData.cpp"
-         timestampString = "416605023.508801"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
          landmarkName = "DomeData :: draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -242,11 +242,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605023.508801"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "109"
+         endingLineNumber = "109"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -255,11 +255,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605023.508801"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "105"
-         endingLineNumber = "105"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -268,11 +268,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416605023.508801"
+         timestampString = "416615373.542353"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
+         startingLineNumber = "110"
+         endingLineNumber = "110"
+         landmarkName = "ofApp::draw()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/ofApp.cpp"
+         timestampString = "416615373.542353"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "108"
+         endingLineNumber = "108"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -300,6 +313,19 @@
          startingLineNumber = "52"
          endingLineNumber = "52"
          landmarkName = "EffectLateralLines::draw(Synchroniser&amp; sync, float volume, LaserManager&amp; lm)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/ofApp.cpp"
+         timestampString = "416617555.497766"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
+         landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
