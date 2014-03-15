@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416323916.208334"
+         timestampString = "416575722.656934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "132"
-         endingLineNumber = "132"
+         startingLineNumber = "148"
+         endingLineNumber = "148"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416323916.208334"
+         timestampString = "416575722.656934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "102"
-         endingLineNumber = "102"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416323916.208334"
+         timestampString = "416575722.656934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
          landmarkName = "ofApp::draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/ofApp.cpp"
-         timestampString = "416323916.208334"
+         timestampString = "416575722.656934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "319"
-         endingLineNumber = "319"
+         startingLineNumber = "337"
+         endingLineNumber = "337"
          landmarkName = "ofApp :: drawPipeOrgan(float * val, int numBands)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/DomeData.cpp"
-         timestampString = "416320783.178804"
+         timestampString = "416575722.656934"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
+         startingLineNumber = "104"
+         endingLineNumber = "104"
          landmarkName = "DomeData :: draw()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/LaserBeamEffect.cpp"
-         timestampString = "416325895.518431"
+         timestampString = "416337641.680128"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "28"
-         endingLineNumber = "28"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
          landmarkName = "LaserBeamEffect :: update()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,12 +177,38 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/LaserBeamEffect.cpp"
-         timestampString = "416324023.123148"
+         timestampString = "416337641.680128"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
+         startingLineNumber = "36"
+         endingLineNumber = "36"
          landmarkName = "LaserBeamEffect :: update()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/DragHandle.h"
+         timestampString = "416433003.322475"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "30"
+         endingLineNumber = "30"
+         landmarkName = "render()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/DragHandle.h"
+         timestampString = "416574845.130976"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
+         landmarkName = "mousePressed(ofMouseEventArgs &amp;e)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -13,6 +13,7 @@
 #include "PipeOrganData.h"
 #include "DomeData.h"
 #include "LaserBeamEffect.h"
+#include "AnimationSequence.h"
 
 class ofApp : public ofBaseApp{
 
@@ -64,6 +65,8 @@ class ofApp : public ofBaseApp{
 	SoundShape cube3;
 	
 	float soundPositionMS;
+	
+	AnimationSequence screenAnimation;
 	
 
 

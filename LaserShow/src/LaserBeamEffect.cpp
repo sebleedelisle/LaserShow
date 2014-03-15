@@ -18,7 +18,12 @@ LaserBeamEffect :: LaserBeamEffect() {
 	elapsedTime = 0;
 	maxBeams = 50;
 	running = true;
-
+	multiColoured = true;
+	currentHue = 0;
+	rotateEmission = true;
+	currentAngle = 0;
+	respondToVolume = true;
+	
 
 }
 
@@ -34,8 +39,22 @@ void LaserBeamEffect :: update(){
 		beams.push_back(LaserBeam());
 		LaserBeam& beam = beams.back();
 		
-		ofPoint pos(0,-ofRandom(200,300));
-		pos.rotate(ofRandom(-130, 130), ofPoint(0,0,1));
+		if(multiColoured) {
+			beam.colour.setHsb((int)currentHue%255,255,255);
+			currentHue += 3;
+		}
+		
+		ofPoint pos(0,-ofRandom(400,400));
+		if(rotateEmission) {
+			pos.rotate(currentAngle, ofPoint(0,0,1));
+			currentAngle += 22;
+			if(currentAngle>120) currentAngle -=240;
+			
+		} else {
+			pos.rotate(ofRandom(-120, 120), ofPoint(0,0,1));
+		}
+			
+			
 		beam.pos.set(640,480,-2500);
 		beam.pos+=pos;
 
@@ -69,7 +88,7 @@ void LaserBeamEffect :: update(){
 }
 
 
-void LaserBeamEffect :: draw(LaserManager& laserManager) {
+void LaserBeamEffect :: draw(LaserManager& laserManager, float intensity) {
 	
 	
 	float xRotation = 20;
@@ -82,13 +101,31 @@ void LaserBeamEffect :: draw(LaserManager& laserManager) {
 	ofNoFill();
 	ofSetLineWidth(1);
 	
+	
+	
+	
 	for(int i = 0; i<beams.size(); i++) {
 		
 		LaserBeam& beam = beams[i];
 	
+		if(i<beams.size()-1) {
+			beam.intensity = beams[i+1].intensity;
+		} else {
+			if(respondToVolume) beam.intensity = intensity;
+			else beam.intensity = 0;
+		}
+		
 		ofPoint start = beam.pos;
 		ofPoint end = beam.pos;
-		end.z-=300;
+		end.z-=beam.length;
+		
+		//if(intensity>0.6) {
+			float scalar = ofMap(beam.intensity, 0,1, 0,1, true);
+			start.z+=scalar*beam.length;
+			end.z-=scalar*beam.length;
+			
+			
+		//}
 		
 		
 		if(start.z > frontPlane) start.z = frontPlane;
@@ -96,8 +133,12 @@ void LaserBeamEffect :: draw(LaserManager& laserManager) {
 		if(end.z<frontPlane) {
 			start.rotate(xRotation, ofPoint(1,0,0));
 			end.rotate(xRotation, ofPoint(1,0,0));
+			ofColor col = beam.colour;
+			if(multiColoured) col.setSaturation(ofMap(beam.intensity, 0,1,255,200,true));
+			//col.setHsb(beam.colour.getHue(), 255, ofMap(intensity, 0,1,255,255,true));
 			
-			laserManager.addLaserLineEased(start, end, ofColor::white);
+			laserManager.addLaserLineEased(start, end, col);
+			ofSetColor(col);
 			ofLine(start, end);//beam.pos, beam.pos + ofPoint(0,0,200));
 		}
 	}

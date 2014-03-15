@@ -1,18 +1,18 @@
 <Dome_data>
 	<group>
 		<pos>600.818, 510.589, -2686.38</pos>
-		<rot>26.8326, -1.97417, 0.108299</rot>
-		<start>-639.467, 245.098, 0</start>
+		<rot>29.696, -1.97417, 0.108299</rot>
+		<start>-639.467, 150.138, 0</start>
 		<end>0.266602, -284.681, 0</end>
-		<c1>-640, -114.752, 0</c1>
+		<c1>-640, -189.72, 0</c1>
 		<c2>-352.92, -274.686, 0</c2>
 	<scale>2.44796</scale>
 	<scaleXY>1.08257, 1.08257, 1</scaleXY>
-	<level1>-386.505, -209.712, 0</level1>
-		<level2>-586.422, -64.7725, 0</level2>
-		<level3>-539.775, 205.115, 0</level3>
-		<level4>-626.405, 460.009, 0</level4>
-	<division_angle>13.1633</division_angle>
+	<level1>-388, -223, 0</level1>
+		<level2>-564.422, -69.7725, 0</level2>
+		<level3>-649.406, 144.137, 0</level3>
+		<level4>-661.405, 432.009, 0</level4>
+	<division_angle>12.8571</division_angle>
 	</group>
 <Dome_data/>
 </Dome_data>

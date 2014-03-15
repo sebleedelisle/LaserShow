@@ -62,7 +62,7 @@ bool ofxSlider<Type>::mousePressed(ofMouseEventArgs & args){
 
 template<typename Type>
 bool ofxSlider<Type>::mouseDragged(ofMouseEventArgs & args){
-    ofLog(OF_LOG_NOTICE, "mouse moved %d %d", args.x,args.y);
+   // ofLog(OF_LOG_NOTICE, "mouse moved %d %d", args.x,args.y);
 
 	if(setValue(args.x, args.y, false)){
         ofLog(OF_LOG_NOTICE, "inside");

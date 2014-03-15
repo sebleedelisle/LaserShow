@@ -79,6 +79,8 @@ void ofApp::update(){
 
 	sync.update(soundPositionMS);
 	laserBeamEffect.update();
+	
+	screenAnimation.update(); 
 }
 
 //--------------------------------------------------------------
@@ -87,8 +89,18 @@ void ofApp::draw(){
 
 	
 	int numBands = 500;
+	float vol = 0;
+	
+	
 	float * val = ofSoundGetSpectrum(numBands);
 	
+	for(int i = 0;i<numBands; i++) {
+		vol+=val[i];
+		
+	}
+
+	vol/=(float)numBands / 20.0f;
+	//cout << vol << endl;
 	
 	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
 	
@@ -103,7 +115,7 @@ void ofApp::draw(){
 		drawPipeOrgan(val, numBands);
 		
 		domeData.draw();
-		laserBeamEffect.draw(laserManager);
+		laserBeamEffect.draw(laserManager,vol);
 		
 		
 	} else {
@@ -125,7 +137,11 @@ void ofApp::draw(){
 		ofRect(i*barWidth, 0, barWidth-1, size );
 		
 	}
+	ofSetColor(255,0,0);
 
+	ofRect((numBands+1)*barWidth, 0, barWidth-1, vol*100 );
+	ofSetColor(255);
+	
 	
 	ofNoFill();
 	
@@ -148,6 +164,8 @@ void ofApp::draw(){
 	
 	ofPushMatrix();
 	ofTranslate(512,384);
+	
+	screenAnimation.draw(sync, vol);
 	
 	if(sync.currentBarFloat<3) {
 		
