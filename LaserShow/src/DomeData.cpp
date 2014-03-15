@@ -42,10 +42,10 @@ DomeData :: DomeData() {
 	gui.add(params);
 	gui.load();
 
-	level1Handle.setPoint(&level1, ofPoint(-640,-480));
-	level2Handle.setPoint(&level2, ofPoint(-640,-480));
-	level3Handle.setPoint(&level3, ofPoint(-640,-480));
-	level4Handle.setPoint(&level4, ofPoint(-640,-480));
+	level1Handle.setPoint(&level1, ofPoint(-940,-480));
+	level2Handle.setPoint(&level2, ofPoint(-940,-480));
+	level3Handle.setPoint(&level3, ofPoint(-940,-480));
+	level4Handle.setPoint(&level4, ofPoint(-940,-480));
 	
 	
 }
@@ -59,7 +59,7 @@ void DomeData :: draw() {
 
 	ofPushStyle();
 	ofPushMatrix();
-	ofTranslate(640,480);
+	ofTranslate(940,480);
 	
 	level1Handle.render();
 	level2Handle.render();
@@ -84,7 +84,9 @@ void DomeData :: draw() {
 	ofCircle(level2, 3);
 	ofCircle(level3, 3);
 	ofCircle(level4, 3);
-		
+	
+	ofTranslate(-300,0);
+	
 	ofPopMatrix();
 	ofPushMatrix();
 	
@@ -188,6 +190,11 @@ void DomeData::mouseReleased(int x, int y){
 	
 }
 
+ofPoint DomeData::getBezierPoint(float t) {
+	return ofBezierPoint(start, c1, c2, end, t); 
+	
+	
+}
 
 void DomeData::save(){
 	

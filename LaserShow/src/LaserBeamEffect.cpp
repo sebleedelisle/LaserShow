@@ -17,7 +17,7 @@ LaserBeamEffect :: LaserBeamEffect() {
 	emitRate = 10;
 	elapsedTime = 0;
 	maxBeams = 50;
-	running = true;
+	running = false;
 	multiColoured = true;
 	currentHue = 0;
 	rotateEmission = true;

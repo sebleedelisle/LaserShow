@@ -24,6 +24,8 @@ class DomeData {
 	void save();
 	void load();
 	
+	ofPoint getBezierPoint(float t); 
+	
 	void mouseDragged(int x, int y);
 	void mousePressed(int x, int y);
 	void mouseReleased(int x, int y);

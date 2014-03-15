@@ -18,11 +18,15 @@ void ofApp::setup(){
 	previewProjector = false;
 	
 	projectorFbo.allocate(1024, 768, GL_RGB, 4);
+	uiFbo.allocate(screenWidth, screenHeight, GL_RGB, 2); 
 
 	projectorFbo.begin();
 	ofSetColor(0);
 	ofRect(0,0,1024,768);
 	projectorFbo.end();
+
+	
+	
 	ofSetColor(255);
 	projectorPosition.set(screenWidth/5*2, screenHeight*4/5, screenWidth/5, screenHeight/5);
 	
@@ -66,6 +70,8 @@ void ofApp::setup(){
 	pipeOrganData.load();
 	domeData.load();
 	
+	effectLateralLines.setDomeData(&domeData);
+	
 	// can potentially use : ofSetupScreenPerspective();
 	
 }
@@ -80,13 +86,15 @@ void ofApp::update(){
 	sync.update(soundPositionMS);
 	laserBeamEffect.update();
 	
-	screenAnimation.update(); 
+	screenAnimation.update();
+	
+	effectLateralLines.update(); 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(0);
-
+	
 	
 	int numBands = 500;
 	float vol = 0;
@@ -104,6 +112,12 @@ void ofApp::draw(){
 	
 	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
 	
+	uiFbo.begin();
+	ofSetColor(0);
+	ofFill(); 
+	ofRect(0,0,screenWidth, screenHeight);
+	ofNoFill();
+	
 	if(!previewProjector) {
 		ofSetColor(200);
 		guideImage.draw(0,0,screenWidth, screenHeight);
@@ -116,6 +130,7 @@ void ofApp::draw(){
 		
 		domeData.draw();
 		laserBeamEffect.draw(laserManager,vol);
+		effectLateralLines.draw(sync, vol, laserManager);
 		
 		
 	} else {
@@ -151,7 +166,7 @@ void ofApp::draw(){
 
 	//drawPipeOrgan(val, numBands);
 
-	
+	uiFbo.end();
 
 	//----------------- FBO BEGIN --------------------------------
 	projectorFbo.begin();
@@ -259,13 +274,15 @@ void ofApp::draw(){
 	
 	ofPopMatrix();
 	
+	uiFbo.begin();
 	laserManager.draw();
 	laserManager.renderLaserPreview = !previewProjector; 
 	if(!previewProjector) {
 		laserManager.renderLaserPath(ofRectangle(0,0,screenWidth, screenHeight), false);
 		//laserManager.renderPreview();
 	}
-	
+	uiFbo.end();
+	uiFbo.draw(0,0);
 	gui.draw();
 
 }

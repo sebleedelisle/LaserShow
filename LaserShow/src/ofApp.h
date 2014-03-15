@@ -14,6 +14,7 @@
 #include "DomeData.h"
 #include "LaserBeamEffect.h"
 #include "AnimationSequence.h"
+#include "EffectLateralLines.h"
 
 class ofApp : public ofBaseApp{
 
@@ -45,10 +46,13 @@ class ofApp : public ofBaseApp{
 	LaserManager laserManager;
 	
 	ofFbo projectorFbo;
+	ofFbo uiFbo; 
 	ofRectangle projectorPosition;
 	ofImage guideImage;
 	
-	LaserBeamEffect laserBeamEffect; 
+	LaserBeamEffect laserBeamEffect;
+	
+	EffectLateralLines effectLateralLines; 
 	
 	bool previewProjector; 
 	
