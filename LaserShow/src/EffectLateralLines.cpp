@@ -51,13 +51,6 @@ void EffectLateralLines::draw(Synchroniser& sync, float volume, LaserManager& lm
 		
 		LateralLine& line = lines[i];
 		
-		//ofSetColor(line.col);
-		//ofNoFill();
-		//ofSetLineWidth(5);
-		if(line.pos>=1) {
-			//line.pos = 1;
-			//line.vel*=-1;
-		}
 		if(line.pos>1) {
 			lines.erase(lines.begin() + i);
 			i--;
@@ -66,7 +59,7 @@ void EffectLateralLines::draw(Synchroniser& sync, float volume, LaserManager& lm
 		ofPoint p = domeData->getBezierPoint(line.pos);
 		// REUSE!
 		poly.clear();
-		for(float rotation = 0; rotation> -180; rotation--) {
+		for(float rotation = 0; rotation> -180; rotation-=3) {
 			ofPoint q = p;
 			q.rotate(rotation, ofPoint(0,1,0));
 			q *= domeData->scaleXY;
