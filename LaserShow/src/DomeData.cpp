@@ -14,11 +14,9 @@ void draw();
 
 
 
-DomeData :: DomeData() {
+void DomeData :: init() {
 	
-	
-	
-	
+
 	params.add(pos.set("pos", ofPoint(640,480), ofPoint(-1280,-960, -4000), ofPoint(2560,1920, 0)));
 	params.add(scale.set("scale", 1, 0.1, 4));
 	
@@ -46,17 +44,21 @@ DomeData :: DomeData() {
 	level2Handle.setPoint(&level2, ofPoint(-940,-480));
 	level3Handle.setPoint(&level3, ofPoint(-940,-480));
 	level4Handle.setPoint(&level4, ofPoint(-940,-480));
+	startHandle.setPoint(&start, ofPoint(-940,-480));
+	endHandle.setPoint(&end, ofPoint(-940,-480));
+	c1Handle.setPoint(&c1, ofPoint(-940,-480));
+	c2Handle.setPoint(&c2, ofPoint(-940,-480));
 	
 	
 }
+
 
 void DomeData :: draw() {
 	//if(!editable) return;
 
 	//level1.draw();
 	
-	ofSetupScreenPerspective(1280,960,50);
-
+	
 	ofPushStyle();
 	ofPushMatrix();
 	ofTranslate(940,480);
@@ -65,6 +67,10 @@ void DomeData :: draw() {
 	level2Handle.render();
 	level3Handle.render();
 	level4Handle.render();
+	startHandle.render();
+	c1Handle.render();
+	c2Handle.render();
+	endHandle.render();
 	
 	
 	ofSetLineWidth(3);
@@ -73,17 +79,7 @@ void DomeData :: draw() {
 	ofLine(start, c1);
 	ofLine(end,c2);
 	
-	ofCircle(start, 3);
-	ofCircle(c1, 3);
-	ofCircle(c2, 3);
-	ofCircle(end, 3);
-
 	ofSetColor(0,255,255);
-
-	ofCircle(level1, 3);
-	ofCircle(level2, 3);
-	ofCircle(level3, 3);
-	ofCircle(level4, 3);
 	
 	ofTranslate(-300,0);
 	
@@ -96,7 +92,8 @@ void DomeData :: draw() {
 	ofRotateY(rotation->y);
 	ofRotateZ(rotation->z);
 	ofScale(scale, scale, scale);
-	//ofScale(scaleXY->x, scaleXY->y, scaleXY->z);
+
+	
 	ofSetColor(255, 100);
 	ofSetLineWidth(0.5);
 
@@ -153,38 +150,26 @@ void DomeData :: draw() {
 	ofPopMatrix();
 	
 	
-	gui.draw();
+	//gui.draw();
 	
 }
 
 
 void DomeData::mouseDragged(int x, int y){
 	if(!editable) return;
-	/*
-	for(int i = 0; i<pipes.size(); i++) {
-		pipes[i].mouseDragged(x, y);
-		
-	}*/
+
 	
 	
 }
 
 void DomeData::mousePressed(int x, int y){
 	if(!editable) return;
-	/*for(int i = 0; i<pipes.size(); i++) {
-		// only click the first one it finds
-		if (pipes[i].mousePressed(x, y)) break;
-	}*/
 	
 	
 }
 
 void DomeData::mouseReleased(int x, int y){
 	if(!editable) return;
-	/*for(int i = 0; i<pipes.size(); i++) {
-		pipes[i].mouseReleased(x, y);
-		
-	}*/
 	
 	save();
 	

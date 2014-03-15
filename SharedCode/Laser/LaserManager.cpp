@@ -84,10 +84,10 @@ void LaserManager:: setup (int width, int height) {
 	warp.setDstPoint(2, ofVec2f(x2,y2));
 	warp.setDstPoint(3, ofVec2f(x1,y2));
 	
-	warp.setSrcPoint(0, ofVec2f(x1,y1));
-	warp.setSrcPoint(1, ofVec2f(x2,y1));
-	warp.setSrcPoint(2, ofVec2f(x2,y2));
-	warp.setSrcPoint(3, ofVec2f(x1,y2));
+	warp.setSrcPoint(0, ofVec2f(0,0));
+	warp.setSrcPoint(1, ofVec2f(appWidth,0));
+	warp.setSrcPoint(2, ofVec2f(appWidth,appHeight));
+	warp.setSrcPoint(3, ofVec2f(0,appHeight));
     
     warp.loadSettings();
     
@@ -746,7 +746,7 @@ void LaserManager:: drawShapes() {
 		
 	}
 	
-	moveLaser(currentPosition, startPosition);
+	moveLaser(currentPosition, maskRectangle.getCenter());
 	
 		
 }

@@ -17,7 +17,7 @@ class DomeData {
 
 	public :
 	
-	DomeData();
+	void init();
 	
 	void draw();
 	
@@ -40,9 +40,9 @@ class DomeData {
 	ofParameter<float> scale, divAngle;
 	
 	ofParameter<ofVec3f> level1, level2, level3, level4;
-	//ofPoint level1Point, level2Point, level3Point, level4Point;//, level2, level3, level4;
 	
-	DragHandle level1Handle, level2Handle, level3Handle, level4Handle;
+	DragHandle level1Handle, level2Handle, level3Handle, level4Handle,
+				startHandle, c1Handle, c2Handle, endHandle;
 	
 	//EditableBezier level1;
 	

@@ -1,5 +1,5 @@
 //
-//  EffectLateralLines.h
+//  .h
 //  LaserShow
 //
 //  Created by Seb Lee-Delisle on 15/03/2014.
@@ -16,12 +16,13 @@
 
 
 
-struct LateralLine {
+struct DomeLine {
 	
-	LateralLine(float position, float velocity, ofColor colour) {
+	DomeLine(float position, float velocity, ofColor colour, bool _lateral = true) {
 		pos = position;
 		vel = velocity;
 		col = colour;
+		lateral = _lateral;
 	}
 	
 	void update() {
@@ -33,12 +34,13 @@ struct LateralLine {
 	float pos; // 0 to 1 from bottom to top
 	float vel; // per second?
 	ofColor col;
+	bool lateral; 
 	
 	
 };
 
 
-class EffectLateralLines {
+class EffectDomeLines {
 	
 	public :
 	
@@ -48,7 +50,7 @@ class EffectLateralLines {
 	void setDomeData(DomeData* domedata); 
 	
 	DomeData* domeData = NULL;
-	deque <LateralLine> lines; 
+	deque <DomeLine> lines; 
 	
 	float hue; 
 

@@ -14,7 +14,7 @@
 #include "DomeData.h"
 #include "LaserBeamEffect.h"
 #include "AnimationSequence.h"
-#include "EffectLateralLines.h"
+#include "EffectDomeLines.h"
 
 class ofApp : public ofBaseApp{
 
@@ -40,7 +40,8 @@ class ofApp : public ofBaseApp{
 	
 	int screenWidth, screenHeight;
 
-	ofxPanel gui;
+	ofxPanel laserGui;
+	vector<ofxPanel> panels;
 
 	
 	LaserManager laserManager;
@@ -52,7 +53,7 @@ class ofApp : public ofBaseApp{
 	
 	LaserBeamEffect laserBeamEffect;
 	
-	EffectLateralLines effectLateralLines; 
+	EffectDomeLines effectDomeLines;
 	
 	bool previewProjector; 
 	
