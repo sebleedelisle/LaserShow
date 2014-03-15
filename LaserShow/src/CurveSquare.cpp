@@ -31,7 +31,7 @@ void CurveSquare::draw(float scale = 1, bool fill=false){
     }
     
    
-    ofCircle(0, 0, 1);
+    //ofCircle(0, 0, 1);
     
     ofBeginShape();
     ofVertex(-9,-21);

@@ -11,7 +11,7 @@
 AnimationSequence::AnimationSequence () {
     
     //load type
-    proximaNovaL.loadFont("Proxima Nova Light", 30, true, true);
+    proximaNovaL.loadFont("Proxima Nova Light", 26, true, true);
 	proximaNovaL.setLineHeight(62.0f);
 	proximaNovaL.setLetterSpacing(1);
     proximaNovaL.setSpaceSize(.4);
@@ -19,6 +19,9 @@ AnimationSequence::AnimationSequence () {
     //load up images
     smashingTitle.loadImage("img/SmashingLogo.png");
 	smashingTitle.setAnchorPercent(.5, .5);
+    
+    ofSetLineWidth(2);
+    
 }
 
 
@@ -57,23 +60,22 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
 
     // WHERE THE MAGIC HAPPENS
-    if (bar < 1) {
+    if (barfloat >0 && barfloat <.5) {
         
         ofNoFill();
-        smashingTitle.resize(80,80);
+        smashingTitle.resize(50,50);
         smashingTitle.draw(0,0);
         //smashingTitle.draw(0,0, ofMap(sync.currentBarFloat,0,4,-100,100));
     }
     
-    if (barfloat > 1 && barfloat <1.5) {
-        
-        //fake fade out our image!
-        for (int i = 1024; i <0; i--) {
-            ofSetColor(ofMap(i, 0, 1024, 0, 255));
-        }
-    }
+//    if (barfloat > 0.5 && barfloat < 2) {
+//        //fake fade out our image!
+//        for (int i = 4096; i <0; i--) {
+//            ofSetColor(ofMap(i, 0, 1024, 0, 255));
+//        }
+//    }
     
-    if (barfloat > 1.5 && bar < 4) {
+    if (barfloat > 1 && bar < 5) {
         
         //fade in the text colour
         float op = 1;
@@ -86,22 +88,182 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         
     }
     
-    if (barfloat > 2 && barfloat < 5) {
+    if (bar >= 5 && bar < 6) {
+        float op = 255;
+        for (int i = 255; i > 0; i--) {
+            ofSetColor(225, 255,255,op);
+            op = i;
+        }
+        
+        writeinPNL("MARCH 18 & 19");
+
+    }
+    
+    if (barfloat > 1 && barfloat < 5) {
         //circle with guitar on qurts
         ofSetColor(ofColor::cyan);
         ofNoFill();
-        
-        ofCircle(100,300, ofMap(sync.sixteenthPulse, 0, 100, 10,100));
-        
+        ofCircle(100,200, ofMap(sync.beatPulse, 0, 1, 0,25));
     }
     
+    if (barfloat >= 1.25 && barfloat < 1) {
+        // square with eighths - harmonica
+        ofSetColor(ofColor::yellow);
+        ofNoFill();
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofRect(250,-200, ofMap(sync.eighthPulse, 0, 1, 5,25),ofMap(sync.eighthPulse, 0, 1, 10,25));
+    }
     
-    if (bar > 4 && bar < 8) {
+    if (barfloat > 2.5 && barfloat < 3) {
+        // square with eighths - harmonica
+        ofSetColor(ofColor::yellow);
+        ofNoFill();
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofRect(250,-200, ofMap(sync.eighthPulse, 0, 1, 5,25),ofMap(sync.eighthPulse, 0, 1, 10,25));
+    }
+    
+    if (barfloat >= 3 && barfloat < 6) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(-100, -300, ofMap(sync.beatPulse, 0, 1, 10,25));
+    }
+    
+    if (barfloat >= 3.25 && barfloat < 3.5) {
+        //vocals
         CurveSquare square;
-        square.init(0,0,ofColor::pink);
-        square.draw(sync.sixteenthPulse, false);
-    
+        square.init(-200,-100,ofColor::pink);
+        square.draw(sync.beatPulse, false);
     }
+    
+    if (barfloat >= 3.5 && barfloat < 3.75) {
+        //vocals
+        CurveSquare square;
+        square.init(-200,-100,ofColor::pink);
+        square.draw(sync.eighthPulse, false);
+    }
+    
+    if (barfloat >= 4.5 && barfloat < 5) {
+        //vocals
+        CurveSquare square;
+        square.init(-200,-100,ofColor::pink);
+        square.draw(sync.beatPulse*2, false);
+    }
+    
+
+    
+    
+    //4 step up gutiar
+    if (barfloat >=6 && barfloat < 8) {
+        //orange to keep the beat throughout the two 4 seps
+        ofSetColor(ofColor::orange);
+        ofNoFill();
+        ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 10,35));
+    }
+    
+    if (barfloat >= 6 && barfloat < 6.25) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(0,0, ofMap(sync.eighthPulse, 0, 1, 10,35));
+    }
+    
+    if (barfloat >= 6.25 && barfloat < 6.25) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(0,0, 35);
+        ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 20,65));
+    }
+    
+    if (barfloat >= 6.5 && barfloat < 6.5) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(0,0, 35);
+        ofCircle(0,0, 65);
+    }
+    
+    if (barfloat >= 6.75 && barfloat < 7) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(0,0, 35);
+        ofCircle(0,0, 65);
+        ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 40,85));
+    }
+    
+    //second 4 step up guitar
+    if (barfloat >= 7 && barfloat < 7.25) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(-0,0, ofMap(sync.eighthPulse, 0, 1, 10,35));
+    }
+    
+    if (barfloat >= 7.25 && barfloat < 7.25) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(-0,0, 35);
+        ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 20,65));
+    }
+    
+    if (barfloat >= 7.5 && barfloat < 7.75) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(-0,0, 35);
+        ofCircle(0,0, 65);
+    }
+
+    
+    if (barfloat >= 7.75 && barfloat < 8) {
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(-0,0, 35);
+        ofCircle(0,0, 65);
+        ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 40,85));
+    }
+    
+    //grow circles
+    if (bar >=8 && barfloat < 8.25) {
+        ofNoFill();
+        ofSetColor(ofColor::cyan);
+        ofCircle(-0,0, sync.barPulse *60);
+        ofSetColor(ofColor::pink);
+        ofCircle(0,0, sync.barPulse *80);
+        ofSetColor(255,0,111);
+        ofCircle(0,0, sync.barPulse*100);
+    }
+   
+    //hold circles
+    if (barfloat >= 8.25 && barfloat < 8.5){
+        ofNoFill();
+        ofSetColor(ofColor::cyan);
+        ofCircle(0,0,60);
+        ofSetColor(ofColor::pink);
+        ofCircle(0,0,80);
+        ofSetColor(255,0,111);
+        ofCircle(0,0, 100);
+    }
+    
+    if (barfloat >= 8.5 && barfloat < 8.75){
+        CurveSquare square;
+        square.init(0,0, ofColor::cyan);
+        square.rotation = 45;
+        square.draw(4, false);
+    
+        CurveSquare square2;
+        square2.init(0,0, ofColor::pink);
+        square2.rotation = 45;
+        square2.draw(6, false);
+        
+        CurveSquare square3;
+        square3.init(0,0, ofColor(255,0,111));
+        square3.rotation = 45;
+        square3.draw(8, false);
+    }
+    
+
+    
+//    if (bar > 7 && bar < 8) {
+//        CurveSquare square;
+//        square.init(0,0,ofColor::pink);
+//        square.draw(sync.sixteenthPulse, false);
+//    }
     
     
     
