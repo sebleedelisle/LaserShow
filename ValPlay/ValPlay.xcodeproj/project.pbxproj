@@ -10,6 +10,8 @@
 		3A16C7C118CE5E5B00480243 /* ArrowShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A16C7C018CE5E5B00480243 /* ArrowShape.cpp */; };
 		3A16C7C718CE69C300480243 /* OctoplusShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A16C7C618CE69C300480243 /* OctoplusShape.cpp */; };
 		3A7C27C518CE5A5E00378CCD /* CurveSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C27C418CE5A5E00378CCD /* CurveSquare.cpp */; };
+		3AA00F6B18D240ED00BF37CF /* AngleMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA00F6A18D240ED00BF37CF /* AngleMove.cpp */; };
+		3AA00F7218D298C700BF37CF /* ShakeMove.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA00F7118D298C700BF37CF /* ShakeMove.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -69,6 +71,10 @@
 		3A16C7C618CE69C300480243 /* OctoplusShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OctoplusShape.cpp; sourceTree = "<group>"; };
 		3A7C27C318CE5A3F00378CCD /* CurveSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveSquare.h; sourceTree = "<group>"; };
 		3A7C27C418CE5A5E00378CCD /* CurveSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurveSquare.cpp; sourceTree = "<group>"; };
+		3AA00F6918D240E000BF37CF /* AngleMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngleMove.h; sourceTree = "<group>"; };
+		3AA00F6A18D240ED00BF37CF /* AngleMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AngleMove.cpp; sourceTree = "<group>"; };
+		3AA00F7018D298BC00BF37CF /* ShakeMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeMove.h; sourceTree = "<group>"; };
+		3AA00F7118D298C700BF37CF /* ShakeMove.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShakeMove.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -201,6 +207,10 @@
 				3A7C27C318CE5A3F00378CCD /* CurveSquare.h */,
 				3A7C27C418CE5A5E00378CCD /* CurveSquare.cpp */,
 				3A16C7BF18CE5E4700480243 /* ArrowShape.h */,
+				3AA00F6918D240E000BF37CF /* AngleMove.h */,
+				3AA00F6A18D240ED00BF37CF /* AngleMove.cpp */,
+				3AA00F7018D298BC00BF37CF /* ShakeMove.h */,
+				3AA00F7118D298C700BF37CF /* ShakeMove.cpp */,
 				3A16C7C018CE5E5B00480243 /* ArrowShape.cpp */,
 			);
 			path = src;
@@ -303,8 +313,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				3AA00F7218D298C700BF37CF /* ShakeMove.cpp in Sources */,
 				3A16C7C718CE69C300480243 /* OctoplusShape.cpp in Sources */,
 				3A16C7C118CE5E5B00480243 /* ArrowShape.cpp in Sources */,
+				3AA00F6B18D240ED00BF37CF /* AngleMove.cpp in Sources */,
 				3A7C27C518CE5A5E00378CCD /* CurveSquare.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 			);

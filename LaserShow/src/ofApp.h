@@ -12,6 +12,7 @@
 #include "SoundShape.h"
 #include "PipeOrganData.h"
 #include "DomeData.h"
+#include "LaserBeamEffect.h"
 
 class ofApp : public ofBaseApp{
 
@@ -44,7 +45,10 @@ class ofApp : public ofBaseApp{
 	
 	ofFbo projectorFbo;
 	ofRectangle projectorPosition;
-	ofImage guideImage; 
+	ofImage guideImage;
+	
+	LaserBeamEffect laserBeamEffect; 
+	
 	bool previewProjector; 
 	
 

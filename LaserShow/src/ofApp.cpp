@@ -78,6 +78,7 @@ void ofApp::update(){
 	if(music.getIsPlaying()) soundPositionMS = music.getPositionMS();
 
 	sync.update(soundPositionMS);
+	laserBeamEffect.update();
 }
 
 //--------------------------------------------------------------
@@ -102,7 +103,7 @@ void ofApp::draw(){
 		drawPipeOrgan(val, numBands);
 		
 		domeData.draw();
-		
+		laserBeamEffect.draw(laserManager);
 		
 		
 	} else {

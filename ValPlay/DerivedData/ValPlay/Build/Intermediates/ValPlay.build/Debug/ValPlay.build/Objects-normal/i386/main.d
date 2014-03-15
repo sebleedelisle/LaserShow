@@ -171,5 +171,5 @@ dependencies: \
   ../../../libs/openFrameworks/3d/ofEasyCam.h \
   /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/ofApp.h \
   /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/curveSquare.h \
-  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/arrow.h \
+  /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/ArrowShape.h \
   /Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/ValPlay/src/octoplusShape.h

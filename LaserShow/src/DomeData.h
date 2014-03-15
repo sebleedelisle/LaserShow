@@ -10,6 +10,7 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "EditableBezier.h"
 
 class DomeData {
 
@@ -30,10 +31,15 @@ class DomeData {
 	ofXml settings;
 	bool editable;
 
-	ofParameter<ofPoint> pos;
+	/*ofParameter<ofPoint> pos;
 	ofParameter<ofPoint> rotation;
 	ofParameter<ofPoint> start, end, c1, c2, scaleXY;
-	ofParameter<float> scale;
+	ofParameter<float> scale, divAngle;
+	
+	ofParameter<ofPoint> level1, level2, level3, level4;
+	*/
+	
+	EditableBezier level1; 
 	
 	
 	ofxPanel gui;

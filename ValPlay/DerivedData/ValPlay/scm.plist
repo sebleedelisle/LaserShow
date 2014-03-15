@@ -5,11 +5,13 @@
 	<key>FoundWorkingCopyPaths</key>
 	<array>
 		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow</string>
-		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/LaserShow</string>
 		<string>/Users/sebretina/Dropbox/openFrameworks</string>
+		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/of-Audio-Oct</string>
+		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/LaserShow</string>
+		<string>/Users/sebretina/Dropbox/openFrameworks/apps/LaserShow/addons/ofxLibdc</string>
 	</array>
 	<key>LastWorkingCopyScanDate</key>
-	<date>2014-03-11T13:36:51Z</date>
+	<date>2014-03-12T14:32:40Z</date>
 	<key>MissingFilePaths</key>
 	<array/>
 	<key>Version</key>

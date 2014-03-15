@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		12253C6218B3FA1900670880 /* TextWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12253C5F18B3FA1900670880 /* TextWriter.cpp */; };
 		1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1296BC4C18CF57C3004FCE27 /* DomeData.cpp */; };
+		12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512218D07A9E005BD577 /* EditableBezier.cpp */; };
+		12A6512718D09641005BD577 /* LaserBeamEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512518D09641005BD577 /* LaserBeamEffect.cpp */; };
 		12A8CED318B82671006E42BA /* src_colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8CECA18B82671006E42BA /* src_colors.cpp */; };
 		12A8CED418B82671006E42BA /* svgtiny.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8CECB18B82671006E42BA /* svgtiny.cpp */; };
 		12A8CED518B82671006E42BA /* svgtiny_gradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8CECD18B82671006E42BA /* svgtiny_gradient.cpp */; };
@@ -139,6 +141,10 @@
 		1271DAF218CE031F00D7FDEA /* SoundShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundShape.h; sourceTree = "<group>"; };
 		1296BC4C18CF57C3004FCE27 /* DomeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomeData.cpp; sourceTree = "<group>"; };
 		1296BC4D18CF57C3004FCE27 /* DomeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeData.h; sourceTree = "<group>"; };
+		12A6512218D07A9E005BD577 /* EditableBezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditableBezier.cpp; sourceTree = "<group>"; };
+		12A6512318D07A9E005BD577 /* EditableBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableBezier.h; sourceTree = "<group>"; };
+		12A6512518D09641005BD577 /* LaserBeamEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaserBeamEffect.cpp; sourceTree = "<group>"; };
+		12A6512618D09641005BD577 /* LaserBeamEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaserBeamEffect.h; sourceTree = "<group>"; };
 		12A8CECA18B82671006E42BA /* src_colors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = src_colors.cpp; sourceTree = "<group>"; };
 		12A8CECB18B82671006E42BA /* svgtiny.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svgtiny.cpp; sourceTree = "<group>"; };
 		12A8CECC18B82671006E42BA /* svgtiny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svgtiny.h; sourceTree = "<group>"; };
@@ -1165,15 +1171,19 @@
 			isa = PBXGroup;
 			children = (
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
+				12A6512518D09641005BD577 /* LaserBeamEffect.cpp */,
+				12A6512618D09641005BD577 /* LaserBeamEffect.h */,
+				12A6512218D07A9E005BD577 /* EditableBezier.cpp */,
+				12A6512318D07A9E005BD577 /* EditableBezier.h */,
 				12E57DAC18CF339D008B8366 /* Pipe.h */,
 				12C7443A18CCAFF40003F40C /* Synchroniser.h */,
 				1271DAF218CE031F00D7FDEA /* SoundShape.h */,
 				12E57DA918CF3300008B8366 /* PipeOrganData.cpp */,
+				12E57DAA18CF3300008B8366 /* PipeOrganData.h */,
 				1296BC4C18CF57C3004FCE27 /* DomeData.cpp */,
 				1296BC4D18CF57C3004FCE27 /* DomeData.h */,
-				12E57DAA18CF3300008B8366 /* PipeOrganData.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1430,6 +1440,8 @@
 				12C9A63418CB7C6C00499D1D /* PointGrey.cpp in Sources */,
 				12E57DAB18CF3300008B8366 /* PipeOrganData.cpp in Sources */,
 				1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */,
+				12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */,
+				12A6512718D09641005BD577 /* LaserBeamEffect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

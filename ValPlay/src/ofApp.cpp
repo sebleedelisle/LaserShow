@@ -3,12 +3,19 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    ofSetFrameRate(60);
+    
+    
     ofBackground(0,0,0);
     ofEnableSmoothing();
     
-    cSq.init(200,300,ofColor::pink, 0);
-    octo.init(400,500,ofColor::magenta);
-    arrow.init(200,100,ofColor::yellow,0);
+    cSq.init(100,100,ofColor::pink, 0);
+    octo.init(200,100,ofColor::magenta);
+    arrow.init(300,100,ofColor::yellow,0);
+    
+    //draw something shaky
+    shakething.init(cSq, 15, 10);
     
     float x = 100;
     float y = 200;
@@ -43,6 +50,12 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    //arrow.pos.x = ofRandom(200);
+    //arrow.pos.y = ofRandom(500);
+    
+    anglething.update();
+    shakething.update();
    
 }
 
@@ -50,8 +63,9 @@ void ofApp::update(){
 void ofApp::draw(){
     
     ofSetLineWidth(2);
-    cSq.draw(1, true);
+   // cSq.draw(1, true);
     //cSq.drawPoly(200, 200);
+    
     arrow.draw(1, false);
     octo.draw(1, false);
     //octo.drawPoly(100, 100);
@@ -62,11 +76,10 @@ void ofApp::draw(){
     }
     
     
-    //draw the arrows
-    for (int j = 0; j < arrows.size(); j++){
-        arrows[j].draw(1, false);
-    }
+    anglething.draw();
+    shakething.draw();
   
+   
 }
 
 
@@ -76,19 +89,20 @@ void ofApp::splitArrows(){
     float y = 400;
     
     float degs = 45;
-    float radius = 150;
-    
+
     for (int j = 0; j < 4; j++) {
         ArrowShape myArrow;
-    
         myArrow.init(x,y, ofColor::cyan , degs);
         arrows.push_back(myArrow);
-        degs+= 90;
-       // cout << "degrees" << degs << endl;
+         degs+= 90;
     }
+    
+   //draw some arrows with our angle move
+    anglething.init(arrows);
+    
+
+
 }
-
-
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 

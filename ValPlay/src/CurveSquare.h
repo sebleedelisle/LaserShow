@@ -20,6 +20,8 @@ public:
     float size;
     float rotation;
 	ofColor colour;
+   
+    
   
     
     CurveSquare();

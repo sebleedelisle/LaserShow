@@ -1,9 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
-#include "curveSquare.h"
+#include "CurveSquare.h"
 #include "ArrowShape.h"
-#include "octoplusShape.h"
+#include "OctoplusShape.h"
+#include "AngleMove.h"
+#include "ShakeMove.h"
+
+
 
 class ofApp : public ofBaseApp{
 
@@ -16,9 +20,13 @@ class ofApp : public ofBaseApp{
         ArrowShape arrow;
         OctoplusShape octo;
     
+        AngleMove anglething;
+        ShakeMove shakething;
+    
         vector<CurveSquare> squares;
         vector<ArrowShape> arrows;
-
+    
+    
         void splitArrows();
     
 		void keyPressed(int key);
