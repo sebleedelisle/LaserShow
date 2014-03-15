@@ -66,6 +66,9 @@
 		169d3c72fde6c5590a1616f500a456b4 /* ofxCvFloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7b6a03390302d5a2c9f0e4ab630ae8d6 /* ofxCvFloatImage.cpp */; };
 		1d5f3298c2fa073628012944b1efde88 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = c76de5c29bdbd2caa1dd0021a7376220 /* ofxCvContourFinder.cpp */; };
 		250a95ba26587be85db0a353e6e1dea2 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ce9c7160245b19131dae61282ee6cb53 /* ofxCvColorImage.cpp */; };
+		3AA668B818D4A4DF007CF55D /* ArrowShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA668B218D4A4DF007CF55D /* ArrowShape.cpp */; };
+		3AA668B918D4A4DF007CF55D /* CurveSquare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA668B418D4A4DF007CF55D /* CurveSquare.cpp */; };
+		3AA668BA18D4A4DF007CF55D /* OctoplusShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AA668B618D4A4DF007CF55D /* OctoplusShape.cpp */; };
 		5a4349e9754d6fa14c0f2a3a1abc30b6 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = fc5da1c87211d4f6377da7199d8c5a1e /* tinyxmlparser.cpp */; };
 		63020f16c7e8ded9801112417e67ad38 /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = c6151136d101f857dae12722e3c42f4a /* ofxCvImage.cpp */; };
 		63b57ac5bf4ef088491e0317dbb2ecaa /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50df87d612c5aae17aafa6c02c6bc570 /* ofxXmlSettings.cpp */; };
@@ -297,6 +300,12 @@
 		319268d200f1ba567e4ccff97a1babd8 /* cxeigen.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cxeigen.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cxeigen.hpp; sourceTree = SOURCE_ROOT; };
 		33ff03222909c1a0ece437531183b507 /* cv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cv.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv/cv.h; sourceTree = SOURCE_ROOT; };
 		36f0ff7f8d7342d220cc6319cac5ad59 /* dummy.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dummy.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/dummy.h; sourceTree = SOURCE_ROOT; };
+		3AA668B218D4A4DF007CF55D /* ArrowShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowShape.cpp; sourceTree = "<group>"; };
+		3AA668B318D4A4DF007CF55D /* ArrowShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowShape.h; sourceTree = "<group>"; };
+		3AA668B418D4A4DF007CF55D /* CurveSquare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CurveSquare.cpp; sourceTree = "<group>"; };
+		3AA668B518D4A4DF007CF55D /* CurveSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveSquare.h; sourceTree = "<group>"; };
+		3AA668B618D4A4DF007CF55D /* OctoplusShape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OctoplusShape.cpp; sourceTree = "<group>"; };
+		3AA668B718D4A4DF007CF55D /* OctoplusShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OctoplusShape.h; sourceTree = "<group>"; };
 		3c232045833313b99efe0b14840b6108 /* ofxCvMain.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvMain.h; path = ../../../addons/ofxOpenCv/src/ofxCvMain.h; sourceTree = SOURCE_ROOT; };
 		452417865e4bfb10c9cbf8a2e12a0b57 /* internal.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = internal.hpp; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core/internal.hpp; sourceTree = SOURCE_ROOT; };
 		45410dd818bb205166e67e89e7443a54 /* any.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = any.h; path = ../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann/any.h; sourceTree = SOURCE_ROOT; };
@@ -1176,6 +1185,12 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				3AA668B218D4A4DF007CF55D /* ArrowShape.cpp */,
+				3AA668B318D4A4DF007CF55D /* ArrowShape.h */,
+				3AA668B418D4A4DF007CF55D /* CurveSquare.cpp */,
+				3AA668B518D4A4DF007CF55D /* CurveSquare.h */,
+				3AA668B618D4A4DF007CF55D /* OctoplusShape.cpp */,
+				3AA668B718D4A4DF007CF55D /* OctoplusShape.h */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
@@ -1393,11 +1408,13 @@
 				1d5f3298c2fa073628012944b1efde88 /* ofxCvContourFinder.cpp in Sources */,
 				169d3c72fde6c5590a1616f500a456b4 /* ofxCvFloatImage.cpp in Sources */,
 				fb09c6b2a1da0ea217240cb8b2bf4b85 /* ofxCvGrayscaleImage.cpp in Sources */,
+				3AA668BA18D4A4DF007CF55D /* OctoplusShape.cpp in Sources */,
 				e212c821d1064b92dd953a42edc08aa7 /* ofxCvHaarFinder.cpp in Sources */,
 				63020f16c7e8ded9801112417e67ad38 /* ofxCvImage.cpp in Sources */,
 				d3301f6a0b43bb293ed97c1d5d26c840 /* ofxCvShortImage.cpp in Sources */,
 				63b57ac5bf4ef088491e0317dbb2ecaa /* ofxXmlSettings.cpp in Sources */,
 				933a2227713c720ceff80fd967d0a8ee /* tinyxml.cpp in Sources */,
+				3AA668B818D4A4DF007CF55D /* ArrowShape.cpp in Sources */,
 				9d44dc88ef9e7991b4a09951e2e4769f /* tinyxmlerror.cpp in Sources */,
 				5a4349e9754d6fa14c0f2a3a1abc30b6 /* tinyxmlparser.cpp in Sources */,
 				12D0ACF618AE3BEB0028BAFC /* matrix_funcs.cpp in Sources */,
@@ -1428,6 +1445,7 @@
 				12C9A60918CB7C6B00499D1D /* ContourFinder.cpp in Sources */,
 				12C9A60A18CB7C6B00499D1D /* Distance.cpp in Sources */,
 				12C9A60B18CB7C6B00499D1D /* Flow.cpp in Sources */,
+				3AA668B918D4A4DF007CF55D /* CurveSquare.cpp in Sources */,
 				12C9A60C18CB7C6B00499D1D /* Helpers.cpp in Sources */,
 				12C9A60D18CB7C6B00499D1D /* ObjectFinder.cpp in Sources */,
 				12C9A60E18CB7C6B00499D1D /* RunningBackground.cpp in Sources */,

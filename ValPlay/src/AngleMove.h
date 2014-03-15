@@ -31,8 +31,7 @@ public:
     
     AngleMove();
     AngleMove(vector<ArrowShape> as);
-    //how do I make this take any shape? a based shape class?
-    
+
     
 private:
     

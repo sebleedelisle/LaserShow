@@ -19,9 +19,8 @@ void ShakeMove::init(CurveSquare s, float rot, float its) {
     iterations = its;
     
    
-    internalSquare.init(-40, -40, ofColor::purple, 0);
+    internalSquare.init(-40, -40, ofColor::purple);
     
-    //if i draw the shape in here I can popmatrix/stuff to draw it a little highter up and the reg point will seem to be in the middle?
 }
 
 

@@ -3,18 +3,17 @@
 
 
 ArrowShape::ArrowShape(){
-    init(0,0, ofColor::white, 0);
+    init(0,0, ofColor::white);
 }
 
 ArrowShape::ArrowShape(float x, float y, ofColor col) {
-    init(x,y, col, 0);
+    init(x,y, col);
 };
 
-void ArrowShape::init(float x, float y, ofColor col, float rot) {
+void ArrowShape::init(float x, float y, ofColor col) {
     pos.set(x,y);
     colour = col;
     visible = true;
-    rotation = rot;
     size = 1;
     vel.set(0,0);
 }

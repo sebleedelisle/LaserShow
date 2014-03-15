@@ -10,9 +10,9 @@ void ofApp::setup(){
     ofBackground(0,0,0);
     ofEnableSmoothing();
     
-    cSq.init(100,100,ofColor::pink, 0);
+    cSq.init(100,100,ofColor::pink);
     octo.init(200,100,ofColor::magenta);
-    arrow.init(300,100,ofColor::yellow,0);
+    arrow.init(300,100,ofColor::yellow);
     
     //draw something shaky
     shakething.init(cSq, 15, 10);
@@ -29,7 +29,7 @@ void ofApp::setup(){
         }else {
             deg =0;
         }
-        mySquare.init(x, y, ofColor::cyan, deg);
+        mySquare.init(x, y, ofColor::cyan);
         squares.push_back(mySquare);
         if (i%2==0){
             x+= 70;
@@ -92,7 +92,7 @@ void ofApp::splitArrows(){
 
     for (int j = 0; j < 4; j++) {
         ArrowShape myArrow;
-        myArrow.init(x,y, ofColor::cyan , degs);
+        myArrow.init(x,y, ofColor::cyan);
         arrows.push_back(myArrow);
          degs+= 90;
     }

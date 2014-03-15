@@ -2,50 +2,22 @@
 #include "CurveSquare.h"
 
 CurveSquare::CurveSquare(){
-   init(0,0, ofColor::white,0);
+   init(0,0, ofColor::white);
 }
 
 CurveSquare::CurveSquare(float x, float y, ofColor col) {
-    init(x,y, col, 0);
+    init(x,y, col);
 };
 
-void CurveSquare::init(float x, float y, ofColor col, float rot) {
+void CurveSquare::init(float x, float y, ofColor col) {
     pos.set(x,y);
     colour = col;
     visible = true;
-    rotation = rot;
+    
     size = 1;
 }
 
 void CurveSquare::draw(float scale = 1, bool fill=false){
-    
-//    ofSetColor(colour);
-//    ofPushMatrix();
-//    ofPushStyle();
-//    ofTranslate(pos);
-//    ofScale(size*scale, size*scale);
-//    ofRotate(rotation);
-//    
-//    if (!fill) {
-//        ofNoFill();
-//        ofSetLineWidth(2);
-//    }
-//    
-//    ofBeginShape();
-//    ofVertex(0,0);
-//    ofBezierVertex(0,0,-6,1,-9,6);
-//    ofBezierVertex(-12,9,-12,17,-12,17);
-//    ofVertex(-12,44);
-//    ofVertex(14,44);
-//    ofBezierVertex(14,44,22,44,26,41);
-//    ofBezierVertex(30,38,30,32,30,32);
-//    ofVertex(30,0);
-//    ofVertex(0,0);
-//    ofEndShape();
-//    
-//    ofPopStyle();
-//    ofPopMatrix();
-//    
     
     ofSetColor(colour);
     ofPushMatrix();

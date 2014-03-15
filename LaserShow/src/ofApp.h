@@ -55,8 +55,8 @@ class ofApp : public ofBaseApp{
 
 	ofSoundPlayer music;
 	
-	Synchroniser sync; 
-	
+	Synchroniser sync;
+    
 
 	ofImage smashingTitle;
 	
