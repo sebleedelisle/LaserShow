@@ -17,7 +17,10 @@ public:
     bool visible;
     ofPolyline arrowPoly;
     ofVec3f pos;
+    ofVec3f target;
+    ofVec3f vel;
     float size;
+    float rotation;
 	ofColor colour;
     
     

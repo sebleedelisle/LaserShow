@@ -2,18 +2,18 @@
 #include "CurveSquare.h"
 
 CurveSquare::CurveSquare(){
-   init(0,0, ofColor::white,0);
+   init(0,0, ofColor::white);
 }
 
 CurveSquare::CurveSquare(float x, float y, ofColor col) {
-    init(x,y, col, 0);
+    init(x,y, col);
 };
 
-void CurveSquare::init(float x, float y, ofColor col, float rot) {
+void CurveSquare::init(float x, float y, ofColor col) {
     pos.set(x,y);
     colour = col;
     visible = true;
-    rotation = rot;
+    
     size = 1;
 }
 
@@ -31,18 +31,20 @@ void CurveSquare::draw(float scale = 1, bool fill=false){
         ofSetLineWidth(2);
     }
     
-    ofBeginShape();
-    ofVertex(0,0);
-    ofBezierVertex(0,0,-6,1,-9,6);
-    ofBezierVertex(-12,9,-12,17,-12,17);
-    ofVertex(-12,44);
-    ofVertex(14,44);
-    ofBezierVertex(14,44,22,44,26,41);
-    ofBezierVertex(30,38,30,32,30,32);
-    ofVertex(30,0);
-    ofVertex(0,0);
-    ofEndShape();
+   
+    ofCircle(0, 0, 1);
     
+    ofBeginShape();
+    ofVertex(-9,-21);
+    ofBezierVertex(-9,-21,-15,-21,-18,-17);
+    ofBezierVertex(-21,-13,-21,-5,-21,-5);
+    ofVertex(-21,21);
+    ofVertex(4,21);
+    ofBezierVertex(4,21,12,22,16,19);
+    ofBezierVertex(20,16,21,10,21,10);
+    ofVertex(21,-21);
+    ofVertex(-9,-21);
+    ofEndShape();    
     ofPopStyle();
     ofPopMatrix();
 }
@@ -50,16 +52,16 @@ void CurveSquare::draw(float scale = 1, bool fill=false){
 
 
 void CurveSquare::drawPoly(float x, float y) {
-   // cSquare.clear();
+    // cSquare.clear();
     cSquare.addVertex(x,y);
-    cSquare.bezierTo(x,y,x-6,y+1,x-9, y+6);
-    cSquare.bezierTo(x-12,y+9,x-12,y+17,x-12,y+17);
-    cSquare.addVertex(x-12,y+44);
-    cSquare.addVertex(x+14,y+44);
-    cSquare.bezierTo(x+14,y+44,x+22,y+44,x+26,y+41);
-    cSquare.bezierTo(x+30,y+38,x+30,y+32,x+30,y+32);
-    cSquare.addVertex(x+30,y);
-    cSquare.addVertex(x+30,y);
+    cSquare.bezierTo(x,y,-6,1,-9, 6);
+    cSquare.bezierTo(-12,9,-12,17,-12,17);
+    cSquare.addVertex(-12,44);
+    cSquare.addVertex(14,44);
+    cSquare.bezierTo(14,44,22,44,26,41);
+    cSquare.bezierTo(30,38,30,32,30,32);
+    cSquare.addVertex(30,y);
+    cSquare.addVertex(30,y);
     cSquare.close();
     cSquare.draw();
 }

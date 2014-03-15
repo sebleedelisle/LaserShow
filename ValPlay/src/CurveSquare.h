@@ -8,7 +8,7 @@ class CurveSquare {
     
 public:
     
-    void init(float x, float y, ofColor col, float rotation);
+    void init(float x, float y, ofColor col);
     void draw(float scale, bool fill);
     void drawPoly(float x, float y);
        
@@ -20,6 +20,8 @@ public:
     float size;
     float rotation;
 	ofColor colour;
+   
+    
   
     
     CurveSquare();

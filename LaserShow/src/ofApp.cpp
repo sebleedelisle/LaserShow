@@ -195,7 +195,8 @@ void ofApp::draw(){
 		if(progress<0.2) ofSetColor(ofMap(progress, 0, 0.2, 0, 255));
 		else if(progress>0.8) ofSetColor(ofMap(progress, 0.8, 1, 255, 0));
 		
-		smashingTitle.draw(0,0, ofMap(sync.currentBarFloat,0,4,-100,100));
+		
+        //smashingTitle.draw(0,0, ofMap(sync.currentBarFloat,0,4,-100,100));
 	
 		ofPopStyle();
 		ofPopMatrix();
@@ -316,7 +317,8 @@ void ofApp::keyPressed(int key){
 	
 	}
 	
-	
+    
+
 	if(key == 'a') cube1.visible = true;
 	if(key == 's') cube2.visible = true;
 	if(key == 'd') cube3.visible = true;

@@ -3,16 +3,24 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    ofSetFrameRate(60);
+    
+    
     ofBackground(0,0,0);
     ofEnableSmoothing();
     
-    cSq.init(200,300,ofColor::pink, 0);
-    octo.init(400,500,ofColor::magenta);
-    arrow.init(200,100,ofColor::yellow);
+    cSq.init(100,100,ofColor::pink);
+    octo.init(200,100,ofColor::magenta);
+    arrow.init(300,100,ofColor::yellow);
+    
+    //draw something shaky
+    shakething.init(cSq, 15, 10);
     
     float x = 100;
     float y = 200;
     
+
     for (int i = 0; i < 12; i++) {
         CurveSquare mySquare;
         float deg;
@@ -21,7 +29,7 @@ void ofApp::setup(){
         }else {
             deg =0;
         }
-        mySquare.init(x, y, ofColor::cyan, deg);
+        mySquare.init(x, y, ofColor::cyan);
         squares.push_back(mySquare);
         if (i%2==0){
             x+= 70;
@@ -30,29 +38,71 @@ void ofApp::setup(){
         }
         y = 200;
     }
+    
+    
+    splitArrows();
+
+    
 }
+
+
+
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    //arrow.pos.x = ofRandom(200);
+    //arrow.pos.y = ofRandom(500);
+    
+    anglething.update();
+    shakething.update();
    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
     ofSetLineWidth(2);
-    cSq.draw(1, true);
+   // cSq.draw(1, true);
     //cSq.drawPoly(200, 200);
+    
     arrow.draw(1, false);
     octo.draw(1, false);
     //octo.drawPoly(100, 100);
     
+    //just messing with drawing out some squares in a pattern
     for (int i = 0; i < squares.size(); i++){
         squares[i].draw(1, false);
     }
     
+    
+    anglething.draw();
+    shakething.draw();
   
+   
 }
 
+
+//--------------------------------------------------------------
+void ofApp::splitArrows(){
+    float x = 400;
+    float y = 400;
+    
+    float degs = 45;
+
+    for (int j = 0; j < 4; j++) {
+        ArrowShape myArrow;
+        myArrow.init(x,y, ofColor::cyan);
+        arrows.push_back(myArrow);
+         degs+= 90;
+    }
+    
+   //draw some arrows with our angle move
+    anglething.init(arrows);
+    
+
+
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
