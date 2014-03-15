@@ -18,23 +18,30 @@
 
 struct DomeLine {
 	
-	DomeLine(float position, float velocity, ofColor colour, bool _lateral = true) {
-		pos = position;
-		vel = velocity;
+	DomeLine(float startposition, float timetotarget, ofColor colour, bool _lateral = true, float _target = 1) {
+		pos = startposition;
+		startPos = pos; 
+		timeToTarget = timetotarget;
 		col = colour;
 		lateral = _lateral;
+		target = _target;
+		elapsedTime = 0; 
 	}
 	
-	void update() {
-		float deltaTime = ofGetLastFrameTime();
-		pos+=(vel*deltaTime);
+	void update(float deltaTime) {
+		elapsedTime+=deltaTime;
+		pos=startPos + (target - startPos) * (elapsedTime / timeToTarget);
 		//vel-=(deltaTime);
 	}
 	
-	float pos; // 0 to 1 from bottom to top
-	float vel; // per second?
+	float pos;
+	float startPos; 
+	float target; 
+	float timeToTarget; // per second?
+	float elapsedTime; 
 	ofColor col;
-	bool lateral; 
+	bool lateral;
+	
 	
 	
 };
@@ -44,7 +51,7 @@ class EffectDomeLines {
 	
 	public :
 	
-	void update();
+	void update(float deltaTime);
 	void draw(Synchroniser& sync, float volume, LaserManager& lm);
 	
 	void setDomeData(DomeData* domedata); 
@@ -52,7 +59,9 @@ class EffectDomeLines {
 	DomeData* domeData = NULL;
 	deque <DomeLine> lines; 
 	
-	float hue; 
+	float hue;
+	int mode=0; // off
+	
 
 };
 

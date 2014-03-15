@@ -54,7 +54,9 @@ void DomeData :: init() {
 
 
 void DomeData :: draw() {
-	//if(!editable) return;
+	editable = gui.getVisible();
+	
+	if(!editable) return;
 
 	//level1.draw();
 	

@@ -15,6 +15,7 @@
 #include "LaserBeamEffect.h"
 #include "AnimationSequence.h"
 #include "EffectDomeLines.h"
+#include "EffectPipeOrganLines.h"
 
 class ofApp : public ofBaseApp{
 
@@ -32,16 +33,18 @@ class ofApp : public ofBaseApp{
 	void gotMessage(ofMessage msg);
 	void exit();
 	
-	void drawPipeOrgan(float * val, int numBands);
+	void updatePeakFrequency(float * val, int numBands);
 	
 	PipeOrganData pipeOrganData;
 	DomeData domeData; 
-	float currentPipeIndex = 0;
+	//float currentPipeIndex = 0;
+	
+	float currentPeakFrequency; // unit value
 	
 	int screenWidth, screenHeight;
 
 	ofxPanel laserGui;
-	vector<ofxPanel> panels;
+	vector<ofxPanel*> panels;
 
 	
 	LaserManager laserManager;
@@ -54,6 +57,7 @@ class ofApp : public ofBaseApp{
 	LaserBeamEffect laserBeamEffect;
 	
 	EffectDomeLines effectDomeLines;
+	EffectPipeOrganLines effectPipeOrganLines;
 	
 	bool previewProjector; 
 	

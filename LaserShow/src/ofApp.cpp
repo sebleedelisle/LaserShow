@@ -52,7 +52,7 @@ void ofApp::setup(){
 	laserGui.add(laserManager.parameters);
 	
 	laserGui.load();
-	panels.push_back(laserGui);
+	panels.push_back(&laserGui);
 	
 	
 	music.loadSound("../../../Music/02 Down the Road.aif");
@@ -73,10 +73,12 @@ void ofApp::setup(){
 	domeData.gui.setPosition(ofPoint(screenWidth+220 - panelwidth - 10,10));
 	domeData.gui.setVisible(false);
 	
-	panels.push_back(domeData.gui);
+	panels.push_back(&domeData.gui);
 	
 	
 	effectDomeLines.setDomeData(&domeData);
+	effectPipeOrganLines.setPipeOrganData(&pipeOrganData);
+	
 	
 	// can potentially use : ofSetupScreenPerspective();
 	
@@ -85,6 +87,8 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	
+	float deltaTime = ofGetLastFrameTime(); 
 	ofSoundUpdate();
 	laserManager.update();
 	if(music.getIsPlaying()) soundPositionMS = music.getPositionMS();
@@ -94,7 +98,8 @@ void ofApp::update(){
 	
 	screenAnimation.update();
 	
-	effectDomeLines.update(); 
+	effectDomeLines.update(deltaTime);
+	effectPipeOrganLines.update(deltaTime); 
 }
 
 //--------------------------------------------------------------
@@ -115,7 +120,7 @@ void ofApp::draw(){
 
 	vol/=(float)numBands / 20.0f;
 	//cout << vol << endl;
-	
+	updatePeakFrequency(val, numBands);
 	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
 	
 	uiFbo.begin();
@@ -135,7 +140,7 @@ void ofApp::draw(){
 		projectorFbo.draw(projectorPosition);
 		
 		pipeOrganData.draw();
-		drawPipeOrgan(val, numBands);
+		//
 		
 		domeData.draw();
 		
@@ -228,68 +233,18 @@ void ofApp::draw(){
 
 	//----------------- FBO END --------------------------------
 
-	ofDrawBitmapString(sync.getString(), 1000,10);
-	sync.draw(1100,10);
-	
-	
-	/*
-	ofPoint axis(0,1,0.6);
-	axis.normalize();
-	
-	ofPolyline poly;
-	ofPoint tmp;
-	for(int i = 0; i<180; i++) {
-		tmp.set(460,0,0);
-		tmp.rotate(i, axis);
 		
-		poly.addVertex(tmp + ofPoint(screenWidth/2, 605));
-		
-	}
-	//poly.draw();
-	laserManager.addLaserPolyline(poly);
-
-	poly.clear();
-
-	for(int i = 0; i<360; i++) {
-		tmp.set(380,0,0);
-		tmp.rotate(i, axis);
-		
-		poly.addVertex(tmp + ofPoint(screenWidth/2, 448));
-	}
-	//ofFill();
-	//poly.draw();
-	laserManager.addLaserPolyline(poly);
-	
-	poly.clear();
-
-	for(int i = 0; i<180; i++) {
-		tmp.set(261,0,0);
-		tmp.rotate(i, axis);
-		
-		poly.addVertex(tmp + ofPoint(screenWidth/2,358));
-	}
-	//poly.draw();
-//	cout << ofGetMouseY()<< " " << ofGetMouseX() << endl;
-	laserManager.addLaserPolyline(poly);
-	
-	
-	ofVec3f circlePos(ofGetMouseX(),screenHeight/2-200,ofMap(ofGetMouseY(), 0, 1024,-2000,2000));
-	ofPushMatrix();
-//	ofTranslate(screenWidth/2, screenHeight/2);
-	
-	//ofCircle(circlePos, 300);
-	
-	laserManager.addLaserCircle(circlePos, ofColor::red, 300);
-	laserManager.addLaserLineEased(circlePos + ofVec3f(-100,-100,0), circlePos + ofVec3f(100,100,0), ofColor::blue);
-	 */
-	
 	ofPopMatrix();
 	
 	uiFbo.begin();
 	ofSetupScreenPerspective(1280,960,50);
 
+	
+	// EFFECTS ---------------------------------------------
+	
 	laserBeamEffect.draw(laserManager,vol);
 	effectDomeLines.draw(sync, vol, laserManager);
+	effectPipeOrganLines.draw(sync, vol, laserManager, currentPeakFrequency);
 	
 	
 	laserManager.draw();
@@ -298,10 +253,14 @@ void ofApp::draw(){
 		laserManager.renderLaserPath(ofRectangle(0,0,screenWidth, screenHeight), false);
 		//laserManager.renderPreview();
 	}
+	
+	ofDrawBitmapString(sync.getString(), 1000,10);
+	sync.draw(1100,10);
+	
 	uiFbo.end();
 	uiFbo.draw(0,0);
 	for(int i = 0; i<panels.size(); i++) {
-		panels[i].draw();
+		panels[i]->draw();
 	}
 }
 
@@ -313,14 +272,14 @@ void ofApp::keyPressed(int key){
 		
 		int activePanelIndex = -1; 
 		for(int i =0; i<panels.size(); i++) {
-			if(panels[i].getVisible()) activePanelIndex = i;
-			panels[i].setVisible(false); 
+			if(panels[i]->getVisible()) activePanelIndex = i;
+			panels[i]->setVisible(false);
 			
 		}
 		if(activePanelIndex ==-1) {
-			panels[0].setVisible(true);
+			panels[0]->setVisible(true);
 		} else if(activePanelIndex<panels.size()-1) {
-			panels[activePanelIndex+1].setVisible(true);
+			panels[activePanelIndex+1]->setVisible(true);
 		}
 			
 	}
@@ -358,7 +317,7 @@ void ofApp::keyPressed(int key){
 }
 
 
-void ofApp :: drawPipeOrgan(float * val, int numBands){
+void ofApp :: updatePeakFrequency(float * val, int numBands){
 
 	
 	//pipeOrganData.draw();
@@ -387,16 +346,19 @@ void ofApp :: drawPipeOrgan(float * val, int numBands){
 	
 	if(loudestIndex>0) {
 		
-	
-		loudestIndex = floor(ofMap(loudestIndex, bottom, top, 0, pipeOrganData.pipes.size()));
-		if(loudestIndex>=pipeOrganData.pipes.size()) loudestIndex = pipeOrganData.pipes.size()-1;
+		currentPeakFrequency = ofMap(loudestIndex, bottom, top, 0, 1);
 		
-		currentPipeIndex += (loudestIndex-currentPipeIndex) * 0.5;
+		//loudestIndex = floor(ofMap(loudestIndex, bottom, top, 0, pipeOrganData.pipes.size()));
+		//if(loudestIndex>=pipeOrganData.pipes.size()) loudestIndex = pipeOrganData.pipes.size()-1;
+		
+		//currentPipeIndex += (loudestIndex-currentPipeIndex) * 0.5;
 		
 		//if(currentPipeIndex<loudestIndex) currentPipeIndex++;
 		//else if(currentPipeIndex>loudestIndex) currentPipeIndex--;
 		
-		ofLine(pipeOrganData.pipes[(int)currentPipeIndex].top, pipeOrganData.pipes[(int)currentPipeIndex].bottom);
+		//ofLine(pipeOrganData.pipes[(int)currentPipeIndex].top, pipeOrganData.pipes[(int)currentPipeIndex].bottom);
+	} else {
+		currentPeakFrequency = -1;
 	}
 	
 	
