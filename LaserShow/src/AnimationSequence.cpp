@@ -8,6 +8,14 @@
 
 #include "AnimationSequence.h"
 
+AnimationSequence::AnimationSequence () {
+    
+    proximaNovaL.loadFont("Proxima Nova Light", 30, true, true);
+	proximaNovaL.setLineHeight(62.0f);
+	proximaNovaL.setLetterSpacing(1);
+}
+
+
 void AnimationSequence :: update() {
 
 
@@ -43,19 +51,17 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     //get some type set up
     ofTrueTypeFont::setGlobalDpi(72);
     
-	proximaNovaL.loadFont("Proxima Nova Light", 30, true, true);
-	proximaNovaL.setLineHeight(62.0f);
-	proximaNovaL.setLetterSpacing(1);
+
     
     
     // THE BIG-ASS CONDITIONAL
-    if (bar >1 && bar < 20) {
+    if (bar >1 && bar < 4) {
         ofSetColor(225);
         string fontString ="HEY I HAVE SOME FONT STUFFS!";
         proximaNovaL.drawString(fontString, -350, 0);
     }
     
-    if (bar >8 && bar < 9) {
+    if (bar > 4 && bar < 8) {
         CurveSquare square;
         square.init(0,0,ofColor::pink);
         square.draw(sync.sixteenthPulse, false);
