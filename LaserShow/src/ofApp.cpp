@@ -117,6 +117,7 @@ void ofApp::draw(){
 	ofFill(); 
 	ofRect(0,0,screenWidth, screenHeight);
 	ofNoFill();
+	ofSetColor(255);
 	
 	if(!previewProjector) {
 		ofSetColor(200);
