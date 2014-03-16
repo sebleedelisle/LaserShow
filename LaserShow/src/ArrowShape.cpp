@@ -33,7 +33,7 @@ void ArrowShape::draw(float scale = 1, bool fill = false){
         ofSetLineWidth(2);
     }
     
-    ofCircle(0, 0, 1);
+    //ofCircle(0, 0, 1);
     
     ofBeginShape();
     ofVertex(-25,7);

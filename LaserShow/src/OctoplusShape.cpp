@@ -25,6 +25,7 @@ void OctoplusShape::draw(float scale = 1, bool fill = false){
     ofPushStyle();
     ofTranslate(pos);
     ofScale(size*scale, size*scale);
+    ofRotate(rotation);
     
     if (!fill) {
         ofNoFill();

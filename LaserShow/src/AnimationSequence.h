@@ -29,8 +29,14 @@ class AnimationSequence {
     ofTrueTypeFont	proximaNovaL;
     ofImage smashingTitle;
     
-
-	AnimationSequence();
+    float hue;
+    
+	ArrowShape arrow;
+    CurveSquare square;
+    OctoplusShape octo;
+    
+    AnimationSequence();
+    
 	
 	
 	
