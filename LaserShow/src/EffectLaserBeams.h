@@ -1,5 +1,5 @@
 //
-//  LaserBeamEffect.h
+//  EffectLaserBeams.h
 //  LaserShow
 //
 //  Created by Seb Lee-Delisle on 12/03/2014.
@@ -27,13 +27,13 @@ struct LaserBeam {
 	
 };
 
-class LaserBeamEffect {
+class EffectLaserBeams {
 	
 	public :
 	
-	LaserBeamEffect(); 
+	EffectLaserBeams(); 
 	
-	void update();
+	void update(float deltaTime);
 	void draw(LaserManager& lm, float intensity);
 	
 	deque<LaserBeam> beams;
@@ -44,7 +44,7 @@ class LaserBeamEffect {
 	float emitRate;
 	int maxBeams;
 	
-	bool running;
+	int mode = 1;
 	bool multiColoured;
 	float currentHue;
 	bool rotateEmission;

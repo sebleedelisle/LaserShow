@@ -94,10 +94,10 @@ void ofApp::update(){
 	if(music.getIsPlaying()) soundPositionMS = music.getPositionMS();
 
 	sync.update(soundPositionMS);
-	laserBeamEffect.update();
 	
 	screenAnimation.update();
 	
+	effectLaserBeams.update(deltaTime);
 	effectDomeLines.update(deltaTime);
 	effectPipeOrganLines.update(deltaTime); 
 }
@@ -242,7 +242,7 @@ void ofApp::draw(){
 	
 	// EFFECTS ---------------------------------------------
 	
-	laserBeamEffect.draw(laserManager,vol);
+	effectLaserBeams.draw(laserManager,vol);
 	effectDomeLines.draw(sync, vol, laserManager);
 	effectPipeOrganLines.draw(sync, vol, laserManager, currentPeakFrequency);
 	
@@ -290,9 +290,14 @@ void ofApp::keyPressed(int key){
 		music.play();
 	}
 	if(key == OF_KEY_LEFT) {
-		soundPositionMS = 69000;
+		soundPositionMS = sync.getMSForBarNumber(sync.currentBar-1);
+		music.setPositionMS(soundPositionMS);
+	} else if(key == OF_KEY_RIGHT) {
+		soundPositionMS = sync.getMSForBarNumber(sync.currentBar+1);
 		music.setPositionMS(soundPositionMS);
 	}
+		
+		
 		
 	
 	if(key == 'p') {
@@ -309,11 +314,43 @@ void ofApp::keyPressed(int key){
 	
     
 
-	if(key == 'a') cube1.visible = true;
-	if(key == 's') cube2.visible = true;
-	if(key == 'd') cube3.visible = true;
-
+	if(key == '1') {
+		effectLaserBeams.mode = 0;
+		effectPipeOrganLines.mode = 0;
+		effectDomeLines.mode = 1;
+	}
+	if(key == '2') {
+		effectLaserBeams.mode = 0;
+		effectPipeOrganLines.mode = 0;
+		effectDomeLines.mode = 2;
+	}
+	if(key == '3') {
+		effectLaserBeams.mode = 1;
+		effectPipeOrganLines.mode = 0;
+		effectDomeLines.mode = 0;
+	}
+	if(key == '4') {
+		effectLaserBeams.mode = 2;
+		effectPipeOrganLines.mode = 0;
+		effectDomeLines.mode = 0;
+	}
+	if(key == '5') {
+		effectLaserBeams.mode = 0;
+		effectPipeOrganLines.mode = 1;
+		effectDomeLines.mode = 0;
+	}
+	if(key == '6') {
+		effectLaserBeams.mode = 0;
+		effectPipeOrganLines.mode = 2;
+		effectDomeLines.mode = 0;
+	}
 	
+	if(key == '0') {
+		effectLaserBeams.mode = 0;
+		effectPipeOrganLines.mode = 0;
+		effectDomeLines.mode = 0;
+	}
+
 }
 
 
@@ -367,9 +404,6 @@ void ofApp :: updatePeakFrequency(float * val, int numBands){
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 
-	if(key == 'a') cube1.visible = false;
-	if(key == 's') cube2.visible = false;
-	if(key == 'd') cube3.visible = false;
 	
 	
 }

@@ -8,11 +8,12 @@
 
 #include "ofMain.h"
 #include "LaserManager.h"
+#include "ParticleSystemManager.h"
 #include "Synchroniser.h"
 #include "SoundShape.h"
 #include "PipeOrganData.h"
 #include "DomeData.h"
-#include "LaserBeamEffect.h"
+#include "EffectLaserBeams.h"
 #include "AnimationSequence.h"
 #include "EffectDomeLines.h"
 #include "EffectPipeOrganLines.h"
@@ -20,6 +21,10 @@
 class ofApp : public ofBaseApp{
 
 	public:
+	
+	ofApp() : particleSystemManager(*ParticleSystemManager::instance()) {
+	};
+	
 	void setup();
 	void update();
 	void draw();
@@ -48,14 +53,14 @@ class ofApp : public ofBaseApp{
 
 	
 	LaserManager laserManager;
+	ParticleSystemManager& particleSystemManager;
 	
 	ofFbo projectorFbo;
 	ofFbo uiFbo; 
 	ofRectangle projectorPosition;
 	ofImage guideImage;
 	
-	LaserBeamEffect laserBeamEffect;
-	
+	EffectLaserBeams effectLaserBeams;
 	EffectDomeLines effectDomeLines;
 	EffectPipeOrganLines effectPipeOrganLines;
 	
