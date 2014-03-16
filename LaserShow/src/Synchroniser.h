@@ -106,6 +106,17 @@ class Synchroniser {
 		
 	}
 	
+	float getMSForBarNumber(int barnumber) {
+		float minutesPerBeat = 1/tempo;
+		float secondsPerBeat = minutesPerBeat * 60;
+		float msPerBeat = secondsPerBeat * 1000;
+		float msPerBar = msPerBeat * 4; 
+		
+		return startPosition + ( (float)barnumber * msPerBar );
+		
+		
+	}
+	
 	float currentPosition;
 	float tempo;
 	float startPosition;

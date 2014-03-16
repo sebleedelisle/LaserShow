@@ -1,23 +1,23 @@
 //
-//  LaserBeamEffect.cpp
+//  EffectLaserBeams.cpp
 //  LaserShow
 //
 //  Created by Seb Lee-Delisle on 12/03/2014.
 //
 //
 
-#include "LaserBeamEffect.h"
+#include "EffectLaserBeams.h"
 
 
 
-LaserBeamEffect :: LaserBeamEffect() {
+EffectLaserBeams :: EffectLaserBeams() {
 	
 	speed = 1000;
 	emitCount = 0;
 	emitRate = 10;
 	elapsedTime = 0;
 	maxBeams = 50;
-	running = false;
+	//running = false;
 	multiColoured = true;
 	currentHue = 0;
 	rotateEmission = true;
@@ -28,12 +28,23 @@ LaserBeamEffect :: LaserBeamEffect() {
 }
 
 
-void LaserBeamEffect :: update(){
+void EffectLaserBeams :: update(float deltaTime){
 
-	float deltaTime = ofGetLastFrameTime();
+	//float deltaTime = ofGetLastFrameTime();
 	elapsedTime+=deltaTime;
 	
-	if((running) && (elapsedTime * emitRate > emitCount)) {
+	if(mode == 1) {
+		multiColoured = false;
+		rotateEmission = false;
+		respondToVolume = false;
+	} else if (mode ==2) {
+		
+		multiColoured = true;
+		rotateEmission = true;
+		respondToVolume = true;
+	}
+	
+	if((mode>0) && (elapsedTime * emitRate > emitCount)) {
 		
 		// make a new one!
 		beams.push_back(LaserBeam());
@@ -59,7 +70,7 @@ void LaserBeamEffect :: update(){
 		beam.pos+=pos;
 
 		emitCount++;
-	} else if(!running) {
+	} else if(mode == 0) {
 		emitCount = elapsedTime * emitRate;
 	}
 	
@@ -88,7 +99,7 @@ void LaserBeamEffect :: update(){
 }
 
 
-void LaserBeamEffect :: draw(LaserManager& laserManager, float intensity) {
+void EffectLaserBeams :: draw(LaserManager& laserManager, float intensity) {
 	
 	
 	float xRotation = 20;
