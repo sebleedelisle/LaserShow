@@ -20,6 +20,7 @@
 		12713E5018D5192E00C97118 /* PhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713E3018D5192E00C97118 /* PhysicsObject.cpp */; };
 		12713E5118D5192E00C97118 /* RocketRendererWiggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713E4718D5192E00C97118 /* RocketRendererWiggle.cpp */; };
 		1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1296BC4C18CF57C3004FCE27 /* DomeData.cpp */; };
+		12A346D118D5F94E00CF070C /* EffectParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A346CF18D5F94E00CF070C /* EffectParticles.cpp */; };
 		12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512218D07A9E005BD577 /* EditableBezier.cpp */; };
 		12A6512718D09641005BD577 /* EffectLaserBeams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512518D09641005BD577 /* EffectLaserBeams.cpp */; };
 		12A8CED318B82671006E42BA /* src_colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8CECA18B82671006E42BA /* src_colors.cpp */; };
@@ -205,6 +206,8 @@
 		1271DAF218CE031F00D7FDEA /* SoundShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundShape.h; sourceTree = "<group>"; };
 		1296BC4C18CF57C3004FCE27 /* DomeData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DomeData.cpp; sourceTree = "<group>"; };
 		1296BC4D18CF57C3004FCE27 /* DomeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeData.h; sourceTree = "<group>"; };
+		12A346CF18D5F94E00CF070C /* EffectParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectParticles.cpp; sourceTree = "<group>"; };
+		12A346D018D5F94E00CF070C /* EffectParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectParticles.h; sourceTree = "<group>"; };
 		12A6512218D07A9E005BD577 /* EditableBezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditableBezier.cpp; sourceTree = "<group>"; };
 		12A6512318D07A9E005BD577 /* EditableBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableBezier.h; sourceTree = "<group>"; };
 		12A6512518D09641005BD577 /* EffectLaserBeams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectLaserBeams.cpp; sourceTree = "<group>"; };
@@ -561,6 +564,8 @@
 		12713DED18D504FC00C97118 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
+				12A346CF18D5F94E00CF070C /* EffectParticles.cpp */,
+				12A346D018D5F94E00CF070C /* EffectParticles.h */,
 				12A6512518D09641005BD577 /* EffectLaserBeams.cpp */,
 				12A6512618D09641005BD577 /* EffectLaserBeams.h */,
 				12713DEA18D504F400C97118 /* EffectPipeOrganLines.cpp */,
@@ -1618,6 +1623,7 @@
 				12713E4F18D5192E00C97118 /* ParticleSystemManager.cpp in Sources */,
 				12713E5018D5192E00C97118 /* PhysicsObject.cpp in Sources */,
 				12713E5118D5192E00C97118 /* RocketRendererWiggle.cpp in Sources */,
+				12A346D118D5F94E00CF070C /* EffectParticles.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

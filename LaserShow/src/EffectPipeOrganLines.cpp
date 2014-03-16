@@ -52,12 +52,12 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 			
 			Pipe& pipe = pipeOrganData->pipes[numpipes + currentPipeIndex];
 			lines.push_back(PipeOrganLine(pipe.top, pipe.bottom, col ));
-			
+	
 			
 			if(currentPipeIndex>0) {
 				Pipe& pipe2 = pipeOrganData->pipes[numpipes - currentPipeIndex];
 				lines.push_back(PipeOrganLine(pipe2.top, pipe2.bottom, col ));
-			}
+							}
 			
 			if(hue>255) hue -= 255;
 			currentPipeIndex++;
@@ -86,10 +86,12 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 			Pipe& pipe = pipeOrganData->pipes[numpipes + currentPipeIndex];
 			lines.push_back(PipeOrganLine(pipe.top, pipe.bottom, col, 1,0,0,0,0.1 ));
 			
+		
 			
 			if(currentPipeIndex>0) {
 				Pipe& pipe2 = pipeOrganData->pipes[numpipes - currentPipeIndex];
 				lines.push_back(PipeOrganLine(pipe2.top, pipe2.bottom, col ));
+				
 			}
 
 			
@@ -98,11 +100,7 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 		}
 		
 		
-		
-		
-		
-	}
-	
+	} 	
 	for(int i = 0; i<lines.size(); i++) {
 		
 		PipeOrganLine& line = lines[i];
@@ -123,7 +121,7 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 }
 
 
-void EffectPipeOrganLines :: setPipeOrganData(PipeOrganData* pipeorgandata){
+void EffectPipeOrganLines :: setObjects(PipeOrganData* pipeorgandata, ParticleSystemManager* psm ){
 	pipeOrganData = pipeorgandata;
-	
+	particleSystemManager = psm; 
 }

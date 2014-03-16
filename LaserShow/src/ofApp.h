@@ -10,19 +10,19 @@
 #include "LaserManager.h"
 #include "ParticleSystemManager.h"
 #include "Synchroniser.h"
-#include "SoundShape.h"
 #include "PipeOrganData.h"
 #include "DomeData.h"
 #include "EffectLaserBeams.h"
 #include "AnimationSequence.h"
 #include "EffectDomeLines.h"
 #include "EffectPipeOrganLines.h"
+#include "EffectParticles.h"
 
 class ofApp : public ofBaseApp{
 
 	public:
 	
-	ofApp() : particleSystemManager(*ParticleSystemManager::instance()) {
+	ofApp() : particleSystemManager(*ParticleSystemManager::instance()), laserManager(*LaserManager::instance()) {
 	};
 	
 	void setup();
@@ -38,6 +38,8 @@ class ofApp : public ofBaseApp{
 	void gotMessage(ofMessage msg);
 	void exit();
 	
+	void drawEffects(); 
+	
 	void updatePeakFrequency(float * val, int numBands);
 	
 	PipeOrganData pipeOrganData;
@@ -52,7 +54,7 @@ class ofApp : public ofBaseApp{
 	vector<ofxPanel*> panels;
 
 	
-	LaserManager laserManager;
+	LaserManager& laserManager;
 	ParticleSystemManager& particleSystemManager;
 	
 	ofFbo projectorFbo;
@@ -63,6 +65,7 @@ class ofApp : public ofBaseApp{
 	EffectLaserBeams effectLaserBeams;
 	EffectDomeLines effectDomeLines;
 	EffectPipeOrganLines effectPipeOrganLines;
+	EffectParticles effectParticles;
 	
 	bool previewProjector; 
 	
@@ -74,11 +77,8 @@ class ofApp : public ofBaseApp{
 
 	ofImage smashingTitle;
 	
-	SoundShape cube1;
-	SoundShape cube2;
-	SoundShape cube3;
-	
 	float soundPositionMS;
+	float smoothVol; 
 	
 	AnimationSequence screenAnimation;
 	

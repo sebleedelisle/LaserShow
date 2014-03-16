@@ -44,7 +44,7 @@ class EffectLaserBeams {
 	float emitRate;
 	int maxBeams;
 	
-	int mode = 1;
+	int mode = 0;
 	bool multiColoured;
 	float currentHue;
 	bool rotateEmission;

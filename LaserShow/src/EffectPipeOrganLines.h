@@ -13,6 +13,9 @@
 #include "Synchroniser.h"
 #include "PipeOrganData.h"
 #include "LaserManager.h"
+#include "ParticleSystemManager.h"
+#include "ParticleRendererLaser.h"
+#include "ParticleRendererLaserLine.h"
 
 
 
@@ -64,9 +67,18 @@ class EffectPipeOrganLines {
 	void update(float deltaTime);
 	void draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak);
 	
-	void setPipeOrganData(PipeOrganData* pipeOrganData); 
+	void setObjects(PipeOrganData* pipeOrganData, ParticleSystemManager* psm);
+//	void makeParticleForPipe(int pipeindex);
+//	
+//	void makeRainbowBurst();
+//	void makeStarBurst();
+//	
+	
 	
 	PipeOrganData* pipeOrganData = NULL;
+	ParticleSystemManager* particleSystemManager  = NULL;
+	
+	
 	deque <PipeOrganLine> lines;
 	int currentPipeIndex = 0; 
 	

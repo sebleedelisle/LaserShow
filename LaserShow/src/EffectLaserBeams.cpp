@@ -149,8 +149,8 @@ void EffectLaserBeams :: draw(LaserManager& laserManager, float intensity) {
 			//col.setHsb(beam.colour.getHue(), 255, ofMap(intensity, 0,1,255,255,true));
 			
 			laserManager.addLaserLineEased(start, end, col);
-			ofSetColor(col);
-			ofLine(start, end);//beam.pos, beam.pos + ofPoint(0,0,200));
+			//ofSetColor(col);
+			//ofLine(start, end);//beam.pos, beam.pos + ofPoint(0,0,200));
 		}
 	}
 	

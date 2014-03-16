@@ -53,13 +53,13 @@
 			<mask_margin_bottom>0</mask_margin_bottom>
 			<mask_margin_left>0</mask_margin_left>
 			<mask_margin_right>0</mask_margin_right>
-			<show_warp_points>0</show_warp_points>
+			<show_warp_points>1</show_warp_points>
 			<colour_change_offset>-6</colour_change_offset>
 			<flip_x>0</flip_x>
 			<flip_y>0</flip_y>
 			<laser_on_during_move>0</laser_on_during_move>
-			<preview_laser>0</preview_laser>
-			<preview_laser_dots>0</preview_laser_dots>
+			<preview_laser>1</preview_laser>
+			<preview_laser_dots>1</preview_laser_dots>
 			<post_transform_dots>1</post_transform_dots>
 			<move_speed>3</move_speed>
 			<move_points_padding>1</move_points_padding>

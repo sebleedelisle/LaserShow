@@ -18,14 +18,15 @@
 
 struct DomeLine {
 	
-	DomeLine(float startposition, float timetotarget, ofColor colour, bool _lateral = true, float _target = 1) {
+	DomeLine(float startposition, float timetotarget, ofColor colour, bool _lateral = true, float _target = 1, float fullcircle = false) {
 		pos = startposition;
 		startPos = pos; 
 		timeToTarget = timetotarget;
 		col = colour;
 		lateral = _lateral;
 		target = _target;
-		elapsedTime = 0; 
+		elapsedTime = 0;
+		fullCircle = fullcircle;
 	}
 	
 	void update(float deltaTime) {
@@ -41,6 +42,7 @@ struct DomeLine {
 	float elapsedTime; 
 	ofColor col;
 	bool lateral;
+	bool fullCircle;
 	
 	
 	

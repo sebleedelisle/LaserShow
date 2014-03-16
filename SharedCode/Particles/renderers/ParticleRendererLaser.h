@@ -39,7 +39,7 @@ class ParticleRendererLaser : public ParticleRendererShape {
 			if(p.size * scale>2) {
 				lm.addLaserCircle(pos, p.getColour(), p.size * scale);
 			} else {
-				lm.addLaserDot(pos, p.getColour(), 1);
+				lm.addLaserDot(pos, p.getColour(), p.size);
 			}
 			
 			

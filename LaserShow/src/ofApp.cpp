@@ -13,7 +13,6 @@ void ofApp::setup(){
 	
 	guideImage.loadImage("img/LaserableArea.jpg");
 	
-	
 	previewProjector = false;
 	
 	projectorFbo.allocate(1024, 768, GL_RGB, 4);
@@ -62,9 +61,6 @@ void ofApp::setup(){
 	sync.tempo = 111;
 	sync.startPosition = 60000/111; // start after 1 beat intro
 
-	cube1.init(200,200,ofColor::cyan);
-	cube2.init(-200,200,ofColor::cyan);
-	cube3.init(-200,-200,ofColor::cyan);
 	
 	pipeOrganData.load();
 	domeData.init();
@@ -75,14 +71,13 @@ void ofApp::setup(){
 	
 	panels.push_back(&domeData.gui);
 	
-	
 	effectDomeLines.setDomeData(&domeData);
-	effectPipeOrganLines.setPipeOrganData(&pipeOrganData);
+	effectPipeOrganLines.setObjects(&pipeOrganData, &particleSystemManager);
+	effectParticles.setObjects(&pipeOrganData, &domeData);
 	
+	smoothVol = 0;
 	
-	// can potentially use : ofSetupScreenPerspective();
-	
-}
+	}
 
 
 //--------------------------------------------------------------
@@ -97,9 +92,10 @@ void ofApp::update(){
 	
 	screenAnimation.update();
 	
+	particleSystemManager.update(deltaTime);
 	effectLaserBeams.update(deltaTime);
 	effectDomeLines.update(deltaTime);
-	effectPipeOrganLines.update(deltaTime); 
+	effectPipeOrganLines.update(deltaTime);
 }
 
 //--------------------------------------------------------------
@@ -123,6 +119,9 @@ void ofApp::draw(){
 	updatePeakFrequency(val, numBands);
 	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
 	
+	smoothVol += (vol-smoothVol) *0.5;
+	
+	
 	uiFbo.begin();
 	ofSetupScreenPerspective(1280,960,50);
 
@@ -140,11 +139,9 @@ void ofApp::draw(){
 		projectorFbo.draw(projectorPosition);
 		
 		pipeOrganData.draw();
-		//
 		
 		domeData.draw();
-		
-		
+
 	} else {
 		ofSetColor(255);
 		ofRect(screenWidth/2 - projectorFbo.getWidth()/2 -1, screenHeight/2 - projectorFbo.getHeight()/2-1, projectorFbo.getWidth()+2, projectorFbo.getHeight()+2);
@@ -153,8 +150,6 @@ void ofApp::draw(){
 		
 	}
 
-	
-	
 	ofDrawBitmapString(ofToString(round(ofGetFrameRate())), 0,10);
 	
 	numBands = 100;
@@ -167,20 +162,18 @@ void ofApp::draw(){
 		ofRect(i*barWidth, 0, barWidth-1, size );
 		
 	}
+	
 	ofSetColor(255,0,0);
 
 	ofRect((numBands+1)*barWidth, 0, barWidth-1, vol*100 );
 	ofSetColor(255);
-	
 	
 	ofNoFill();
 	
 	float time = soundPositionMS/1000.0f;
 
 	ofDrawBitmapString(ofToString(time), 0,25);
-
-	//drawPipeOrgan(val, numBands);
-
+	
 	uiFbo.end();
 
 	//----------------- FBO BEGIN --------------------------------
@@ -196,35 +189,6 @@ void ofApp::draw(){
 	ofTranslate(512,384);
 	
 	screenAnimation.draw(sync, vol);
-	
-	if(sync.currentBarFloat<3) {
-		
-		
-		float progress = ofMap(sync.currentBarFloat, 0, 3, 0,1);
-		
-		ofPushMatrix();
-		ofPushStyle();
-		ofScale(0.5,0.5);
-		
-		ofSetColor(255);
-		if(progress<0.2) ofSetColor(ofMap(progress, 0, 0.2, 0, 255));
-		else if(progress>0.8) ofSetColor(ofMap(progress, 0.8, 1, 255, 0));
-		
-		
-        
-	
-		ofPopStyle();
-		ofPopMatrix();
-	
-	
-	}
-	
-//	if(sync.currentBar<8) {
-//		cube1.draw(val[30]*10 );
-//		cube2.draw(val[20]*10 );
-//		cube3.draw(val[10]*10 );
-//	}
-//	
 	
 	ofPopMatrix(); 
 	
@@ -242,9 +206,7 @@ void ofApp::draw(){
 	
 	// EFFECTS ---------------------------------------------
 	
-	effectLaserBeams.draw(laserManager,vol);
-	effectDomeLines.draw(sync, vol, laserManager);
-	effectPipeOrganLines.draw(sync, vol, laserManager, currentPeakFrequency);
+	drawEffects();
 	
 	
 	laserManager.draw();
@@ -263,6 +225,45 @@ void ofApp::draw(){
 		panels[i]->draw();
 	}
 }
+
+void ofApp :: drawEffects() {
+	
+	particleSystemManager.draw();
+	effectLaserBeams.draw(laserManager,smoothVol);
+	effectDomeLines.draw(sync, smoothVol, laserManager);
+	effectPipeOrganLines.draw(sync, smoothVol, laserManager, currentPeakFrequency);
+	
+	if((sync.currentBar>=24) && (sync.currentBar<32)) {
+		if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 0;
+	}
+	// SOLO
+	if((sync.currentBar >= 32) && (sync.currentBar < 42)) {
+		effectPipeOrganLines.mode = 2;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 0;
+	}
+	// POST SOLO BUILD (DOME LINES TURNING)
+	if((sync.currentBar >= 42) && (sync.currentBar < 50)) {
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 1;
+	}
+	// MELLOW DROP OUT
+	if((sync.currentBar >= 50) && (sync.currentBar < 54)) {
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 1;
+		effectDomeLines.mode = 0;
+	}
+	if((sync.currentBar >= 54) && (sync.currentBar < 58)) {
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 2;
+		effectDomeLines.mode = 0;
+	}
+}
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
@@ -296,7 +297,7 @@ void ofApp::keyPressed(int key){
 		soundPositionMS = sync.getMSForBarNumber(sync.currentBar+1);
 		music.setPositionMS(soundPositionMS);
 	}
-		
+	if(key =='l') laserManager.showLaserPath = !laserManager.showLaserPath;
 		
 		
 	
@@ -344,12 +345,19 @@ void ofApp::keyPressed(int key){
 		effectPipeOrganLines.mode = 2;
 		effectDomeLines.mode = 0;
 	}
+	if(key == '7') {
+	
+		effectLaserBeams.mode = 0;
+		effectPipeOrganLines.mode = 3;
+		effectDomeLines.mode = 0;
+	}
 	
 	if(key == '0') {
 		effectLaserBeams.mode = 0;
 		effectPipeOrganLines.mode = 0;
 		effectDomeLines.mode = 0;
 	}
+	
 
 }
 

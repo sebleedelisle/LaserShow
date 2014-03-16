@@ -45,7 +45,9 @@ void DomeData :: init() {
 	level3Handle.setPoint(&level3, ofPoint(-940,-480));
 	level4Handle.setPoint(&level4, ofPoint(-940,-480));
 	startHandle.setPoint(&start, ofPoint(-940,-480));
+	startHandle.handleSize *=2; 
 	endHandle.setPoint(&end, ofPoint(-940,-480));
+	endHandle.handleSize *=2; 
 	c1Handle.setPoint(&c1, ofPoint(-940,-480));
 	c2Handle.setPoint(&c2, ofPoint(-940,-480));
 	

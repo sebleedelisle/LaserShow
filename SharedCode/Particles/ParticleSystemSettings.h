@@ -30,8 +30,9 @@ class ParticleSystemSettings{
 		speedMin = speedMax = 100;
 		directionZ = -90;
 		directionZVar = 180;
-		directionY = directionYVar = 0; 
-	
+		directionY = directionYVar = 0;
+		directionX = directionXVar = 0;
+		
 		drag = 1; 
 		gravity.set(0,0,0); 
 	
@@ -91,12 +92,15 @@ class ParticleSystemSettings{
 		
 		if(emitShape==NULL) {
 			vel.set(ofRandom(speedMin, speedMax), 0);
+			
+		
 			vel.rotate(0,0,ofRandom(directionZ-directionZVar, directionZ+directionZVar));
 			vel.rotate(0,ofRandom(directionY-directionYVar, directionY+directionYVar), 0 );
+				vel.rotate(directionX +ofRandom(-directionXVar, directionXVar),ofPoint(1,0,0));
 		} else {
 			vel = emitShape->getVertex(particleCount%emitShape->getNumVertices());
 			vel*=ofRandom(speedMin, speedMax);
-			vel.rotate(0,ofRandom(-directionYVar, directionYVar),ofRandom(-directionZVar, directionZVar) );
+			vel.rotate(ofRandom(-directionXVar, directionXVar),ofRandom(-directionYVar, directionYVar),ofRandom(-directionZVar, directionZVar) );
 			
 		}
 	};
@@ -124,8 +128,10 @@ class ParticleSystemSettings{
 	
 	float directionZ; 
 	float directionZVar; 
-	float directionY; 
-	float directionYVar; 
+	float directionY;
+	float directionYVar;
+	float directionX;
+	float directionXVar;
 
 	float drag; 
 	ofVec3f gravity; 
