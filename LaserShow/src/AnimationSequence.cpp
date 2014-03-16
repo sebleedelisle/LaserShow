@@ -21,6 +21,9 @@ AnimationSequence::AnimationSequence () {
 	smashingTitle.setAnchorPercent(.5, .5);
     
     ofSetLineWidth(2);
+    ofNoFill();
+    
+    hue = 50;
     
 }
 
@@ -33,9 +36,13 @@ void AnimationSequence :: update() {
 
 void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
-	
+    float startAngle = -40;
+    
     ofPushStyle();
     
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    ofSetCircleResolution(36);
+  
     //ofFill();
 	//ofSetColor(255,0,0);
 	    
@@ -60,35 +67,37 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
 
     // WHERE THE MAGIC HAPPENS
-    if (barfloat >0 && barfloat <.5) {
-        
-        ofNoFill();
-        smashingTitle.resize(50,50);
+    if (barfloat >0 && barfloat <0.25) {
+        smashingTitle.resize(30,30);
         smashingTitle.draw(0,0);
-        //smashingTitle.draw(0,0, ofMap(sync.currentBarFloat,0,4,-100,100));
     }
     
-//    if (barfloat > 0.5 && barfloat < 2) {
-//        //fake fade out our image!
-//        for (int i = 4096; i <0; i--) {
-//            ofSetColor(ofMap(i, 0, 1024, 0, 255));
-//        }
-//    }
+    if (barfloat >0.5 && barfloat <1) {
+        smashingTitle.resize(30,30);
+        smashingTitle.draw(0,0);
+    }
     
-    if (barfloat > 1 && bar < 5) {
+    if (barfloat > 0.25 && barfloat < 1) {
+        //fake fade out our image!
+        for (int i = 1024; i <0; i--) {
+            ofSetColor(ofMap(i, 0, 1024, 0, 255));
+        }
+    }
+    
+    if (barfloat > 1 && bar < 3) {
         
         //fade in the text colour
         float op = 1;
-        for (int i = 0; i < 255; i++) {
+        for (int i = 0; i < 1024; i++) {
             ofSetColor(225, 255,255,op);
-            op = i/2;
+            op = i;
         }
         
        writeinPNL("MARCH 18 & 19");
         
     }
     
-    if (bar >= 5 && bar < 6) {
+    if (bar >= 3 && bar < 4) {
         float op = 255;
         for (int i = 255; i > 0; i--) {
             ofSetColor(225, 255,255,op);
@@ -99,6 +108,32 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
     }
     
+    
+    if (barfloat >= 3 && bar < 6) {
+        
+        //fade in the text colour
+        float op = 1;
+        for (int i = 0; i < 1024; i++) {
+            ofSetColor(225, 255,255,op);
+            op = i;
+        }
+        
+        writeinPNL("#SMASHINGCONF");
+        
+    }
+    
+    if (bar >= 6 && bar < 7) {
+        float op = 255;
+        for (int i = 255; i > 0; i--) {
+            ofSetColor(225, 255,255,op);
+            op = i;
+        }
+        
+        writeinPNL("#SMASHINGCONF");
+        
+    }
+
+    
     if (barfloat > 1 && barfloat < 5) {
         //circle with guitar on qurts
         ofSetColor(ofColor::cyan);
@@ -106,7 +141,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofCircle(100,200, ofMap(sync.beatPulse, 0, 1, 0,25));
     }
     
-    if (barfloat >= 1.25 && barfloat < 1) {
+    if (barfloat >= 1.25 && barfloat < 2) {
         // square with eighths - harmonica
         ofSetColor(ofColor::yellow);
         ofNoFill();
@@ -125,7 +160,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (barfloat >= 3 && barfloat < 6) {
         ofSetColor(ofColor::cyan);
         ofNoFill();
-        ofCircle(-100, -300, ofMap(sync.beatPulse, 0, 1, 10,25));
+        ofCircle(-50, -150, ofMap(sync.beatPulse, 0, 1, 5,25));
     }
     
     if (barfloat >= 3.25 && barfloat < 3.5) {
@@ -142,12 +177,20 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         square.draw(sync.eighthPulse, false);
     }
     
-    if (barfloat >= 4 && barfloat < 4.75) {
+    if (barfloat >= 3.75 && barfloat < 4.5) {
         //vocals
         CurveSquare square;
         square.init(-300,-75,ofColor::pink);
         square.draw(sync.beatPulse*2, false);
-    }
+        
+        if (sync.currentBeat > 3) {
+            ofFill();
+            ofSetColor(255);
+            ofRect(0,0,200,200);
+            square.draw(2, false);
+        }
+
+}
     
     
     //4 step up gutiar
@@ -184,6 +227,11 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofCircle(0,0, 35);
         ofCircle(0,0, 65);
         ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 40,85));
+        
+         if (sync.currentBeat > 1) {
+            ofSetColor(ofColor::orange);
+             ofCircle(0,0, 100);
+         }
     }
     
     //second 4 step up guitar
@@ -214,10 +262,18 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofCircle(0,0, 35);
         ofCircle(0,0, 65);
         ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 40,85));
+        
+        if (sync.currentBeat > 1) {
+            ofSetColor(ofColor::orange);
+            ofCircle(0,0, 100);
+            
+            ofSetColor(ofColor::purple);
+            ofCircle(0,0, 85);
+        }
     }
     
 //    if (bar >=8 && barfloat < 8.25) {
-//        //four shapes in center
+//        //four shapes in the center
 //        ofSetColor(ofColor::cyan);
 //        ofNoFill();
 //        ofCircle(0,0,30);
@@ -229,53 +285,424 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 //    }
     
     if (barfloat >=8 && barfloat < 8.25) {
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
         //four shapes to corner
         ofSetColor(ofColor::cyan);
         ofNoFill();
+        ofSetLineWidth(2);
         float progress = ofMap(barfloat, 8, 8.25, 0,1);
         
         progress*=progress;
         progress*=progress;
-        progress*=progress;
+        
+        ofPoint start(200,200);
+        ofPoint end(0,0);
     
-       
-        ofPoint circlePos(200,200);
-        circlePos *=progress;
+        ofPoint circlePos = start + ((end-start)*progress);
         ofCircle(circlePos, 30);
         
-        ofPoint circle2Pos(-200,-200);
-        circle2Pos *=progress;
-        ofCircle(circle2Pos, 30);
         
-         ofSetRectMode(OF_RECTMODE_CENTER);
-        ofPoint rectPos(200,-200);
-        rectPos *=progress;
-        ofRect(rectPos, 60,60);
-        
-        ofPoint rect2Pos(-200,200);
-        rect2Pos *=progress;
-        ofRect(rect2Pos, 60,60);
-        ofSetColor(0, 0, 0);
-        ofRect(rect2Pos, 60,60);
-    }
-    
-    if (barfloat >=8.25 && barfloat < 8.75) {
-        //four shapes in center
-        ofSetColor(ofColor::cyan);
-        ofNoFill();
-        ofCircle(200,200,30);
-        ofCircle(-200,-200,30);
+        //------
+        start.set(-200,-200);
+        circlePos = start + ((end-start)*progress);
+        ofCircle(circlePos, 30);
         
         ofSetRectMode(OF_RECTMODE_CENTER);
-        ofRect(200,-200,60,60);
-        ofRect(-200,200,60,60);
+        start.set(200,-200);
+        circlePos = start + ((end-start)*progress);
+        ofRect(circlePos, 60,60);
+        
+        start.set(-200,200);
+        circlePos = start + ((end-start)*progress);
+        ofFill();
+        ofSetColor(0, 0, 0);
+        ofRect(circlePos, 60,60);
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofRect(circlePos, 60,60);
+    }
+    
+    if (barfloat >=8.25 && barfloat < 8.5) {
+       ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        //four shapes in center
+        ofFill();
+        ofSetColor(0,0,0);
+        ofCircle(0,0,30);
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(0,0,30);
+        
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofFill();
+        ofSetColor(0,0,0);
+        ofRect(0,0,60,60);
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofRect(0,0,60,60);
     }
     
     
-    if (bar >=8.5 && barfloat < 8.75) {
-        //four shapes turn colour and back out to corners
+    if (barfloat >=8.5 && barfloat < 9.25) {
+        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        //square pulse center
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        if (sync.current8th > 1) {
+            ofRect(0,0,ofMap(sync.beatPulse, 0, 1, 60,50),ofMap(sync.beatPulse, 0, 1, 60,50));
+        }
+        if (sync.current8th > 3 ) {
+            ofSetColor(0,255,171);
+            ofRect(0,0,ofMap(sync.eighthPulse, 0, 1, 60,50),ofMap(sync.eighthPulse, 0, 1, 60,50));
+        }
+        
+        }
+    
+    if (barfloat >=9 && barfloat < 9.25) {
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        //four shapes to corner
+        ofSetColor(0,255,171);
+        ofNoFill();
+        float progress = ofMap(barfloat, 9, 9.25, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+        progress*=progress;
+        
+        ofPoint end(200,200);
+        ofPoint start(0,0);
+        
+        float scale = 1.2;
+        
+        ofPoint circlePos = start + ((end-start)*progress);
+        ofSetColor(0,255,171);
+        //ofCircle(circlePos, 30);
+        
+        arrow.init(circlePos.x, circlePos.y, ofColor(255,25,0));
+        arrow.draw(scale, false);
+        
+        end.set(-200,-200);
+        circlePos = start + ((end-start)*progress);
+        ofSetColor(206,255,0);
+       
+        square.init(circlePos.x, circlePos.y, ofColor(85,0,255));
+        square.draw(scale, false);
+        
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        end.set(200,-200);
+        circlePos = start + ((end-start)*progress);
+       
+        octo.init(circlePos.x, circlePos.y, ofColor(169,255,9));
+        octo.draw(scale, false);
+        
+        end.set(-200,200);
+        //fill a black square to cover
+        ofFill();
+        ofSetColor(0, 0, 0);
+        ofRect(circlePos, 100,100);
+        
+        //the sqaure outline
+        ofSetColor(0,255,171);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        ofRect(circlePos, 60,60);
         
     }
+
+    if (barfloat >=9.4 && barfloat < 9.75) {
+        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        
+        //rotate shapes once they're in place
+        float scale = 1.2;
+        
+        ArrowShape arrow2;
+        arrow2.init(200,200,ofColor(255,0,169));
+        arrow2.rotation = sync.eighthPulse*20;
+        arrow2.draw(scale, false);
+        
+        CurveSquare square2;
+        square2.init(-200,-200, ofColor(0,175,255));
+        square2.rotation = sync.eighthPulse*20;
+        square2.draw(scale, false);
+        
+        OctoplusShape octo2;
+        octo2.init(200, -200, ofColor(255,253));
+        octo2.rotation = sync.eighthPulse*20;
+        octo2. draw(scale, false);
+        
+        ofPushMatrix();
+        ofTranslate(-200,200);
+        ofRotate(sync.eighthPulse*20);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofRect(0,0,60,60);
+        ofPopMatrix();
+    }
+    
+     if (barfloat >=10 && barfloat < 10.5) {
+         
+         if (sync.current16th < 8) {
+             octo.draw(1.2, false);
+         }else {
+             octo.colour = ofColor(169,255,9);
+             octo.draw(1.2, false);
+         }
+         
+         if (sync.current16th > 4) {
+             square.colour = ofColor(0,0,0);
+             square.draw(1.2, false);
+         }else {
+             square.colour = ofColor(0,175,255);
+             square.draw(1.2, false);
+         }
+     }
+    
+    if (barfloat >=10.5 && barfloat < 11.25) {
+        //rotate shapes MORE once they're in place -- CHANGE COLOURS HERE!
+        
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        float scale = 1.2;
+        
+        ArrowShape arrow2;
+        arrow2.init(200,200,ofColor(255,0,169));
+        arrow2.rotation = sync.eighthPulse*volume*50;
+        arrow2.draw(scale, false);
+        
+        CurveSquare square2;
+        square2.init(-200,-200, ofColor(0,175,255));
+        square2.rotation = sync.eighthPulse*volume*50;
+        square2.draw(scale, false);
+        
+        OctoplusShape octo2;
+        octo2.init(200, -200, ofColor(255,253));
+        octo2.rotation = sync.eighthPulse*volume*60;
+        octo. draw(scale, false);
+        
+        ofPushMatrix();
+        ofTranslate(-200,200);
+        ofRotate(sync.eighthPulse*volume*50);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofRect(0,0,60,60);
+        ofPopMatrix();
+        
+}
+
+    
+    
+    if (barfloat >=9.25 && barfloat < 11.75) {
+        
+         ofEnableBlendMode(OF_BLENDMODE_ADD);
+        
+        //four shapes in corners
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        
+        float scale =1.2;
+        
+        arrow.init(200, 200, ofColor(255,25,0));
+        arrow.rotation = 0;
+        arrow.draw(scale, false);
+        
+        square.init(-200, -200, ofColor(85,0,255));
+        square.rotation = 0;
+        square.draw(scale, false);
+
+        octo.init(200, -200, ofColor(169,255,9));
+        octo.rotation = 0;
+        octo.draw(scale, false);
+        
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofRect(-200,200,60,60);
+        
+    }
+
+    if (barfloat >=11.75 && barfloat < 12) {
+        //four shapes back in to center
+        
+        float progress = ofMap(barfloat, 11.75, 12, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+    
+        
+        ofPoint end(0,0);
+        ofPoint start(200,200);
+        
+        float scale = 1.2;
+        
+        ofPoint circlePos = start + ((end-start)*progress);
+        arrow.init(circlePos.x, circlePos.y, ofColor(255,25,0));
+        arrow.draw(scale, false);
+        
+        start.set(-200,-200);
+        circlePos = start + ((end-start)*progress);
+        square.pos = circlePos;
+        //square.init(circlePos.x, circlePos.y, ofColor(85,0,255));
+        square.draw(scale, false);
+        
+        start.set(210,-210);
+        circlePos = start + ((end-start)*progress);
+        //octo.init(circlePos.x, circlePos.y, ofColor(169,255,9));
+        octo.pos = circlePos;
+        octo.draw(scale, false);
+        
+        start.set(-210,210);
+         ofSetRectMode(OF_RECTMODE_CENTER);
+        //fill a black square to cover
+        ofFill();
+        ofSetColor(0, 0, 0);
+        ofRect(circlePos, 100,100);
+        
+        //the sqaure outline
+        ofSetColor(0,255,171);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        ofRect(circlePos, 60,60);
+    }
+    
+    
+    if (barfloat >=12 && barfloat < 15) {
+        
+       ofEnableBlendMode(OF_BLENDMODE_ADD);
+        vector<CurveSquare> squares;
+        float hue = 100;
+        
+        for (int i =0; i < 6; i++) {
+            CurveSquare sq;
+            ofColor c;
+            c.setHsb(hue, 255, 255);
+            ofSetColor(c);
+            sq.init(0, 0, ofColor(c));
+           
+            if (hue < 255 ){
+                hue= hue +25;
+            } else {
+                hue =0;
+            }
+            cout << "hue " << hue << endl;
+            squares.push_back(sq);
+        }
+        
+        float startSize = 1.2;
+        
+        for (int j=0; j < squares.size(); j++) {
+            
+            
+            Boolean fill;
+
+            //squares[j].pos.set(j*10, j*40);
+           // squares[j].draw(startSize, false);
+        
+            if (j%2==0) {
+                
+                fill = false;
+                squares[j].draw(ofMap(sync.eighthPulse, 0, 8, startSize,startSize*2), fill);
+            }
+            else {
+                fill = false;
+                squares[j].draw(ofMap(volume, 0, 1, startSize,startSize*2), fill);
+            }
+           
+            startSize+=1.75;
+          
+        }
+        
+    }
+    
+    
+    
+    if (barfloat >=15 && barfloat < 16.5) {
+        
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(-100, 0, ofColor(c));
+        octo1.draw(1.5*volume, false);
+       
+        OctoplusShape octo2;
+        octo2.init(0, 0, ofColor(c));
+        octo2.draw(1.5*volume, false);
+        
+        OctoplusShape octo3;
+        octo3.init(100, 0, ofColor(c));
+        octo3.draw(1.5*volume, false);
+        octo3.rotation = 0;
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
+    
+     if (barfloat >=17 && barfloat < 19.75) {
+         
+         float allrotation = ofMap(barfloat, 17,19,180,0);
+         float progress = ofMap(barfloat, 17,17.25, 0, 1, true);
+         float totalshapes = 36;
+         int endshapesnum = progress * totalshapes;
+         int startshapesnum = ofMap(barfloat, 19.5,19.75, 0, totalshapes, true);
+         
+         CurveSquare mySq;
+         mySq.init(400, 0, ofColor());
+         
+         ofColor c;
+         
+         for(int i = startshapesnum; i<endshapesnum; i++) {
+             ofPushMatrix();
+             ofTranslate(-400, 300);
+             //ofCircle(0,0,10);
+             ofRotate(ofMap(i, 0, totalshapes,-60 + allrotation, 360-60+ allrotation));
+             
+             c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
+             mySq.colour = c;
+             
+             mySq.draw(8, true);
+             
+             ofPopMatrix();
+         }
+     }
+    
+    
+    
+    
+    if (barfloat >=19.5 && barfloat < 22) {
+        
+        float allrotation = ofMap(barfloat, 19.5,21,180,0);
+        float progress = ofMap(barfloat, 19.75,20, 0, 1, true);
+        float totalshapes = 36;
+        int endshapesnum = progress * totalshapes;
+        int startshapesnum = ofMap(barfloat, 21.75,22, 0, totalshapes, true);
+        
+        CurveSquare mySq;
+        mySq.init(400, 0, ofColor());
+        
+        ofColor c;
+        
+        for(int i = startshapesnum; i<endshapesnum; i++) {
+            ofPushMatrix();
+            ofTranslate(400, -500);
+            //ofCircle(0,0,10);
+            ofRotate(ofMap(i, 0, totalshapes,-60 + allrotation, 360-60+ allrotation));
+            
+            c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
+            mySq.colour = c;
+            
+            mySq.draw(8, true);
+            
+            ofPopMatrix();
+        }
+    }
+
+    
+    
     
     
 //    //grow circles
@@ -336,5 +763,7 @@ void AnimationSequence::writeinPNL(string message) {
     float halfWidth = proximaNovaL.stringWidth(message)/2;
     proximaNovaL.drawString(message, -1*halfWidth, 0);
 }
+
+
 
 

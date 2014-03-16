@@ -18,6 +18,7 @@ public:
     ofVec3f pos;
     float size;
 	ofColor colour;
+    float rotation;
     
     OctoplusShape();
     OctoplusShape(float x, float y, ofColor col);
