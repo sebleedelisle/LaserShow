@@ -117,7 +117,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "382"
          endingLineNumber = "382"
-         landmarkName = "ofApp :: drawPipeOrgan(float * val, int numBands)"
+         landmarkName = "ofApp :: updatePeakFrequency(float * val, int numBands)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

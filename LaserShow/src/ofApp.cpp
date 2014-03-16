@@ -55,7 +55,7 @@ void ofApp::setup(){
 	panels.push_back(&laserGui);
 	
 	
-	music.loadSound("../../../Music/02 Down the Road.aif");
+	music.loadSound("../../../Music/Down the Road Edit.aif");
 	
 	soundPositionMS = 70000;
 	
