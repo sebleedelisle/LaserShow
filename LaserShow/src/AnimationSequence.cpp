@@ -131,25 +131,23 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (barfloat >= 3.25 && barfloat < 3.5) {
         //vocals
         CurveSquare square;
-        square.init(-200,-100,ofColor::pink);
+        square.init(-300,-75,ofColor::pink);
         square.draw(sync.beatPulse, false);
     }
     
     if (barfloat >= 3.5 && barfloat < 3.75) {
         //vocals
         CurveSquare square;
-        square.init(-200,-100,ofColor::pink);
+        square.init(-300,-75,ofColor::pink);
         square.draw(sync.eighthPulse, false);
     }
     
-    if (barfloat >= 4.5 && barfloat < 5) {
+    if (barfloat >= 4 && barfloat < 4.75) {
         //vocals
         CurveSquare square;
-        square.init(-200,-100,ofColor::pink);
+        square.init(-300,-75,ofColor::pink);
         square.draw(sync.beatPulse*2, false);
     }
-    
-
     
     
     //4 step up gutiar
@@ -198,14 +196,14 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (barfloat >= 7.25 && barfloat < 7.25) {
         ofSetColor(ofColor::cyan);
         ofNoFill();
-        ofCircle(-0,0, 35);
+        ofCircle(0,0, 35);
         ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 20,65));
     }
     
     if (barfloat >= 7.5 && barfloat < 7.75) {
         ofSetColor(ofColor::cyan);
         ofNoFill();
-        ofCircle(-0,0, 35);
+        ofCircle(0,0, 35);
         ofCircle(0,0, 65);
     }
 
@@ -213,49 +211,108 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (barfloat >= 7.75 && barfloat < 8) {
         ofSetColor(ofColor::cyan);
         ofNoFill();
-        ofCircle(-0,0, 35);
+        ofCircle(0,0, 35);
         ofCircle(0,0, 65);
         ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 40,85));
     }
     
-    //grow circles
-    if (bar >=8 && barfloat < 8.25) {
-        ofNoFill();
-        ofSetColor(ofColor::cyan);
-        ofCircle(-0,0, sync.barPulse *60);
-        ofSetColor(ofColor::pink);
-        ofCircle(0,0, sync.barPulse *80);
-        ofSetColor(255,0,111);
-        ofCircle(0,0, sync.barPulse*100);
-    }
-   
-    //hold circles
-    if (barfloat >= 8.25 && barfloat < 8.5){
-        ofNoFill();
-        ofSetColor(ofColor::cyan);
-        ofCircle(0,0,60);
-        ofSetColor(ofColor::pink);
-        ofCircle(0,0,80);
-        ofSetColor(255,0,111);
-        ofCircle(0,0, 100);
-    }
+//    if (bar >=8 && barfloat < 8.25) {
+//        //four shapes in center
+//        ofSetColor(ofColor::cyan);
+//        ofNoFill();
+//        ofCircle(0,0,30);
+//        ofCircle(0,0,30);
+//        
+//        ofSetRectMode(OF_RECTMODE_CENTER);
+//        ofRect(0,0,60,60);
+//        ofRect(0,0,60,60);
+//    }
     
-    if (barfloat >= 8.5 && barfloat < 8.75){
-        CurveSquare square;
-        square.init(0,0, ofColor::cyan);
-        square.rotation = 45;
-        square.draw(4, false);
-    
-        CurveSquare square2;
-        square2.init(0,0, ofColor::pink);
-        square2.rotation = 45;
-        square2.draw(6, false);
+    if (barfloat >=8 && barfloat < 8.25) {
+        //four shapes to corner
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        float progress = ofMap(barfloat, 8, 8.25, 0,1);
         
-        CurveSquare square3;
-        square3.init(0,0, ofColor(255,0,111));
-        square3.rotation = 45;
-        square3.draw(8, false);
+        progress*=progress;
+        progress*=progress;
+        progress*=progress;
+    
+       
+        ofPoint circlePos(200,200);
+        circlePos *=progress;
+        ofCircle(circlePos, 30);
+        
+        ofPoint circle2Pos(-200,-200);
+        circle2Pos *=progress;
+        ofCircle(circle2Pos, 30);
+        
+         ofSetRectMode(OF_RECTMODE_CENTER);
+        ofPoint rectPos(200,-200);
+        rectPos *=progress;
+        ofRect(rectPos, 60,60);
+        
+        ofPoint rect2Pos(-200,200);
+        rect2Pos *=progress;
+        ofRect(rect2Pos, 60,60);
+        ofSetColor(0, 0, 0);
+        ofRect(rect2Pos, 60,60);
     }
+    
+    if (barfloat >=8.25 && barfloat < 8.75) {
+        //four shapes in center
+        ofSetColor(ofColor::cyan);
+        ofNoFill();
+        ofCircle(200,200,30);
+        ofCircle(-200,-200,30);
+        
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofRect(200,-200,60,60);
+        ofRect(-200,200,60,60);
+    }
+    
+    
+    if (bar >=8.5 && barfloat < 8.75) {
+        //four shapes turn colour and back out to corners
+        
+    }
+    
+    
+//    //grow circles
+//    if (bar >=8 && barfloat < 8.25) {
+//        ofNoFill();
+//        ofSetColor(ofColor::cyan);
+//        ofCircle(-0,0, sync.barPulse *60);
+//        ofSetColor(ofColor::pink);
+//        ofCircle(0,0, sync.barPulse *80);
+//        ofSetColor(255,0,111);
+//        ofCircle(0,0, sync.barPulse*100);
+//    }
+//   
+//    //hold circles
+//    if (barfloat >= 8.25 && barfloat < 8.5){
+//        ofNoFill();
+//        ofSetColor(ofColor::cyan);
+//        ofCircle(0,0,60);
+//        ofSetColor(ofColor::pink);
+//        ofCircle(0,0,80);
+//        ofSetColor(255,0,111);
+//        ofCircle(0,0, 100);
+//    }
+//    
+//    if (barfloat >= 8.5 && barfloat < 9){
+//        CurveSquare square;
+//        square.init(0,0, ofColor::cyan);
+//        square.draw(2, false);
+//    
+//        CurveSquare square2;
+//        square2.init(0,0, ofColor::pink);
+//        square2.draw(3, false);
+//        
+//        CurveSquare square3;
+//        square3.init(0,0, ofColor(255,0,111));
+//        square3.draw(4, false);
+//    }
     
 
     
