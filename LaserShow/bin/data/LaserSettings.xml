@@ -24,7 +24,7 @@
 			<dot_max_points>22</dot_max_points>
 			<line_acceleration>2.74315</line_acceleration>
 			<line_speed>28.79</line_speed>
-			<circle_overlap>20</circle_overlap>
+			<circle_overlap>0</circle_overlap>
 			<circle_acceleration>0.5</circle_acceleration>
 			<circle_speed>20</circle_speed>
 			<eased_line_speed>2.9</eased_line_speed>

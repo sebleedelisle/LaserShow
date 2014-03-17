@@ -26,8 +26,7 @@ void EffectPipeOrganLines:: update(float deltaTime) {
 
 // also gonna need : LaserManager
 void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak) {
-	ofPolyline poly;
-	ofPushStyle(); 
+
 	
 	if(pipeOrganData == NULL) return;
 	
@@ -36,7 +35,10 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 	if(mode ==0) return;
 	// MODE 1 is 4 bands on the first beat
 	
-	else if(mode ==1) {
+	ofPolyline poly;
+	ofPushStyle();
+	
+	if(mode ==1) {
 		
 		
 		if(sync.beatTriggered) {//   ==0) && (sync.sixteenthTriggered)) {

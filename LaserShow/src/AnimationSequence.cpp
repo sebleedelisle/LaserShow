@@ -641,19 +641,21 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
          int startshapesnum = ofMap(barfloat, 19.5,19.75, 0, totalshapes, true);
          
          CurveSquare mySq;
-         mySq.init(400, 0, ofColor());
+         mySq.init(0, 0, ofColor());
          
          ofColor c;
          
          for(int i = startshapesnum; i<endshapesnum; i++) {
              ofPushMatrix();
-             ofTranslate(-400, 300);
              //ofCircle(0,0,10);
-             ofRotate(ofMap(i, 0, totalshapes,-60 + allrotation, 360-60+ allrotation));
+			 ofTranslate(-400, 300);
              
+             ofRotate(ofMap(i, 0, totalshapes,-60 + allrotation, 360-60+ allrotation));
+             ofTranslate(400,0);
              c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
              mySq.colour = c;
-             
+			 float scalar = ofMap(volume, 0, 1, 0.9,1.1);
+             ofScale(scalar, scalar);
              mySq.draw(8, true);
              
              ofPopMatrix();

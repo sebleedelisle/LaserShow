@@ -68,7 +68,7 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 			
 		}
 		
-		
+	// BLIPPY CIRCLES
 	} else if(mode == 3) {
 		
 		
@@ -109,6 +109,36 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 			//lm.addLaserCircle(p, ofColor::white, size*sync.sixteenthPulse);
 			
 		}
+		
+	} else if (mode ==4) {
+		
+		//expanding arrows
+		
+		float totalshapes = 8;
+        float progress = ofMap(sync.barPulse, 1,0.75, 0, 1, true);
+		
+        float endshapes = floor(progress * totalshapes);
+		float startshapes = floor(ofMap(sync.barPulse, 0.75,0.5, 0,totalshapes, true));
+		ofPoint centre(680,780);
+		ofPoint left = centre + ofPoint(-200,200);
+		ofPoint right = centre + ofPoint(200,200);
+		
+		ofColor c; 
+		for(int i = startshapes; i<endshapes; i++) {
+            c.setHsb(255-i*12, 255, 255);
+			//ofSetColor(c);
+			
+			ofPoint offset(0,i*-50);
+			lm.addLaserLineEased( left + offset, centre+offset, c);
+			lm.addLaserLineEased(centre + offset, right + offset, c);
+			
+			
+			
+			
+		}
+
+		
+		
 		
 	}
 	

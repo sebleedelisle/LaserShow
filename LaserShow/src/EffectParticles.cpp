@@ -18,7 +18,7 @@ void EffectParticles :: makeParticleForPipe(int pipeindex) {
 	pss.emitLifeTime = 0.1;
 	pss.emitMode = PARTICLE_EMIT_BURST;
 	pss.emitCount = 1;
-	pss.renderer = new ParticleRendererLaserLine(10);
+	pss.renderer = new ParticleRendererLaserLine(6);
 	pss.speedMin = 600 ;
 	pss.speedMax = 650;
 	pss.drag = 1;
@@ -36,9 +36,9 @@ void EffectParticles :: makeParticleForPipe(int pipeindex) {
 	pss.saturationMin = pss.saturationMax = 255;
 	pss.saturationEnd = 255;
 	pss.brightnessStartMin = pss.brightnessStartMax =pss.brightnessEnd = 255;
-	pss.lifeMin = pss.lifeMax = 2;
+	pss.lifeMin = pss.lifeMax = 1.7;
 	pss.shimmerMin = 0;
-	pss.timeSpeed = 0.9;
+	pss.timeSpeed = 0.7;
 	//pss.doNotScale = true;
 	
 	ps.pos = pipeOrganData->pipes[pipeindex].top;
