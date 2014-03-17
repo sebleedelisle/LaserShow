@@ -774,308 +774,12 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofPopMatrix();
         
     }
-    
-    if (barfloat >=25 && barfloat < 25.25) {
-        
-        //half note laser launching centered octo
-        ofColor c;
-        c.setHsb(hue, 255, 255);
-        ofSetColor(c);
-        
-        OctoplusShape octo1;
-        octo1.init(0, 0, ofColor(c));
-        octo1.draw(5*volume, false);
-        
-        if (hue < 255 ){
-            hue= hue +50;
-        } else {
-            hue =0;
-        }
-    }
-    
-    
-    if (barfloat >=25.25 && barfloat < 26) {
-       
-        // 3 square horz lineup
-        float totalshapes = 4;
-        float progress = ofMap(barfloat, 25.25,26, 0, 1, true);
-        float endshapes = floor(progress * totalshapes);
-        
-        ofPushMatrix();
-        ofTranslate(-200, 0);
-        //ofRotate(45);
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        
-        ofColor c;
-        float posX =0;
-        
-        for(int i = endshapes; i>0; i--) {
-            c.setHsb(255-i*12, 255, 255);
-            ofSetColor(c);
-            
-            //draw our squares
-            ofFill();
-            ofRect(posX,0,sync.eighthPulse*40,sync.eighthPulse*40);
-            
-            ofNoFill();
-            ofRect(posX,0,volume*40,volume*40);
-            posX += 200;
-        }
-        ofPopMatrix();
-    }
-    
-    //REPEATING SECTION
-    
-    if (barfloat >=26 && barfloat < 26.25) {
-        
-        //half note laser launching centered octo
-        ofColor c;
-        c.setHsb(hue, 255, 255);
-        ofSetColor(c);
-        
-        OctoplusShape octo1;
-        octo1.init(0, 0, ofColor(c));
-        octo1.draw(5*volume, false);
-        
-        if (hue < 255 ){
-            hue= hue +50;
-        } else {
-            hue =0;
-        }
-    }
-    
-    
-    if (barfloat >=26.25 && barfloat < 27) {
-        
-        // 3 circle lineup pulse
-        float totalshapes = 4;
-        float progress = ofMap(barfloat, 26.25,27, 0, 1, true);
-        float endshapes = floor(progress * totalshapes);
-        
-        ofPushMatrix();
-        ofTranslate(-200, 0);
-        //ofRotate(45);
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        
-        ofColor c;
-        float posX =0;
-        
-        for(int i = endshapes; i>0; i--) {
-            c.setHsb(255-i*12, 255, 255);
-            ofSetColor(c);
-    
-            //draw our squares
-            ofFill();
-            ofCircle(posX,0,sync.eighthPulse*60);
-            
-            ofNoFill();
-            ofCircle(posX,0,volume*60*i);
-            posX += 200;
-        }
-        ofPopMatrix();
-    }
-    
-    if (barfloat >=27 && barfloat < 27.5) {
-       
-        //circles cinch in middle
-        float progress = ofMap(barfloat, 27.25, 27.5, 0,1);
-        
-        progress*=progress;
-        progress*=progress;
-        
-        ofColor c;
-        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
-        ofSetColor(c);
-        ofPoint end(0,0);
-        ofPoint start(-200,0);
-        ofPoint circlePos = start + ((end-start)*progress);
-        
-        start.set(-200,0);
-        ofNoFill();
-        circlePos = start + ((end-start)*progress);
-        //ofFill();
-        ofCircle(circlePos,sync.beatPulse*60);
-        
-        start.set(0,0);
-        ofNoFill();
-        circlePos = start + ((end-start)*progress);
-        ofFill();
-        ofCircle(circlePos,sync.beatPulse*60);
-        
-        start.set(200,0);
-        ofNoFill();
-        circlePos = start + ((end-start)*progress);
-        //ofFill();
-        ofCircle(circlePos,sync.beatPulse*60);
-       
-    }
-   /*--- REPEAT 2 BARS */
-    
-    if (barfloat >=28 && barfloat < 28.25) {
-        
-        //half note laser launching centered octo
-        ofColor c;
-        c.setHsb(hue, 255, 255);
-        ofSetColor(c);
-        
-        OctoplusShape octo1;
-        octo1.init(0, 0, ofColor(c));
-        octo1.draw(5*volume, false);
-        
-        if (hue < 255 ){
-            hue= hue +50;
-        } else {
-            hue =0;
-        }
-    }
-    
-    
-    if (barfloat >=28.25 && barfloat < 29) {
-        
-        // 3 circle lineup pulse
-        float totalshapes = 4;
-        float progress = ofMap(barfloat, 28.25,29, 0, 1, true);
-        float endshapes = floor(progress * totalshapes);
-        
-        ofPushMatrix();
-        ofTranslate(-200, 0);
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        
-        ofColor c;
-        float posX =0;
-        
-        for(int i = endshapes; i>0; i--) {
-            c.setHsb(255-i*12, 255, 255);
-            ofSetColor(c);
-            
-            //draw our squares
-            ofFill();
-            ofCircle(posX,0,sync.eighthPulse*60);
-            
-            ofNoFill();
-            ofCircle(posX,0,volume*60*i);
-            posX += 200;
-        }
-        ofPopMatrix();
-    }
-    
-    if (barfloat >=29 && barfloat < 29.5) {
-        
-        float progress = ofMap(barfloat, 29.25, 29.5, 0,1);
-        
-        progress*=progress;
-        progress*=progress;
-        
-        ofColor c;
-        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
-        ofSetColor(c);
-        
-        ofPoint end(0,0);
-        ofPoint start(-200,0);
-        ofPoint circlePos = start + ((end-start)*progress);
-        
-        start.set(-200,0);
-        circlePos = start + ((end-start)*progress);
-        ofNoFill();
-        ofCircle(circlePos,sync.beatPulse*60);
-        
-        start.set(0,0);
-        circlePos = start + ((end-start)*progress);
-        ofNoFill();
-        ofCircle(circlePos,sync.beatPulse*60);
-        start.set(200,0);
-        
-        circlePos = start + ((end-start)*progress);
-        ofNoFill();
-        ofCircle(circlePos,sync.beatPulse*60);
-    }
-    
-    // REPEAT TWO BARS AGAIN
-    
-    if (barfloat >=30 && barfloat < 30.25) {
-        
-        //half note laser launching centered octo
-        ofColor c;
-        c.setHsb(hue, 255, 255);
-        ofSetColor(c);
-        
-        OctoplusShape octo1;
-        octo1.init(0, 0, ofColor(c));
-        octo1.draw(5*volume, false);
-        
-        if (hue < 255 ){
-            hue= hue +50;
-        } else {
-            hue =0;
-        }
-    }
-    
-    
-    if (barfloat >=30.25 && barfloat < 31) {
-        
-        // 3 squares lineup pulse
-        float totalshapes = 4;
-        float progress = ofMap(barfloat, 30.25,31, 0, 1, true);
-        float endshapes = floor(progress * totalshapes);
-        
-        ofPushMatrix();
-        ofTranslate(-200, 0);
-        //ofRotate(45);
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        
-        ofColor c;
-        float posX =0;
-        
-        for(int i = endshapes; i>0; i--) {
-            c.setHsb(255-i*12, 255, 255);
-            ofSetColor(c);
-            
-            //draw our squares
-            ofFill();
-            ofRect(posX,0,sync.eighthPulse*60,sync.eighthPulse*60);
-            
-            ofNoFill();
-            ofRect(posX,0,volume*60*i,volume*60*i);
-            posX += 200;
-        }
-        ofPopMatrix();
-    }
-    
-    if (barfloat >=31 && barfloat < 31.5) {
-        
-        //circles cinch in middle
-        float progress = ofMap(barfloat, 31.25, 31.5, 0,1);
-        
-        progress*=progress;
-        progress*=progress;
-        
-        ofColor c;
-        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
-        ofSetColor(c);
-        ofPoint end(0,0);
-        ofPoint start(-200,0);
-        ofPoint circlePos = start + ((end-start)*progress);
-        
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        start.set(-200,0);
-        ofNoFill();
-        circlePos = start + ((end-start)*progress);
-        //ofFill();
-        ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
-        
-        start.set(0,0);
-     
-        circlePos = start + ((end-start)*progress);
-        ofFill();
-        ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
-        
-        start.set(200,0);
-        ofNoFill();
-        circlePos = start + ((end-start)*progress);
-        ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
-        
-    }
+   
+    // removing accent octos and 3 up shapes to make room for arrows
 
+
+    // end of cut
+    
     if (barfloat >=32 && barfloat < 35) {
         
         // scrolly squares -horizontal lower
@@ -1292,15 +996,321 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
     if (barfloat >=45.5 && barfloat < 49) {
         // Second spirograph - second round
-
+     
     }
 
     
+    // moving cut up to 63
+    
+    if (barfloat >=63 && barfloat < 63.25) {
+        
+        //half note laser launching centered octo
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(0, 0, ofColor(c));
+        octo1.draw(5*volume, false);
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
     
     
-
- 
-    ofPopStyle();
+    if (barfloat >=63.25 && barfloat < 64) {
+        
+        // 3 square horz lineup
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 63.25,64, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        //ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofRect(posX,0,sync.eighthPulse*40,sync.eighthPulse*40);
+            
+            ofNoFill();
+            ofRect(posX,0,volume*40,volume*40);
+            posX += 200;
+        }
+        ofPopMatrix();
+    }
+    
+    //REPEATING SECTION
+    
+    if (barfloat >=64 && barfloat < 64.25) {
+        
+        //half note laser launching centered octo
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(0, 0, ofColor(c));
+        octo1.draw(5*volume, false);
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
+    
+    
+    if (barfloat >=64.25 && barfloat < 65) {
+        
+        // 3 circle lineup pulse
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 64.25,65, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        //ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,0,sync.eighthPulse*60);
+            
+            ofNoFill();
+            ofCircle(posX,0,volume*60*i);
+            posX += 200;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >=65 && barfloat < 65.5) {
+        
+        //circles cinch in middle
+        float progress = ofMap(barfloat, 65.25, 65.5, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+        
+        ofColor c;
+        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
+        ofSetColor(c);
+        ofPoint end(0,0);
+        ofPoint start(-200,0);
+        ofPoint circlePos = start + ((end-start)*progress);
+        
+        start.set(-200,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        //ofFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+        start.set(0,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        ofFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+        start.set(200,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        //ofFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+    }
+    /*--- REPEAT 2 BARS */
+    
+    if (barfloat >=66 && barfloat < 66.25) {
+        
+        //half note laser launching centered octo
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(0, 0, ofColor(c));
+        octo1.draw(5*volume, false);
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
+    
+    
+    if (barfloat >=66.25 && barfloat < 67) {
+        
+        // 3 circle lineup pulse
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 66.25,67, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,0,sync.eighthPulse*60);
+            
+            ofNoFill();
+            ofCircle(posX,0,volume*60*i);
+            posX += 200;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >=68 && barfloat < 68.5) {
+        
+        float progress = ofMap(barfloat, 68.25, 68.5, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+        
+        ofColor c;
+        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
+        ofSetColor(c);
+        
+        ofPoint end(0,0);
+        ofPoint start(-200,0);
+        ofPoint circlePos = start + ((end-start)*progress);
+        
+        start.set(-200,0);
+        circlePos = start + ((end-start)*progress);
+        ofNoFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+        start.set(0,0);
+        circlePos = start + ((end-start)*progress);
+        ofNoFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        start.set(200,0);
+        
+        circlePos = start + ((end-start)*progress);
+        ofNoFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+    }
+    
+    // REPEAT TWO BARS AGAIN
+    
+    if (barfloat >=69 && barfloat < 69.25) {
+        
+        //half note laser launching centered octo
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(0, 0, ofColor(c));
+        octo1.draw(5*volume, false);
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
+    
+    
+    if (barfloat >=69.25 && barfloat < 70) {
+        
+        // 3 squares lineup pulse
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 69.25,70, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        //ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofRect(posX,0,sync.eighthPulse*60,sync.eighthPulse*60);
+            
+            ofNoFill();
+            ofRect(posX,0,volume*60*i,volume*60*i);
+            posX += 200;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >=70 && barfloat < 70.5) {
+        
+        //circles cinch in middle
+        float progress = ofMap(barfloat, 70.25, 70.5, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+        
+        ofColor c;
+        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
+        ofSetColor(c);
+        ofPoint end(0,0);
+        ofPoint start(-200,0);
+        ofPoint circlePos = start + ((end-start)*progress);
+        
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        start.set(-200,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        //ofFill();
+        ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
+        
+        start.set(0,0);
+        
+        circlePos = start + ((end-start)*progress);
+        ofFill();
+        ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
+        
+        start.set(200,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
+        
+    }
+    
+    
+    
+    
+    
+    ///end of moved cut
+    
+    
+       ofPopStyle();
 
 }
 
