@@ -632,7 +632,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         }
     }
     
-     if (barfloat >=17 && barfloat < 19.75) {
+    if (barfloat >=17 && barfloat < 19.75) {
          //first spirograph
          float allrotation = ofMap(barfloat, 17,19,180,0);
          float progress = ofMap(barfloat, 17,17.25, 0, 1, true);
@@ -1066,14 +1066,12 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
     if (barfloat >=32 && barfloat < 35) {
         
-        // rotating octo pulses
+        // scrolly squares -horizontal lower
         float totalshapes = 12;
         float progress = ofMap(barfloat, 32, 36, -1200,200);
         
         ofPushMatrix();
         ofTranslate(progress, 50);
-       // ofCircle(0,0,10);
-        //ofRotate(progress); // should move across instead of rotating 20 to 60 degrees?
         ofSetRectMode(OF_RECTMODE_CENTER);
         
         ofColor c;
@@ -1095,7 +1093,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
     if (barfloat >=32.25 && barfloat < 35) {
         
-        // rotating octo pulses
+       // scrolly squares -horizontal upper
         float totalshapes = 12;
         float progress = ofMap(barfloat, 32, 36, 200,-1200);
         
@@ -1131,14 +1129,13 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
     if (barfloat >=35.25 && barfloat < 35.75) {
         //vocal break in harmonica solo
-        // 3 circle lineup pulse
+        // 4 circle multi pulse
         float totalshapes = 3;
         float progress = ofMap(barfloat, 35.25,35.75, 0, 1, true);
         float endshapes = floor(progress * totalshapes);
         
         ofPushMatrix();
         ofTranslate(-200, 0);
-        //ofRotate(45);
         ofSetRectMode(OF_RECTMODE_CENTER);
         
         ofColor c;
@@ -1161,9 +1158,94 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
     }
     
-   
+    if (barfloat >=36 && barfloat < 39) {
+        
+        // scrolly squares - vertical left
+        float totalshapes = 24;
+        float progress = ofMap(barfloat, 36, 39, -1200, 200);
+        
+        ofPushMatrix();
+        ofTranslate(50, progress);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posY =0;
+        
+        for(int i = 0; i < totalshapes; i++) {
+            c.setHsb(235-i*ofRandom(15), 255, 255);
+            ofSetColor(c);
+            
+            ofFill();
+            ofRect(0,posY,sync.beatPulse*40,sync.beatPulse*40);
+            ofNoFill();
+            ofRect(0,posY,volume*40,volume*40);
+            posY += 200;
+        }
+        ofPopMatrix();
+    }
     
-    if (barfloat >=40 && barfloat < 42) {
+    
+    if (barfloat >=36.25 && barfloat < 39) {
+        
+        // scrolly squares - vertical
+        float totalshapes = 24;
+        float progress = ofMap(barfloat, 36.25, 40, 200, -1200);
+        
+        ofPushMatrix();
+        ofTranslate(-50,progress);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posY =0;
+        
+        for(int i = 0; i <totalshapes; i++) {
+            c.setHsb(235-i*ofRandom(15), 255, 255);
+            ofSetColor(c);
+            
+            ofFill();
+            ofRect(0, posY,sync.beatPulse*40,sync.beatPulse*40);
+            ofNoFill();
+            ofRect(0,posY,volume*40,volume*40);
+            posY += 200;
+        }
+        ofPopMatrix();
+    }
+    
+
+    if (barfloat >=39 && barfloat < 39.75)  {
+       
+        // 4 circle multi pulse - blue hue
+        float totalshapes = 3;
+        float progress = ofMap(barfloat, 39,39.75, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(235-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //posY = ofRandom(-100,100);
+            //draw our squares
+            ofFill();
+            ofCircle(posX,100,sync.eighthPulse*20);
+            
+            ofNoFill();
+            ofCircle(posX,-100,volume*20*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+        
+    }
+    
+    
+    
+    if (barfloat >=40 && barfloat < 42.25) {
         //awesome volume flexing octos
         ofColor c;
         c.setHsb(hue, 255, 255);
@@ -1190,103 +1272,21 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     }
 
     
+    if (barfloat >=43 && barfloat < 45.75) {
+        //first spirograph - second round
+        
+        }
     
     
-   /*
-    
-    float progress = ofMap(barfloat, 11.75, 12, 0,1);
-    
-    progress*=progress;
-    progress*=progress;
-    
-    
-    ofPoint end(0,0);
-    ofPoint start(200,200);
-    
-    float scale = 1.2;
-    
-    ofPoint circlePos = start + ((end-start)*progress);
-    arrow.init(circlePos.x, circlePos.y, ofColor(255,25,0));
-    arrow.draw(scale, false);
-    
-    start.set(-200,-200);
-    circlePos = start + ((end-start)*progress);
-    square.pos = circlePos;
-    //square.init(circlePos.x, circlePos.y, ofColor(85,0,255));
-    square.draw(scale, false);
-    
-    start.set(210,-210);
-    circlePos = start + ((end-start)*progress);
-    //octo.init(circlePos.x, circlePos.y, ofColor(169,255,9));
-    octo.pos = circlePos;
-    octo.draw(scale, false);
-    
-    start.set(-210,210);
-    ofSetRectMode(OF_RECTMODE_CENTER);
-    //fill a black square to cover
-    ofFill();
-    ofSetColor(0, 0, 0);
-    ofRect(circlePos, 100,100);
-    
-    //the sqaure outline
-    ofSetColor(0,255,171);
-    ofNoFill();
-    circlePos = start + ((end-start)*progress);
-    ofRect(circlePos, 60,60);
-    
-    
-    */
-    
-    
-//    //grow circles
-//    if (bar >=8 && barfloat < 8.25) {
-//        ofNoFill();
-//        ofSetColor(ofColor::cyan);
-//        ofCircle(-0,0, sync.barPulse *60);
-//        ofSetColor(ofColor::pink);
-//        ofCircle(0,0, sync.barPulse *80);
-//        ofSetColor(255,0,111);
-//        ofCircle(0,0, sync.barPulse*100);
-//    }
-//   
-//    //hold circles
-//    if (barfloat >= 8.25 && barfloat < 8.5){
-//        ofNoFill();
-//        ofSetColor(ofColor::cyan);
-//        ofCircle(0,0,60);
-//        ofSetColor(ofColor::pink);
-//        ofCircle(0,0,80);
-//        ofSetColor(255,0,111);
-//        ofCircle(0,0, 100);
-//    }
-//    
-//    if (barfloat >= 8.5 && barfloat < 9){
-//        CurveSquare square;
-//        square.init(0,0, ofColor::cyan);
-//        square.draw(2, false);
-//    
-//        CurveSquare square2;
-//        square2.init(0,0, ofColor::pink);
-//        square2.draw(3, false);
-//        
-//        CurveSquare square3;
-//        square3.init(0,0, ofColor(255,0,111));
-//        square3.draw(4, false);
-//    }
-    
+    if (barfloat >=45.5 && barfloat < 49) {
+        // Second spirograph - second round
+
+    }
 
     
-//    if (bar > 7 && bar < 8) {
-//        CurveSquare square;
-//        square.init(0,0,ofColor::pink);
-//        square.draw(sync.sixteenthPulse, false);
-//    }
     
     
-    
-    //center guide line
-    //ofSetColor(255,0,0);
-    //ofLine(0, -512,0, 512);
+
  
     ofPopStyle();
 
