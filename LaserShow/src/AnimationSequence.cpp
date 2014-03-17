@@ -689,12 +689,12 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         }
     }
 
-    if (barfloat >=22 && barfloat < 23) {
+    if (barfloat >=23 && barfloat < 24) {
         //arrows squares build in
         
         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-        float totalshapes = 5;
-        float progress = ofMap(barfloat, 22,23, 0, 1, true);
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 22,24, 0, 1, true);
         float endshapes = floor(progress * totalshapes);
      
             ofPushMatrix();
@@ -715,35 +715,37 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     }
     
     
-    if (barfloat >=23.25 && barfloat < 24) {
-       //arrow square flicker to 16ths
-        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-        float totalshapes = 5;
-        float progress = ofMap(barfloat, 23.25,23.5, 0, 1, true);
-        float endshapes = floor(progress * totalshapes);
-        
-        ofPushMatrix();
-        ofTranslate(0, 384);
-        ofRotate(45);
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        
-        ofColor c;
-        
-        for(int i = endshapes; i>=0; i--) {
-            c.setHsb(255-i*12, 255, ofMap(sync.sixteenthPulse, 0,1,100,255));
-            ofSetColor(c);
-            ofRect(0,0,i*200,i*200);
-            
-        }
-        ofPopMatrix();
-        
-    }
+//    if (barfloat >=23.25 && barfloat < 24) {
+//       //arrow square flicker to 16ths
+//        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+//        float totalshapes = 5;
+//        float progress = ofMap(barfloat, 23.25,23.5, 0, 1, true);
+//        float endshapes = floor(progress * totalshapes);
+//        
+//        ofPushMatrix();
+//        ofTranslate(0, 384);
+//        ofRotate(45);
+//        ofSetRectMode(OF_RECTMODE_CENTER);
+//        
+//        ofColor c;
+//        
+//        for(int i = endshapes; i>=0; i--) {
+//            c.setHsb(255-i*12, 255, ofMap(sync.sixteenthPulse, 0,1,100,255));
+//            ofSetColor(c);
+//            ofRect(0,0,i*200,i*200);
+//            
+//        }
+//        ofPopMatrix();
+//        
+//    }
+    
+    //arrow up at 24
     
     if (barfloat >=24 && barfloat < 24.75) {
         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
         
         // arrow squares OUT
-        float totalshapes = 5;
+        float totalshapes = 8;
         float progress = ofMap(barfloat, 24.5,24.75, 1, 0, true);
         float endshapes = floor(progress * totalshapes);
         
