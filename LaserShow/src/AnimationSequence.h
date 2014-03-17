@@ -36,6 +36,8 @@ class AnimationSequence {
     OctoplusShape octo;
     
     AnimationSequence();
+	
+	deque<float> volumes; 
     
 	
 	

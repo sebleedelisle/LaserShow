@@ -54,7 +54,7 @@ void LaserManager:: setup (int width, int height) {
 	//showSyncTest = false;
 	//connectButton = false;
 	
-	minPoints = 1000;
+	minPoints = 100;
     
 	restartCount = 0;
 	
@@ -470,7 +470,9 @@ void LaserManager::draw() {
 	
 	// TODO FIX
 	while(ildaPoints.size()<minPoints) {
-		addIldaPoint(startPosition, black);
+		LaserCircle blank(startPosition + ofPoint(0,10), black, 10);
+//		addIldaPoint(startPosition, black);
+		drawLaserCircle(blank);
 	}
 	
 	vector<ofxIlda::Point> adjustedPoints;

@@ -84,8 +84,6 @@ void TextWriter::drawFixedSize(ofRectangle box, string text, float glyphScaleFac
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     ofSetLineWidth(glyphLineWeight);
     
-    ofPushStyle();
-    ofPopStyle();
     
     vector<string> lines;
     

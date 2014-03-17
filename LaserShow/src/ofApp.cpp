@@ -301,10 +301,10 @@ void ofApp :: drawEffects() {
 	effectDomeLines.draw(sync, smoothVol, laserManager);
 	effectPipeOrganLines.draw(sync, smoothVol, laserManager, currentPeakFrequency);
 	if((sync.currentBar>=24) && (sync.currentBar<32)) {
-		if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
+		//if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
 		effectPipeOrganLines.mode = 0;
 		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 0;
+		effectDomeLines.mode = 4;
 	}
 	// SOLO
 	if((sync.currentBar >= 32) && (sync.currentBar < 42)) {
@@ -324,18 +324,39 @@ void ofApp :: drawEffects() {
 		effectLaserBeams.mode = 1;
 		effectDomeLines.mode = 0;
 	}
-	if((sync.currentBar >= 54) && (sync.currentBar < 58)) {
+	if((sync.currentBar >= 54) && (sync.currentBar < 56)) {
 		effectPipeOrganLines.mode = 0;
 		effectLaserBeams.mode = 2;
 		effectDomeLines.mode = 0;
 	}
-	if((sync.currentBar>58) && (sync.currentBar<80)) {
-		if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeRainbowBurst();
+	if((sync.currentBar >= 57) && (sync.currentBar < 59)) {
 		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 3;
+	}
+	
+	if((sync.currentBar>=59) && (sync.currentBar<74)) {
+		if ((sync.barTriggered) && (sync.currentBar%2==1)) effectParticles.makeRainbowBurst();
+		effectPipeOrganLines.mode = 1;
 		effectLaserBeams.mode = 0;
 		effectDomeLines.mode = 0;
 	}
 	//effectDomeLines.mode = 3;
+	if((sync.currentBar >= 74) && (sync.currentBar < 75)) {
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 3;
+		
+	}
+	if(sync.currentBar == 75) {
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 0;
+		if ((sync.barTriggered)) {
+			effectParticles.makeStarBurst();
+		}
+		
+	}
 
 }
 
