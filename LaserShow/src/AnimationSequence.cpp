@@ -36,6 +36,11 @@ void AnimationSequence :: update() {
 
 void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
+	
+	volumes.push_front(volume);
+
+	if(volumes.size()>100) volumes.pop_back();
+	
     float startAngle = -40;
     
     ofPushStyle();
@@ -634,12 +639,12 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
     if (barfloat >=17 && barfloat < 19.75) {
          //first spirograph
-         float allrotation = ofMap(barfloat, 17,19,180,0);
+         float allrotation = ofMap(barfloat, 17,19,0, -180);
          float progress = ofMap(barfloat, 17,17.25, 0, 1, true);
          float totalshapes = 36;
          int endshapesnum = progress * totalshapes;
          int startshapesnum = ofMap(barfloat, 19.5,19.75, 0, totalshapes, true);
-         
+			
          CurveSquare mySq;
          mySq.init(0, 0, ofColor());
          
@@ -648,13 +653,13 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
          for(int i = startshapesnum; i<endshapesnum; i++) {
              ofPushMatrix();
              //ofCircle(0,0,10);
-			 ofTranslate(-400, 300);
+			 ofTranslate(-400, 300, ofMap(barfloat, 17, 20, -300,300));
              
-             ofRotate(ofMap(i, 0, totalshapes,-60 + allrotation, 360-60+ allrotation));
-             ofTranslate(400,0);
+             ofRotate(ofMap(i, 0, totalshapes, allrotation, 360+ allrotation));
+             ofTranslate(400,0, (totalshapes - i)*-10);
              c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
              mySq.colour = c;
-			 float scalar = ofMap(volume, 0, 1, 0.9,1.1);
+			 float scalar = ofMap(volumes[i], 0, 1, 0.9,1.1);
              ofScale(scalar, scalar);
              mySq.draw(8, true);
              
@@ -665,26 +670,31 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
     if (barfloat >=19.5 && barfloat < 22) {
         // Second spirograph
-        float allrotation = ofMap(barfloat, 19.5,21,180,0);
+        float allrotation = ofMap(barfloat, 19.5,21,90,-90);
         float progress = ofMap(barfloat, 19.75,20, 0, 1, true);
         float totalshapes = 36;
         int endshapesnum = progress * totalshapes;
         int startshapesnum = ofMap(barfloat, 21.75,22, 0, totalshapes, true);
         
         CurveSquare mySq;
-        mySq.init(400, 0, ofColor());
+        mySq.init(0, 0, ofColor());
         
         ofColor c;
         
         for(int i = startshapesnum; i<endshapesnum; i++) {
             ofPushMatrix();
-            ofTranslate(400, -500);
+            ofTranslate(400, -500,ofMap(barfloat, 19.5, 22, -300,300));
             //ofCircle(0,0,10);
             ofRotate(ofMap(i, 0, totalshapes,-60 + allrotation, 360-60+ allrotation));
+			ofTranslate(400,0, (totalshapes - i)*-10);
+            
             
             c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
             mySq.colour = c;
             
+			float scalar = ofMap(volumes[i], 0, 1, 0.9,1.1);
+			ofScale(scalar, scalar);
+			
             mySq.draw(8, true);
             
             ofPopMatrix();
