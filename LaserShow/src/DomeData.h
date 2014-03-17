@@ -44,6 +44,8 @@ class DomeData {
 	DragHandle level1Handle, level2Handle, level3Handle, level4Handle,
 				startHandle, c1Handle, c2Handle, endHandle;
 	
+	vector<ofPoint> getLevelPoints();
+	
 	//EditableBezier level1;
 	
 	

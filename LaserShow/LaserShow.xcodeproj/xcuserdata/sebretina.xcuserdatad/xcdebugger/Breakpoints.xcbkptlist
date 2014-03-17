@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "src/EffectParticles.cpp"
-         timestampString = "416681864.99774"
+         timestampString = "416763424.833982"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
          landmarkName = "EffectParticles:: makeStarBurst()"
          landmarkType = "5">
       </FileBreakpoint>

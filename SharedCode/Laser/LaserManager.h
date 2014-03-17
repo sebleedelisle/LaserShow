@@ -23,6 +23,7 @@
 #include "LaserPolyline.h"
 #include "LaserLine.h"
 #include "ofxGui.h"
+#include "ofxSvg.h"
 #include "ofMain.h"
 
 #include "TextWriter.h"
@@ -59,6 +60,8 @@ class LaserManager {
 	void addLaserSpiral(const ofPoint& position, ofFloatColor col, float rad1,float rad2, float fadeoutpoint = 1,  float intens = 1);
 	
 	void addLaserPolyline(const ofPolyline& line, ColourSystem* coloursystem = NULL, float intens = 1);
+	
+	void addLaserSVG(ofxSVG & svg, ofPoint pos, ofPoint scale = ofPoint(1,1,1), float rotation  = 0, float intens =1 );
 
 	void addLaserLineEased(const ofPoint&start, const ofPoint&end, ofFloatColor colour);
 	
@@ -157,7 +160,11 @@ class LaserManager {
 	ofParameter<float> maskMarginTop;
 	ofParameter<float> maskMarginLeft;
 	ofParameter<float> maskMarginRight;
-
+	ofParameter<bool> useMaskBitmap;
+	ofParameter<bool> showMaskBitmap;
+	
+	ofImage maskBitmap;
+	
 	
 	//ofParameter<bool> showSyncTest;
 	ofParameter<bool> showLaserPath;
@@ -260,6 +267,8 @@ class LaserManager {
 	bool offScreen;
 	ofVec2f offScreenPoint;
 	ofVec2f lastClampedOffScreenPoint;
+	
+	
 
 
 };

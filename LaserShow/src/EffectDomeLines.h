@@ -48,6 +48,13 @@ struct DomeLine {
 	
 };
 
+struct DomePanelCircle {
+	ofPoint pos;
+	ofPoint size;
+	
+	
+	
+};
 
 class EffectDomeLines {
 	
@@ -62,7 +69,7 @@ class EffectDomeLines {
 	deque <DomeLine> lines; 
 	
 	float hue;
-	int mode=0; // off
+	int mode=3; // off
 	
 
 };

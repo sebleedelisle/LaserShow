@@ -69,6 +69,47 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 		}
 		
 		
+	} else if(mode == 3) {
+		
+		
+		for (float i = -1.5; i<2.5; i++) { //if((sixteenth>0) && (sixteenth<16)) {
+			poly.clear();
+			int sixteenth = sync.current16th;;// -i;
+			if((sixteenth - i<1) || (sixteenth - i>15))  continue;
+			float size = 1;
+			if((sixteenth == 2) || (sixteenth == 3) || (sixteenth == 5)  || (sixteenth == 6) || (sixteenth == 8) || (sixteenth == 10) || (sixteenth == 11) || (sixteenth == 14)){
+				size = 50;
+			}
+	
+			
+			float rotation = ofMap(sync.barPulse + ((float)i/16.0f), 1, 0, 0, -180); 
+			ofPoint p = domeData->getBezierPoint(0.34);
+			
+			for(float angle = 0; angle< 360; angle +=5) {
+				ofPoint q(0,0,size*sync.sixteenthPulse);
+				
+				q.rotate(angle, ofPoint(1,0,0));
+				q.rotate(45,ofPoint(0,0,1));
+				q+=p;
+				
+				q.rotate(rotation, ofPoint(0,1,0));
+				q *= domeData->scaleXY;
+				q.rotate(domeData->rotation->z, ofPoint(0,0,1));
+				q.rotate(domeData->rotation->y, ofPoint(0,1,0));
+				q.rotate(domeData->rotation->x, ofPoint(1,0,0));
+				q *= domeData->scale;
+				q += domeData->pos;
+				poly.addVertex(q);
+			}
+			
+			lm.addLaserPolyline(poly, new ColourSystem());
+
+			
+			//lm.addLaserDot(p, ofColor::white);
+			//lm.addLaserCircle(p, ofColor::white, size*sync.sixteenthPulse);
+			
+		}
+		
 	}
 	
 	
@@ -110,7 +151,7 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 			}
 		} else {
 			for(float t = 0; t<1; t+=0.01) {
-				ofPoint q = domeData->getBezierPoint(t);;
+				ofPoint q = domeData->getBezierPoint(t);
 				q.rotate(line.pos * -180, ofPoint(0,1,0));
 				q *= domeData->scaleXY;
 				q.rotate(domeData->rotation->z, ofPoint(0,0,1));
