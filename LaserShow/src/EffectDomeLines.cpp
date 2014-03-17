@@ -123,7 +123,7 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 		ofPoint centre(680,780);
 		ofPoint left = centre + ofPoint(-200,200);
 		ofPoint right = centre + ofPoint(200,200);
-		float colourOffset = ofMap(sync.barPulse, 1, 0, 0, 255); 
+		float colourOffset = ofMap(sync.barPulse, 1, 0, 0, 100);
 		ofColor c; 
 		for(int i = startshapes; i<endshapes; i++) {
             c.setHsb((int)(colourOffset + 255-i*12)%255, 255, 255);
