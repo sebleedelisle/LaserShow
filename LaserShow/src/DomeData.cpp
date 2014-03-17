@@ -158,6 +158,56 @@ void DomeData :: draw() {
 	
 }
 
+vector<ofPoint> DomeData :: getLevelPoints(){
+	
+	vector<ofPoint> levelpoints;
+	
+	for(int i =0; i<5; i++) {
+		
+		for(float angle = 0; angle>= -90; angle-=divAngle) {
+			
+			ofPoint p;
+			
+			if(i ==0 ) p= end;
+			else if(i ==1 ) p= level1;
+			else if(i ==2 ) p= level2;
+			else if(i ==3 ) p= level3;
+			else if(i ==4 ) p= level4;
+			
+			ofPoint q=p;
+			
+			
+			q *= scaleXY;
+			
+			q.rotate(angle, ofPoint(0,1,0));
+			
+			q *= scale;
+			q.rotate(rotation->z, ofPoint(0,0,1));
+			q.rotate(rotation->y, ofPoint(0,1,0));
+			q.rotate(rotation->x, ofPoint(1,0,0));
+			
+			q += pos;
+			
+			levelpoints.push_back(q);
+			
+			q = p;
+			q *= scaleXY;
+			q.rotate(-180 - angle, ofPoint(0,1,0));
+			
+			q *= scale;
+			q.rotate(rotation->z, ofPoint(0,0,1));
+			q.rotate(rotation->y, ofPoint(0,1,0));
+			q.rotate(rotation->x, ofPoint(1,0,0));
+		
+			q += pos;
+			
+			levelpoints.push_back(q);
+		}
+	}
+	return levelpoints; 
+	
+	
+}
 
 void DomeData::mouseDragged(int x, int y){
 	if(!editable) return;

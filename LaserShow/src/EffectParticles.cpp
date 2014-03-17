@@ -28,14 +28,15 @@ void EffectParticles :: makeParticleForPipe(int pipeindex) {
 	pss.sizeChangeRatio = 0.1;
 	//pss.emitShape = &explodeMesh;
 	pss.directionYVar = pss.directionZVar = 0;
+	pss.directionY = 50;
 	pss.directionX = -35;
 	
 	pss.hueStartMin = pss.hueStartMax = 0;
-	pss.hueChange = 960;
+	pss.hueChange = 360;
 	pss.saturationMin = pss.saturationMax = 255;
 	pss.saturationEnd = 255;
 	pss.brightnessStartMin = pss.brightnessStartMax =pss.brightnessEnd = 255;
-	pss.lifeMin = pss.lifeMax = pipeindex%2 +1;
+	pss.lifeMin = pss.lifeMax = 2;
 	pss.shimmerMin = 0;
 	pss.timeSpeed = 0.9;
 	//pss.doNotScale = true;

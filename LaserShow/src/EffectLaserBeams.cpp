@@ -14,7 +14,7 @@ EffectLaserBeams :: EffectLaserBeams() {
 	
 	speed = 1000;
 	emitCount = 0;
-	emitRate = 10;
+	emitRate = 5;
 	elapsedTime = 0;
 	maxBeams = 50;
 	//running = false;

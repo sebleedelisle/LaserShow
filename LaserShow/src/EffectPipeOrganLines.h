@@ -22,18 +22,25 @@
 struct PipeOrganLine {
 	
 	PipeOrganLine(ofPoint toppos, ofPoint bottompos, ofColor colour, float starttop = 0, float startbottom = 1, float endtop = 0, float endbottom = 1, float durationsecs = 0.2 ) {
-		
+		top = toppos;
+		bottom = bottompos; 
+		set(colour, starttop, startbottom, endtop, endbottom, durationsecs);
+				
+	}
+	
+	void set(ofColor colour, float starttop = 0, float startbottom = 1, float endtop = 0, float endbottom = 1, float durationsecs = 0.2 ) {
 		
 		elapsedTime = 0;
 		startTop =  starttop;
 		startBottom =  startbottom;
 		endTop = endtop;
 		endBottom = endbottom;
-		top = currentTop = toppos;
-		bottom = currentBottom = bottompos;
-		duration = durationsecs; 
+		currentTop = top;
+		currentBottom = bottom;
+		duration = durationsecs;
 		
 		col = colour;
+
 		
 	}
 	

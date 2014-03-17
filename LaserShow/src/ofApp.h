@@ -18,6 +18,12 @@
 #include "EffectPipeOrganLines.h"
 #include "EffectParticles.h"
 
+
+#include <GLFW/glfw3.h>
+#define GLFW_EXPOSE_NATIVE_COCOA
+#define GLFW_EXPOSE_NATIVE_NSGL
+#include "GLFW/glfw3native.h"
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -29,6 +35,7 @@ class ofApp : public ofBaseApp{
 	void update();
 	void draw();
 	void audioIn(float * input, int bufferSize, int numChannels);
+	void windowResized(int width, int height);
 	void keyPressed(int key);
 	void keyReleased(int key);
 	void mouseMoved(int x, int y );
@@ -42,6 +49,10 @@ class ofApp : public ofBaseApp{
 	
 	void updatePeakFrequency(float * val, int numBands);
 	
+	void calculateScreenSizes();
+	
+	ofRectangle secondScreenRect; 
+	
 	PipeOrganData pipeOrganData;
 	DomeData domeData; 
 	//float currentPipeIndex = 0;
@@ -50,9 +61,18 @@ class ofApp : public ofBaseApp{
 	
 	int screenWidth, screenHeight;
 
+	ofxPanel appGui;
 	ofxPanel laserGui;
+	ofxPanel redGui;
+	ofxPanel greenGui;
+	ofxPanel blueGui;
+	
 	vector<ofxPanel*> panels;
-
+	
+	ofParameter<bool> laserDomePoints;
+	ofParameter<bool> laserOrganPoints;
+	ofParameter<bool> showGuideImage;
+	
 	
 	LaserManager& laserManager;
 	ParticleSystemManager& particleSystemManager;
@@ -76,6 +96,7 @@ class ofApp : public ofBaseApp{
     
 
 	ofImage smashingTitle;
+	ofxSVG nyanSvg; 
 	
 	float soundPositionMS;
 	float smoothVol; 

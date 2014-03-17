@@ -34,6 +34,6 @@ class PipeOrganData {
 	ofParameterGroup params;
 	//ofxPanel gui;
 	ofXml settings;
-	bool editable;
+	ofParameter<bool> editable;
 
 };

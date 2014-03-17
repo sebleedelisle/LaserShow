@@ -11,7 +11,11 @@ void ofApp::setup(){
 	screenWidth = 1280;
 	screenHeight = 960;
 	
-	guideImage.loadImage("img/LaserableArea.jpg");
+	guideImage.loadImage("img/LaserableArea2.jpg");
+	music.loadSound("../../../Music/Down the Road Edit.aif");
+	
+	nyanSvg.load("SmashingCat.svg");
+	//nyanSvg.load("NyanCat.svg");
 	
 	previewProjector = false;
 	
@@ -44,7 +48,7 @@ void ofApp::setup(){
 	
 	ofxBaseGui::loadFont("VeraMoIt.ttf",8, true);
 	
-	laserGui.setup("LaserManager");
+	laserGui.setup("LaserManager", "laserSettings.xml");
 	laserGui.setPosition(ofPoint(screenWidth+220 - panelwidth - 10,10));
 	laserGui.setVisible(true);
 	laserGui.add(&laserManager.connectButton);
@@ -53,13 +57,37 @@ void ofApp::setup(){
 	laserGui.load();
 	panels.push_back(&laserGui);
 	
+	appGui.setup("App");
+	appGui.setPosition(ofPoint(screenWidth+220 - panelwidth - 10,10));
+	appGui.setVisible(false);
+	appGui.add(pipeOrganData.editable.set("Pipe Organ editable", false));
+	appGui.add(laserDomePoints.set("laser dome points", false));
+	appGui.add(laserOrganPoints.set("laser organ points", false));
+	appGui.add(showGuideImage.set("show guide image", true));
 	
-	music.loadSound("../../../Music/Down the Road Edit.aif");
+	redGui.setup("Laser Red", "laserred.xml");
+	redGui.add(laserManager.redParams );
+    greenGui.setup("Laser Green", "lasergreen.xml");
+	greenGui.add(laserManager.greenParams );
+    blueGui.setup("Laser Blue", "laserblue.xml");
+	blueGui.add(laserManager.blueParams );
+    redGui.load();
+	greenGui.load();
+	blueGui.load();
+	redGui.setPosition(ofPoint(10 ,10));
+	greenGui.setPosition(ofPoint(10 +panelwidth + 10,10));
+	blueGui.setPosition(ofPoint(10 +panelwidth*2 + 20,10));
+	
+	
+	//appGui.load();
+	panels.push_back(&appGui);
+
+	
 	
 	soundPositionMS = 70000;
 	
 	sync.tempo = 111;
-	sync.startPosition = 60000/111; // start after 1 beat intro
+	sync.startPosition = (60000/111) - 5; // start after 1 beat intro
 
 	
 	pipeOrganData.load();
@@ -75,7 +103,11 @@ void ofApp::setup(){
 	effectPipeOrganLines.setObjects(&pipeOrganData, &particleSystemManager);
 	effectParticles.setObjects(&pipeOrganData, &domeData);
 	
+	
+	
 	smoothVol = 0;
+	
+	calculateScreenSizes();
 	
 	}
 
@@ -133,14 +165,40 @@ void ofApp::draw(){
 	
 	if(!previewProjector) {
 		ofSetColor(200);
-		guideImage.draw(0,0,screenWidth, screenHeight);
+		if(showGuideImage) guideImage.draw(0,0,screenWidth, screenHeight);
 		ofSetColor(255);
 		ofRect(projectorPosition.x-1, projectorPosition.y-1, projectorPosition.width+2, projectorPosition.height+2);
 		projectorFbo.draw(projectorPosition);
 		
 		pipeOrganData.draw();
 		
+		if((pipeOrganData.editable) && (laserOrganPoints)){
+			vector<Pipe>& pipes = pipeOrganData.pipes;
+			for(int i = 0; i< pipes.size(); i++) {
+				Pipe& pipe = pipes[i];
+				if((pipe.topDragging) || (pipe.bottomDragging)) {
+					laserManager.addLaserLineEased(pipe.top, pipe.bottom, ofColor::white);
+				} else {
+					laserManager.addLaserLineEased(pipe.top, pipe.bottom, ofColor::cyan);
+				} 
+			}
+		}
+		ofSetupScreenPerspective(1280,960,50);
+
 		domeData.draw();
+		
+		
+		if((domeData.editable) && (laserDomePoints)){
+			vector<ofPoint> points = domeData.getLevelPoints();
+			
+			for(int i = 0; i<points.size(); i++) {
+				laserManager.addLaserDot(points[i], ofColor :: white);
+				//ofSetColor(255,0,0);
+				//ofCircle(points[i], 20);
+				
+			}
+		}
+
 
 	} else {
 		ofSetColor(255);
@@ -207,6 +265,7 @@ void ofApp::draw(){
 	// EFFECTS ---------------------------------------------
 	
 	drawEffects();
+	//laserManager.addLaserSVG(nyanSvg, ofPoint(640,580));
 	
 	
 	laserManager.draw();
@@ -221,9 +280,18 @@ void ofApp::draw(){
 	
 	uiFbo.end();
 	uiFbo.draw(0,0);
+	
+	projectorFbo.draw(secondScreenRect); 
+	
+	// GUI PANELS
 	for(int i = 0; i<panels.size(); i++) {
 		panels[i]->draw();
 	}
+	redGui.draw();
+	greenGui.draw();
+	blueGui.draw();
+	
+
 }
 
 void ofApp :: drawEffects() {
@@ -232,7 +300,6 @@ void ofApp :: drawEffects() {
 	effectLaserBeams.draw(laserManager,smoothVol);
 	effectDomeLines.draw(sync, smoothVol, laserManager);
 	effectPipeOrganLines.draw(sync, smoothVol, laserManager, currentPeakFrequency);
-	
 	if((sync.currentBar>=24) && (sync.currentBar<32)) {
 		if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
 		effectPipeOrganLines.mode = 0;
@@ -262,6 +329,14 @@ void ofApp :: drawEffects() {
 		effectLaserBeams.mode = 2;
 		effectDomeLines.mode = 0;
 	}
+	if((sync.currentBar>58) && (sync.currentBar<80)) {
+		if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeRainbowBurst();
+		effectPipeOrganLines.mode = 0;
+		effectLaserBeams.mode = 0;
+		effectDomeLines.mode = 0;
+	}
+	//effectDomeLines.mode = 3;
+
 }
 
 
@@ -282,6 +357,10 @@ void ofApp::keyPressed(int key){
 		} else if(activePanelIndex<panels.size()-1) {
 			panels[activePanelIndex+1]->setVisible(true);
 		}
+		
+		redGui.setVisible(laserGui.getVisible());
+		greenGui.setVisible(laserGui.getVisible());
+		blueGui.setVisible(laserGui.getVisible());
 			
 	}
 	if(key == 'w') laserManager.showWarpPoints = !laserManager.showWarpPoints;
@@ -410,6 +489,69 @@ void ofApp :: updatePeakFrequency(float * val, int numBands){
 }
 
 //--------------------------------------------------------------
+void ofApp::windowResized(int width, int height){
+	
+	
+	calculateScreenSizes();
+}
+
+
+void ofApp::calculateScreenSizes(){
+    int monitorCount;
+	
+	GLFWmonitor** monitors = glfwGetMonitors(&monitorCount);
+	
+	//cout << "RESIZE" << " " << ofGetWindowMode()<< endl;
+   // screens.clear();
+    
+    int leftMost = 0,
+	topMost = 0;
+    
+	vector<ofRectangle> screens;
+	
+    for(int i = 0; i < monitorCount; i++){
+		
+		ofRectangle screen;
+		
+		int x=0,
+		y=0,
+		w=0,
+		h=0;
+		
+        glfwGetMonitorPos(monitors[i],&x,&y);
+        const GLFWvidmode * desktopMode = glfwGetVideoMode(monitors[i]);
+		screen.x = x;
+		screen.y = y;
+        screen.width = desktopMode->width;
+        screen.height = desktopMode->height;
+        
+        screens.push_back(screen);
+        cout << i << " " << screen << endl;
+		if( leftMost > screen.x ) leftMost = screen.x;
+		if( topMost > screen.y ) topMost = screen.y;
+		
+    }
+    
+    for(int i = 0; i < monitorCount; i++){
+	//	screens[i].x -= leftMost;
+	//	screens[i].y -= topMost;
+		
+    }
+    
+	//std::sort( screens.begin(), screens.end(), screenSort );
+	
+	//uiScreenRect = screens.back();
+	
+	
+	if(screens.size()>1) {
+		secondScreenRect = screens[1];
+	} else {
+		secondScreenRect.set(screens[0].getRight(), screens[0].getTop(), 1024,768);
+	}
+	
+}
+
+//--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 
 	
@@ -454,6 +596,10 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 void ofApp::exit() {
+	redGui.save();
+	greenGui.save();
+	blueGui.save();
+	
 	laserGui.save();
 	pipeOrganData.save();
 	domeData.save();

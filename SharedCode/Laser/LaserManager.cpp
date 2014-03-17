@@ -111,6 +111,8 @@ void LaserManager:: setup (int width, int height) {
 	parameters.add(maskMarginBottom.set("mask margin bottom", 0, 0, appHeight));
 	parameters.add(maskMarginLeft.set("mask margin left", 0, 0, appWidth));
 	parameters.add(maskMarginRight.set("mask margin right", 0, 0, appWidth));
+	parameters.add(useMaskBitmap.set("use mask bitmap", true));
+	parameters.add(showMaskBitmap.set("show mask bitmap", true));
 	
 	parameters.add(showWarpPoints.set("show warp points", false));
 
@@ -185,6 +187,9 @@ void LaserManager:: setup (int width, int height) {
 	maskMarginRight.addListener(this, &LaserManager::updateMaskRectangleParam);
 	
 	updateMaskRectangle();
+	if(!maskBitmap.loadImage("img/LaserMask.png")) {
+		maskBitmap.allocate(appWidth, appHeight, OF_IMAGE_COLOR); 
+	};
 }
 
 void LaserManager :: updateMaskRectangle() {
@@ -258,10 +263,13 @@ void LaserManager:: update() {
 }
 
 void LaserManager::draw() {
-	
 
-	
-	
+	ofPoint startPosition = maskRectangle.getCenter();
+
+//	if(testPattern>0) {
+//	
+//	}
+//	
 	if(testPattern==1) {
 		
 		//addLaserRectEased(pmin, pmax, white);
@@ -298,9 +306,11 @@ void LaserManager::draw() {
 		
 	} else if((testPattern>=2) && (testPattern<=5)) {
 		ofColor c;
-			
-		ofRectangle rect(appWidth*0.3, appHeight*0.3, appWidth*0.3, appHeight*0.3);
 		
+		ofRectangle rect(appWidth*0.3, appHeight*0.5, appWidth*0.4, appHeight*0.1);
+		
+		moveLaser(startPosition,rect.getTopLeft());
+
 		for(int row = 0; row<5; row ++ ) {
 			
 			
@@ -391,6 +401,7 @@ void LaserManager::draw() {
 			//if(brightness < 0) brightness =
 	
 		}
+		moveLaser(rect.getBottomRight(), startPosition);
 		
 	}
 
@@ -458,9 +469,9 @@ void LaserManager::draw() {
 	}
 	
 	// TODO FIX
-	//while(ildaPoints.size()<minPoints) {
-	//	addIldaPoint(currentPosition, black);
-	//}
+	while(ildaPoints.size()<minPoints) {
+		addIldaPoint(startPosition, black);
+	}
 	
 	vector<ofxIlda::Point> adjustedPoints;
 
@@ -496,6 +507,15 @@ void LaserManager::draw() {
 		ofRect(maskRectangle);
 		maskRectangleBrightness-=0.01;
 		
+	}
+	
+	if(showMaskBitmap) {
+		ofPushStyle();
+//		ofEnableAlphaBlending();
+		ofEnableBlendMode(OF_BLENDMODE_SCREEN);
+		ofSetColor(50,0,0);
+		maskBitmap.draw(0,0,appWidth, appHeight);
+		ofPopStyle(); 
 	}
 	
 	
@@ -615,6 +635,40 @@ void LaserManager::addLaserPolyline(const ofPolyline& line, ColourSystem* colour
 	
 	shapes.push_back(new LaserPolyline(polyline, coloursystem, intens));
 	
+	
+}
+
+void LaserManager :: addLaserSVG(ofxSVG & svg, ofPoint pos, ofPoint scale, float rotation, float intens ) {
+	
+	ofVec3f centrePoint = ofVec3f(svg.getWidth()/2, svg.getHeight()/2);
+	
+	for(int i=0; i<svg.getNumPath(); i++ ) {
+		
+		vector<ofPolyline>& lines = svg.getPathAt(i).getOutline();
+		ofColor col = svg.getPathAt(i).getStrokeColor();
+		
+		for(int j=0; j<lines.size(); j++) {
+			ofPolyline line = lines[j];
+			vector<ofVec3f>& vertices = line.getVertices();
+			for(int i = 0; i<vertices.size(); i++) {
+				ofVec3f& v = vertices[i];
+				v-=centrePoint;
+				v.rotate(rotation, ofPoint(0,0,1)); 
+				v*=scale;
+				//v.x *= scaleX;
+				//v.x+=width/2;
+				//v.y+=height/2;
+				
+				//v.x+=APP_WIDTH/2;
+				//v.y +=APP_HEIGHT*0.3;
+				v+=pos;
+				//line.
+				
+			}
+			//cout << "brightness : " << brightness << endl;
+			addLaserPolyline(line,new ColourSystem(col),1);
+		}
+	}
 	
 }
 
@@ -1164,14 +1218,18 @@ void LaserManager::addIldaPoint(ofPoint p, ofFloatColor c, float pointIntensity,
 				addPoint(c, (showMovePoints && j%2==0) ? ofColor(100,0,0) : ofColor::black, useCalibration);
 				
 			}
-			
-			
 		}
-		
 		
 		c.r*=pointIntensity; // ((float)colourCorrection->r/255.0f);
 		c.g*=pointIntensity; // ((float)colourCorrection->g/255.0f);
 		c.b*=pointIntensity; // ((float)colourCorrection->b/255.0f);
+		
+		if(useMaskBitmap) {
+			float brightness = maskBitmap.getColor(p.x/appWidth* (float)maskBitmap.getWidth(), p.y/appHeight * (float)maskBitmap.getHeight()).getBrightness();
+			c*= brightness/255.0f;
+			//cout << "brightness " << brightness << endl;
+			
+		}
 		
 		addPoint(p, c, useCalibration);
 
