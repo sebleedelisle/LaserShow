@@ -16,6 +16,11 @@ AnimationSequence::AnimationSequence () {
 	proximaNovaL.setLetterSpacing(1);
     proximaNovaL.setSpaceSize(.4);
     
+    //load up second weight
+    proximaNovaLB;
+    proximaNovaLB.loadFont("Proxima Nova Light", 48, true, true);
+    
+    
     //load up images
     smashingTitle.loadImage("img/SmashingLogo.png");
 	smashingTitle.setAnchorPercent(.5, .5);
@@ -2235,11 +2240,19 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (barfloat > 76 && barfloat < 80 ) {
         
         float progress = ofMap(barfloat, 76, 78, 0, 255);
-         proximaNovaL.setSpaceSize(.8);
-        ofSetColor(0,255,255,progress);
+        proximaNovaLB.setSpaceSize(.9);
+        ofSetColor(234,0,255,progress);
         ofPushMatrix();
-        ofTranslate(0, 200);
-        writeinPNL("MADE BY: @SEB_LY & @VLH");
+        //ofTranslate(0, 100);
+        string message = "MADE BY:";
+        float halfWidth = proximaNovaL.stringWidth(message)/2;
+        proximaNovaL.drawString(message, -1*halfWidth, 0);
+        
+        ofSetColor(0,255,255,progress);
+        message = "@SEB_LY & @VLH";
+        halfWidth = proximaNovaLB.stringWidth(message)/2;
+        proximaNovaLB.drawString(message, -1*halfWidth, 72);
+        
         ofPopMatrix();
     
     }

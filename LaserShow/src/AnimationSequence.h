@@ -27,6 +27,7 @@ class AnimationSequence {
     void writeinPNL(string message);
     
     ofTrueTypeFont	proximaNovaL;
+    ofTrueTypeFont	proximaNovaLB;
     ofImage smashingTitle;
     
     float hue;

@@ -14,7 +14,7 @@
 			<flip_x>0</flip_x>
 			<flip_y>0</flip_y>
 			<laser_on_during_move>0</laser_on_during_move>
-			<preview_laser>1</preview_laser>
+			<preview_laser>0</preview_laser>
 			<preview_laser_dots>0</preview_laser_dots>
 			<post_transform_dots>0</post_transform_dots>
 			<move_speed>3.08</move_speed>
