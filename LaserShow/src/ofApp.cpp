@@ -14,8 +14,8 @@ void ofApp::setup(){
 	guideImage.loadImage("img/LaserableArea2.jpg");
 	music.loadSound("../../../Music/Down the Road Edit.aif");
 	
-	nyanSvg.load("SmashingCat.svg");
-	//nyanSvg.load("NyanCat.svg");
+	smashingCatSvg.load("SmashingCat.svg");
+	//smashingCatSvg.load("NyanCat.svg");
 	
 	previewProjector = false;
 	
@@ -64,6 +64,7 @@ void ofApp::setup(){
 	appGui.add(laserDomePoints.set("laser dome points", false));
 	appGui.add(laserOrganPoints.set("laser organ points", false));
 	appGui.add(showGuideImage.set("show guide image", true));
+	appGui.add(showCat.set("show cat!", false));
 	
 	redGui.setup("Laser Red", "laserred.xml");
 	redGui.add(laserManager.redParams );
@@ -84,7 +85,7 @@ void ofApp::setup(){
 
 	
 	
-	soundPositionMS = 70000;
+	soundPositionMS = 0;
 	
 	sync.tempo = 111;
 	sync.startPosition = (60000/111) - 5; // start after 1 beat intro
@@ -267,7 +268,7 @@ void ofApp::draw(){
 	// EFFECTS ---------------------------------------------
 	
 	drawEffects();
-	//laserManager.addLaserSVG(nyanSvg, ofPoint(640,580));
+	if(showCat) laserManager.addLaserSVG(smashingCatSvg, ofPoint(990,580),ofPoint(0.5,0.5));
 	
 	
 	laserManager.draw();
@@ -466,14 +467,24 @@ void ofApp::keyPressed(int key){
 	if(key == ' ') previewProjector = !previewProjector;
 	if(key == OF_KEY_DOWN) {
 		music.setPosition(0);
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+
 		music.play();
 	}
 	if(key == OF_KEY_LEFT) {
 		soundPositionMS = sync.getMSForBarNumber(sync.currentBar-1);
 		music.setPositionMS(soundPositionMS);
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
 	} else if(key == OF_KEY_RIGHT) {
 		soundPositionMS = sync.getMSForBarNumber(sync.currentBar+1);
 		music.setPositionMS(soundPositionMS);
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
 	}
 	if(key =='l') laserManager.showLaserPath = !laserManager.showLaserPath;
 		
@@ -487,10 +498,13 @@ void ofApp::keyPressed(int key){
 
 			music.play();
 			music.setPositionMS(soundPositionMS);
+			effectPipeOrganLines.setMode(0);
+			effectLaserBeams.mode = 0;
+			effectDomeLines.setMode(0);
 		}
 	
 	}
-	
+	if(key=='c') showCat = !showCat;
     
 
 	if(key == '1') {

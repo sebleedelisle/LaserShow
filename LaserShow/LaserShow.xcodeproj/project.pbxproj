@@ -21,6 +21,7 @@
 		12713E5118D5192E00C97118 /* RocketRendererWiggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12713E4718D5192E00C97118 /* RocketRendererWiggle.cpp */; };
 		1296BC4E18CF57C3004FCE27 /* DomeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1296BC4C18CF57C3004FCE27 /* DomeData.cpp */; };
 		12A346D118D5F94E00CF070C /* EffectParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A346CF18D5F94E00CF070C /* EffectParticles.cpp */; };
+		12A346DB18D7FE8700CF070C /* ClappyBird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A346D918D7FE8700CF070C /* ClappyBird.cpp */; };
 		12A6512418D07A9E005BD577 /* EditableBezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512218D07A9E005BD577 /* EditableBezier.cpp */; };
 		12A6512718D09641005BD577 /* EffectLaserBeams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A6512518D09641005BD577 /* EffectLaserBeams.cpp */; };
 		12A8CED318B82671006E42BA /* src_colors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12A8CECA18B82671006E42BA /* src_colors.cpp */; };
@@ -208,6 +209,8 @@
 		1296BC4D18CF57C3004FCE27 /* DomeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomeData.h; sourceTree = "<group>"; };
 		12A346CF18D5F94E00CF070C /* EffectParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectParticles.cpp; sourceTree = "<group>"; };
 		12A346D018D5F94E00CF070C /* EffectParticles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectParticles.h; sourceTree = "<group>"; };
+		12A346D918D7FE8700CF070C /* ClappyBird.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClappyBird.cpp; sourceTree = "<group>"; };
+		12A346DA18D7FE8700CF070C /* ClappyBird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClappyBird.h; sourceTree = "<group>"; };
 		12A6512218D07A9E005BD577 /* EditableBezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EditableBezier.cpp; sourceTree = "<group>"; };
 		12A6512318D07A9E005BD577 /* EditableBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableBezier.h; sourceTree = "<group>"; };
 		12A6512518D09641005BD577 /* EffectLaserBeams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectLaserBeams.cpp; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 				12713DEB18D504F400C97118 /* EffectPipeOrganLines.h */,
 				12713DE618D4A7A800C97118 /* EffectDomeLines.cpp */,
 				12713DE718D4A7A900C97118 /* EffectDomeLines.h */,
+				12A346D918D7FE8700CF070C /* ClappyBird.cpp */,
+				12A346DA18D7FE8700CF070C /* ClappyBird.h */,
 			);
 			name = Effects;
 			sourceTree = "<group>";
@@ -1624,6 +1629,7 @@
 				12713E5018D5192E00C97118 /* PhysicsObject.cpp in Sources */,
 				12713E5118D5192E00C97118 /* RocketRendererWiggle.cpp in Sources */,
 				12A346D118D5F94E00CF070C /* EffectParticles.cpp in Sources */,
+				12A346DB18D7FE8700CF070C /* ClappyBird.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

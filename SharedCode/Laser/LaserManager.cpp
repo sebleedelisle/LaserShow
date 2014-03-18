@@ -651,6 +651,7 @@ void LaserManager :: addLaserSVG(ofxSVG & svg, ofPoint pos, ofPoint scale, float
 		
 		for(int j=0; j<lines.size(); j++) {
 			ofPolyline line = lines[j];
+			
 			vector<ofVec3f>& vertices = line.getVertices();
 			for(int i = 0; i<vertices.size(); i++) {
 				ofVec3f& v = vertices[i];
@@ -667,6 +668,7 @@ void LaserManager :: addLaserSVG(ofxSVG & svg, ofPoint pos, ofPoint scale, float
 				//line.
 				
 			}
+			line.simplify(0.1);
 			//cout << "brightness : " << brightness << endl;
 			addLaserPolyline(line,new ColourSystem(col),1);
 		}

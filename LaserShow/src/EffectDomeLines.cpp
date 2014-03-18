@@ -182,7 +182,7 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
         float endshapes = floor(progress * totalshapes);
 		float startshapes = floor(ofMap(sync.barPulse, 0.75,0.5, 0,totalshapes, true));
 		
-		ofPoint centre(680,680);
+		ofPoint centre(675,740);
 		ofPoint left = centre + ofPoint(-140,140);
 		ofPoint right = centre + ofPoint(140,140);
 		float colourOffset = ofMap(sync.barPulse, 1, 0, 0, 100);
