@@ -47,10 +47,10 @@ struct PipeOrganLine {
 	void update(float deltaTime) {
 		elapsedTime+=deltaTime;
 		
-		float topunit = ofMap(elapsedTime, 0, duration, startTop, endTop);
-		currentTop = top + ((bottom - top) * topunit);
-		float bottomunit = ofMap(elapsedTime, 0, duration, startBottom, endBottom);
-		currentBottom = top + ((bottom - top)  * bottomunit);
+		topUnit = ofMap(elapsedTime, 0, duration, startTop, endTop, true);
+		currentTop = top + ((bottom - top) * topUnit);
+		bottomUnit = ofMap(elapsedTime, 0, duration, startBottom, endBottom, true);
+		currentBottom = top + ((bottom - top)  * bottomUnit);
 		
 		
 	}
@@ -59,7 +59,7 @@ struct PipeOrganLine {
 	float elapsedTime; 
 	ofColor col;
 	
-	float startTop, startBottom, endTop, endBottom, duration;
+	float startTop, startBottom, endTop, endBottom, duration, topUnit, bottomUnit;
 	ofPoint top, bottom, currentTop, currentBottom;
 	
 	
@@ -75,6 +75,7 @@ class EffectPipeOrganLines {
 	void draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak);
 	
 	void setObjects(PipeOrganData* pipeOrganData, ParticleSystemManager* psm);
+	void makeParticleForPipe(int pipeindex, ofColor col);
 
 	void setMode(int newmode); 
 	

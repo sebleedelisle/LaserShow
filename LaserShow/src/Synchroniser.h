@@ -114,6 +114,7 @@ class Synchroniser {
 		
 		return startPosition + ( (float)barnumber * msPerBar );
 		
+
 		
 	}
 	

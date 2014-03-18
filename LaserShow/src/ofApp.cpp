@@ -28,7 +28,7 @@ void ofApp::setup(){
 	projectorFbo.end();
 	
 	ofSetColor(255);
-	projectorPosition.set(screenWidth/5*2, screenHeight*4/5, screenWidth/5, screenHeight/5);
+	projectorPosition.set(screenWidth/5*2.14, screenHeight*4/5 * 0.99, screenWidth/5, screenHeight/5);
 	
 	laserManager.setup(screenWidth, screenHeight);
 	//laserManager.connectToEtherdream();
@@ -152,6 +152,8 @@ void ofApp::draw(){
 	//ofSetupScreenPerspective(1280, 960,ofGetMouseY());
 	
 	smoothVol += (vol-smoothVol) *0.5;
+	volumes.push_front(smoothVol);
+	if(volumes.size()>500) volumes.pop_back();
 	
 	
 	uiFbo.begin();
@@ -296,11 +298,21 @@ void ofApp::draw(){
 
 void ofApp :: drawEffects() {
 	
-	if((sync.currentBar>=24) && (sync.currentBar<32)) {
-		//if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
+	if((sync.currentBar>=24) && (sync.currentBar<28)) {
+		// CHEVRONS
 		effectPipeOrganLines.setMode(0);
 		effectLaserBeams.mode = 0;
 		effectDomeLines.setMode(4);
+	}
+	if((sync.currentBar>=28) && (sync.currentBar<30)) {
+		drawSpirograph(ofPoint(350,600), 20,50,80,ofMap(sync.currentBarFloat, 29, 30,0,1, true),ofMap(sync.currentBarFloat, 28, 29,0,1, true),
+					   ofMap(sync.currentBarFloat, 28, 30, 180,0));
+		effectDomeLines.setMode(0);
+	}
+	if((sync.currentBar>=30) && (sync.currentBar<32)) {
+		drawSpirograph(ofPoint(1000,600), 20,80,60,ofMap(sync.currentBarFloat, 31, 32,0,1, true),ofMap(sync.currentBarFloat, 30, 31,0,1, true),
+					   ofMap(sync.currentBarFloat, 28, 30, 180,0));
+		effectDomeLines.setMode(0);
 	}
 	// SOLO
 	if((sync.currentBar >= 32) && (sync.currentBar < 40)) {
@@ -308,12 +320,18 @@ void ofApp :: drawEffects() {
 		effectLaserBeams.mode = 0;
 		effectDomeLines.setMode(0);
 	}
+	if((sync.currentBar >= 35) && (sync.currentBar < 36)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+		if(sync.barTriggered) effectParticles.makeStarBurst();
+	}
 	if((sync.currentBar >= 40) && (sync.currentBar < 41)) {
 		effectPipeOrganLines.setMode(0);
 		effectLaserBeams.mode = 0;
 		effectDomeLines.setMode(0);
 	}
-	if((sync.currentBar >= 41) && (sync.currentBar < 42)) {
+	if((sync.currentBarFloat > 41.5) && (sync.currentBar < 42)) {
 		effectPipeOrganLines.setMode(0);
 		effectLaserBeams.mode = 0;
 		effectDomeLines.setMode(3);
@@ -353,7 +371,9 @@ void ofApp :: drawEffects() {
 			
 		effectPipeOrganLines.setMode(3);
 		effectLaserBeams.mode = 0;
-		effectDomeLines.setMode(0);
+		if((sync.currentBar>=67) && (sync.currentBar<73))  effectDomeLines.setMode(5);
+		else effectDomeLines.setMode(0);
+		if(sync.currentBar>=71) effectDomeLines.doSecondCircleRow = true;
 	}
 	//effectDomeLines.setMode(3;
 	if((sync.currentBar >= 74) && (sync.currentBar < 75)) {
@@ -381,7 +401,44 @@ void ofApp :: drawEffects() {
 
 }
 
-
+void ofApp ::  drawSpirograph(ofPoint pos, int numrevolutions, float smallradius, float largeradius, float start, float end, float rotation) {
+	
+	poly.clear();
+	ColourSystemGradient* grad = new ColourSystemGradient();
+	
+	int totaldivisions =360;
+	//int numrevolutions = 20;
+	//float smallradius = 50;
+	//float largeradius = 200;
+	ofPoint p;
+	for(int i = totaldivisions*start; i<=totaldivisions*end; i++) {
+		float angle1 = ofMap(i, 0, totaldivisions, 0, 360);
+		float angle2 = ofMap(i, 0, totaldivisions, 0, 360*numrevolutions);
+		
+		float sr = smallradius;
+		if((i/10)<volumes.size()) sr*= ofMap(volumes[i/10],0,1,0.8,1.1,true);
+		p.set(sr,0,0);
+		
+		p.rotate(angle2, ofPoint(0,0,1));
+		p.x+=largeradius;
+		p.rotate(angle1+rotation, ofPoint(0,0,1));
+		
+		p+=pos;
+		//p.z += i;
+		
+		poly.addVertex(p);
+		int hue = ((int)ofMap(i,0,totaldivisions, 0, 255))%255;
+		ofColor c;
+		c.setHsb(hue, 255,255); 
+		grad->addColourStop(c, ofMap(i,totaldivisions*start,totaldivisions*end, 0, 1));
+		
+		
+		
+	}
+	//poly.draw();
+	laserManager.addLaserPolyline(poly, grad);
+	
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	

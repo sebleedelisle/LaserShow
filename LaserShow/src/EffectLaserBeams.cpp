@@ -51,7 +51,8 @@ void EffectLaserBeams :: update(float deltaTime){
 		LaserBeam& beam = beams.back();
 		
 		if(multiColoured) {
-			beam.colour.setHsb((int)currentHue%255,255,255);
+			beam.hue = currentHue;
+			beam.saturation = 255;
 			currentHue += 3;
 		}
 		
@@ -144,8 +145,9 @@ void EffectLaserBeams :: draw(LaserManager& laserManager, float intensity) {
 		if(end.z<frontPlane) {
 			start.rotate(xRotation, ofPoint(1,0,0));
 			end.rotate(xRotation, ofPoint(1,0,0));
-			ofColor col = beam.colour;
-			if(multiColoured) col.setSaturation(ofMap(beam.intensity, 0,1,255,200,true));
+			ofColor col;
+			col.setHsb(beam.hue, beam.saturation, 255);
+			if(multiColoured) col.setSaturation(ofMap(beam.intensity, 0,1,beam.saturation, beam.saturation*0.5,true));
 			//col.setHsb(beam.colour.getHue(), 255, ofMap(intensity, 0,1,255,255,true));
 			
 			laserManager.addLaserLineEased(start, end, col);

@@ -17,6 +17,7 @@
 #include "EffectDomeLines.h"
 #include "EffectPipeOrganLines.h"
 #include "EffectParticles.h"
+#include "ColourSystemGradient.h"
 
 
 #include <GLFW/glfw3.h>
@@ -50,6 +51,8 @@ class ofApp : public ofBaseApp{
 	void updatePeakFrequency(float * val, int numBands);
 	
 	void calculateScreenSizes();
+	
+	void drawSpirograph(ofPoint pos, int numrevolutions, float smallradius, float largeradius, float start, float end, float rotation);
 	
 	ofRectangle secondScreenRect; 
 	
@@ -99,11 +102,13 @@ class ofApp : public ofBaseApp{
 	ofxSVG nyanSvg; 
 	
 	float soundPositionMS;
-	float smoothVol; 
+	float smoothVol;
+	deque<float> volumes; 
 	
 	AnimationSequence screenAnimation;
 	
-
+	ofPolyline poly;
+	
 
 		
 };

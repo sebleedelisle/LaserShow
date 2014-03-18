@@ -48,11 +48,22 @@ struct DomeLine {
 	
 };
 
-struct DomePanelCircle {
-	ofPoint pos;
-	ofPoint size;
+struct MarchingCircle {
 	
+	float startAngle = -180;
+	float targetAngle = 0;
+	float currentAngle = -180;
+	float duration = 1;
+	float elapsedTime = 0;
+	float size = 15;
 	
+	float bezierPosition; 
+	ofColor col;
+	
+	void update(float deltaTime) {
+		elapsedTime+=deltaTime;
+		currentAngle = startAngle + ((targetAngle-startAngle)*(elapsedTime/duration));
+	}
 	
 };
 
@@ -74,10 +85,14 @@ class EffectDomeLines {
 	float hue;
 	int mode=3; // off
 	
+	bool doSecondCircleRow = false; 
+	
 	deque<float> volumes;
 	
 	vector<ofColor> ringColours;
 	int currentColourIndex = 0;
+	
+	deque<MarchingCircle> circles; 
 	
 
 };

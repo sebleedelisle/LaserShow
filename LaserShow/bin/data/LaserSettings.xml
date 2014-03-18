@@ -29,7 +29,7 @@
 			<circle_speed>20</circle_speed>
 			<eased_line_speed>2.9</eased_line_speed>
 			<eased_line_padding>5</eased_line_padding>
-			<spiral_spacing>10</spiral_spacing>
+			<spiral_spacing>6.035</spiral_spacing>
 		<use_mask_bitmap>1</use_mask_bitmap>
 			<show_mask_bitmap>0</show_mask_bitmap>
 		</Laser_Manager>

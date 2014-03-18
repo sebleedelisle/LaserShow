@@ -96,12 +96,16 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 			//Pipe& pipe = pipeOrganData->pipes[numpipes + currentPipeIndex];
 			//lines.push_back(PipeOrganLine(pipe.top, pipe.bottom, col, 1,0,0,0,0.1 ));
 			PipeOrganLine& line = lines[numpipes+currentPipeIndex];
-			line.set( col, 1,0,1,1,0.2 );
-		
 			
+			
+			if(line.elapsedTime > line.duration) makeParticleForPipe(numpipes+currentPipeIndex, col) ;
+			line.set( col, 1,0,1,1,0.2 );
+			   
 			if(currentPipeIndex>0) {
 				PipeOrganLine& line2 = lines[numpipes - currentPipeIndex];
 				//Pipe& pipe2 = pipeOrganData->pipes[numpipes - currentPipeIndex];
+				if(line2.elapsedTime > line2.duration) makeParticleForPipe(numpipes - currentPipeIndex, col) ;
+				
 				line2.set(col, 1,0,1,1,0.2 );
 				
 			}
@@ -164,6 +168,46 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 
 }
 
+
+void EffectPipeOrganLines :: makeParticleForPipe(int pipeindex, ofColor col) {
+	if(pipeOrganData == NULL) return;
+	
+	ParticleSystemManager& psm = *(ParticleSystemManager::instance());
+	ParticleSystem &ps = *psm.getParticleSystem();
+	
+	ParticleSystemSettings pss;
+	pss.emitLifeTime = 0.1;
+	pss.emitMode = PARTICLE_EMIT_BURST;
+	pss.emitCount = 1;
+	pss.renderer = new ParticleRendererLaser();
+	pss.speedMin = 600 ;
+	pss.speedMax = 650;
+	pss.drag = 0.9;
+	//pss.gravity.set(0,500,0);
+	
+	pss.sizeStartMin = pss.sizeStartMax = 1;
+	pss.sizeChangeRatio = 0.1;
+	//pss.emitShape = &explodeMesh;
+	pss.directionYVar = pss.directionZVar = 0;
+	pss.directionY = 0;
+	pss.directionX = -35;
+	
+	pss.hueStartMin = pss.hueStartMax = col.getHue();
+	pss.hueChange = 0;
+	pss.saturationMin = pss.saturationMax = 255;
+	pss.saturationEnd = 255;
+	pss.brightnessStartMin = pss.brightnessStartMax =pss.brightnessEnd = 255;
+	pss.lifeMin = pss.lifeMax = 0.5;
+	pss.shimmerMin = 0;
+	pss.timeSpeed = 0.7;
+	//pss.doNotScale = true;
+	
+	ps.pos = pipeOrganData->pipes[pipeindex].top;
+	ps.init(pss);
+	
+	
+	
+}
 
 void EffectPipeOrganLines :: setObjects(PipeOrganData* pipeorgandata, ParticleSystemManager* psm ){
 	pipeOrganData = pipeorgandata;

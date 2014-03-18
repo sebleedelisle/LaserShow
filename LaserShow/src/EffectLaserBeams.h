@@ -15,13 +15,15 @@ struct LaserBeam {
 	LaserBeam() {
 		pos.set(0,0,0);
 		length = 300;
-		colour = ofColor::white;
+		hue =0;
+		saturation = 0; 
 		intensity = 0;
 		
 	};
 	ofPoint pos;
 	float length;
-	ofColor colour;
+	float hue;
+	float saturation; 
 	float intensity; 
 	
 	
