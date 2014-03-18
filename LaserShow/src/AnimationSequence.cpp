@@ -1428,10 +1428,10 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             
             //draw our squares
             ofFill();
-            ofRect(posX,50*i,sync.sixteenthPulse*20, sync.sixteenthPulse*20);
+            ofRect(posX,50*i,volume*40*i, volume*40*i);
             
             ofNoFill();
-            ofRect(posX,-50*i,volume*20*i,volume*20*i);
+            ofRect(posX,-50*i,sync.sixteenthPulse*40,sync.sixteenthPulse*40);
             posX += 400;
         }
         ofPopMatrix();
@@ -1551,10 +1551,10 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             
             //draw our squares
             ofFill();
-            ofRect(posX,50*i,sync.eighthPulse*20, sync.eighthPulse*20);
+            ofRect(posX,50*i,volume*40*i, volume*40*i);
             
             ofNoFill();
-            ofRect(posX,-50*i,volume*20*i,volume*20*i);
+            ofRect(posX,-50*i,sync.eighthPulse*20,sync.eighthPulse*20);
             posX += 400;
         }
         ofPopMatrix();
@@ -1564,7 +1564,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         
         // 3 square 8th pulse - blue hue
         ofEnableBlendMode(OF_BLENDMODE_ADD);
-        float totalshapes = 4;
+        float totalshapes = 6;
         float progress = ofMap(barfloat, 56,56.5, 0, 1, true);
         float endshapes = floor(progress * totalshapes);
         
@@ -2081,7 +2081,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
  
     if (barfloat >=72 && barfloat < 72.25) {
         
-       float progress = ofMap(barfloat, 72, 72.25, 0,180);
+       float progress = ofMap(barfloat, 72, 72.25, 0,90);
         hue = 235;
         ofColor c;
         c.setHsb(hue, 255, 255);
