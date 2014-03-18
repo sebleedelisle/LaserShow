@@ -84,6 +84,7 @@ void ofApp::setup(){
 	panels.push_back(&appGui);
 
 	
+	clappyBirdActive = false;
 	
 	soundPositionMS = 0;
 	
@@ -109,7 +110,7 @@ void ofApp::setup(){
 	smoothVol = 0;
 	
 	calculateScreenSizes();
-
+	smoothedInputVolume = 0;
 	soundStream.setup(this, 0, 2, 48000, 1024, 1);
 	left.resize(1024);
 	right.resize(1024);
@@ -119,7 +120,7 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 	
-	float deltaTime = ofGetLastFrameTime(); 
+	float deltaTime = ofClamp(ofGetLastFrameTime(), 0, 0.2);
 	ofSoundUpdate();
 	laserManager.update();
 	if(music.getIsPlaying()) soundPositionMS = music.getPositionMS();
@@ -132,6 +133,8 @@ void ofApp::update(){
 	effectLaserBeams.update(deltaTime);
 	effectDomeLines.update(deltaTime);
 	effectPipeOrganLines.update(deltaTime);
+	
+	if(clappyBirdActive) clappyBird.update(smoothedInputVolume, deltaTime);
 }
 
 //--------------------------------------------------------------
@@ -276,6 +279,8 @@ void ofApp::draw(){
 	
 	drawEffects();
 	if(showCat) laserManager.addLaserSVG(smashingCatSvg, ofPoint(990,580),ofPoint(0.5,0.5));
+	
+	if(clappyBirdActive) clappyBird.draw();
 	
 	
 	laserManager.draw();
@@ -512,6 +517,7 @@ void ofApp::keyPressed(int key){
 	
 	}
 	if(key=='c') showCat = !showCat;
+	if(key=='f') clappyBirdActive = !clappyBirdActive;
     
 
 	if(key == '1') {

@@ -55,7 +55,7 @@ struct MarchingCircle {
 	float currentAngle = -180;
 	float duration = 1;
 	float elapsedTime = 0;
-	float size = 15;
+	float size = 25;
 	
 	float bezierPosition; 
 	ofColor col;

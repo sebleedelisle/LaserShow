@@ -182,7 +182,7 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
         float endshapes = floor(progress * totalshapes);
 		float startshapes = floor(ofMap(sync.barPulse, 0.75,0.5, 0,totalshapes, true));
 		
-		ofPoint centre(675,740);
+		ofPoint centre(675,640);
 		ofPoint left = centre + ofPoint(-140,140);
 		ofPoint right = centre + ofPoint(140,140);
 		float colourOffset = ofMap(sync.barPulse, 1, 0, 0, 100);
@@ -356,7 +356,7 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 		ofPoint p = domeData->getBezierPoint(circle.bezierPosition);
 		
 		for(float angle = 0; angle<=360; angle +=5) {
-			ofPoint q(0,0,volume*circle.size*0.5);
+			ofPoint q(0,0,(volume+sync.beatPulse)/2*circle.size*0.5);
 			
 			q.rotate(angle, ofPoint(1,0,0));
 			q.rotate(45,ofPoint(0,0,1));
@@ -371,26 +371,26 @@ void EffectDomeLines::draw(Synchroniser& sync, float volume, LaserManager& lm) {
 			q += domeData->pos;
 			poly.addVertex(q);
 		}
-		
-		lm.addLaserPolyline(poly, new ColourSystem(circle.col));
-		
-		 poly.clear();
-		for(float angle = 0; angle<=360; angle +=5) {
-			ofPoint q(0,0,sync.beatPulse*circle.size);
-			
-			q.rotate(angle, ofPoint(1,0,0));
-			q.rotate(45,ofPoint(0,0,1));
-			q+=p;
-			
-			q.rotate(circle.currentAngle, ofPoint(0,1,0));
-			q *= domeData->scaleXY;
-			q.rotate(domeData->rotation->z, ofPoint(0,0,1));
-			q.rotate(domeData->rotation->y, ofPoint(0,1,0));
-			q.rotate(domeData->rotation->x, ofPoint(1,0,0));
-			q *= domeData->scale;
-			q += domeData->pos;
-			poly.addVertex(q);
-		}
+//		
+//		lm.addLaserPolyline(poly, new ColourSystem(circle.col));
+//		
+//		 poly.clear();
+//		for(float angle = 0; angle<=360; angle +=5) {
+//			ofPoint q(0,0,sync.beatPulse*circle.size);
+//			
+//			q.rotate(angle, ofPoint(1,0,0));
+//			q.rotate(45,ofPoint(0,0,1));
+//			q+=p;
+//			
+//			q.rotate(circle.currentAngle, ofPoint(0,1,0));
+//			q *= domeData->scaleXY;
+//			q.rotate(domeData->rotation->z, ofPoint(0,0,1));
+//			q.rotate(domeData->rotation->y, ofPoint(0,1,0));
+//			q.rotate(domeData->rotation->x, ofPoint(1,0,0));
+//			q *= domeData->scale;
+//			q += domeData->pos;
+//			poly.addVertex(q);
+//		}
 		
 		lm.addLaserPolyline(poly, new ColourSystem(circle.col));
 		
