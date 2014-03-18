@@ -14,8 +14,8 @@ void ofApp::setup(){
 	guideImage.loadImage("img/LaserableArea2.jpg");
 	music.loadSound("../../../Music/Down the Road Edit.aif");
 	
-	nyanSvg.load("SmashingCat.svg");
-	//nyanSvg.load("NyanCat.svg");
+	smashingCatSvg.load("SmashingCat.svg");
+	//smashingCatSvg.load("NyanCat.svg");
 	
 	previewProjector = false;
 	
@@ -64,6 +64,7 @@ void ofApp::setup(){
 	appGui.add(laserDomePoints.set("laser dome points", false));
 	appGui.add(laserOrganPoints.set("laser organ points", false));
 	appGui.add(showGuideImage.set("show guide image", true));
+	appGui.add(showCat.set("show cat!", false));
 	
 	redGui.setup("Laser Red", "laserred.xml");
 	redGui.add(laserManager.redParams );
@@ -84,7 +85,7 @@ void ofApp::setup(){
 
 	
 	
-	soundPositionMS = 70000;
+	soundPositionMS = 0;
 	
 	sync.tempo = 111;
 	sync.startPosition = (60000/111) - 5; // start after 1 beat intro
@@ -108,8 +109,11 @@ void ofApp::setup(){
 	smoothVol = 0;
 	
 	calculateScreenSizes();
-	
-	}
+
+	soundStream.setup(this, 0, 2, 48000, 1024, 1);
+	left.resize(1024);
+	right.resize(1024);
+}
 
 
 //--------------------------------------------------------------
@@ -227,6 +231,10 @@ void ofApp::draw(){
 
 	ofRect((numBands+1)*barWidth, 0, barWidth-1, vol*100 );
 	ofSetColor(255);
+	ofRect((numBands+2)*barWidth, 0, barWidth-1, smoothedInputVolume*1000 );
+	ofSetColor(255);
+	
+	
 	
 	ofNoFill();
 	
@@ -267,7 +275,7 @@ void ofApp::draw(){
 	// EFFECTS ---------------------------------------------
 	
 	drawEffects();
-	//laserManager.addLaserSVG(nyanSvg, ofPoint(640,580));
+	if(showCat) laserManager.addLaserSVG(smashingCatSvg, ofPoint(990,580),ofPoint(0.5,0.5));
 	
 	
 	laserManager.draw();
@@ -466,14 +474,24 @@ void ofApp::keyPressed(int key){
 	if(key == ' ') previewProjector = !previewProjector;
 	if(key == OF_KEY_DOWN) {
 		music.setPosition(0);
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+
 		music.play();
 	}
 	if(key == OF_KEY_LEFT) {
 		soundPositionMS = sync.getMSForBarNumber(sync.currentBar-1);
 		music.setPositionMS(soundPositionMS);
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
 	} else if(key == OF_KEY_RIGHT) {
 		soundPositionMS = sync.getMSForBarNumber(sync.currentBar+1);
 		music.setPositionMS(soundPositionMS);
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
 	}
 	if(key =='l') laserManager.showLaserPath = !laserManager.showLaserPath;
 		
@@ -487,10 +505,13 @@ void ofApp::keyPressed(int key){
 
 			music.play();
 			music.setPositionMS(soundPositionMS);
+			effectPipeOrganLines.setMode(0);
+			effectLaserBeams.mode = 0;
+			effectDomeLines.setMode(0);
 		}
 	
 	}
-	
+	if(key=='c') showCat = !showCat;
     
 
 	if(key == '1') {
@@ -660,7 +681,32 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float * input, int bufferSize, int numChannels){
+	float curVol = 0.0;
 	
+	// samples are "interleaved"
+	int numCounted = 0;
+	
+	//lets go through each sample and calculate the root mean square which is a rough way to calculate volume
+	for (int i = 0; i < bufferSize; i++){
+		left[i]		= input[i*2]*0.5;
+		right[i]	= input[i*2+1]*0.5;
+		
+		curVol += left[i] * left[i];
+		curVol += right[i] * right[i];
+		numCounted+=2;
+	}
+	
+	//this is how we get the mean of rms :)
+	curVol /= (float)numCounted;
+	
+	// this is how we get the root of rms :)
+	curVol = sqrt( curVol );
+	
+	smoothedInputVolume *= 0.8;
+	smoothedInputVolume += 0.5 * curVol;
+	smoothedInputVolume = curVol;
+	//bufferCounter++;
+
 		
 }
 
@@ -705,3 +751,4 @@ void ofApp::exit() {
 	laserManager.warp.saveSettings();
 
 }
+

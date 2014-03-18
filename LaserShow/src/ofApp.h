@@ -18,6 +18,7 @@
 #include "EffectPipeOrganLines.h"
 #include "EffectParticles.h"
 #include "ColourSystemGradient.h"
+#include "ClappyBird.h"
 
 
 #include <GLFW/glfw3.h>
@@ -75,6 +76,7 @@ class ofApp : public ofBaseApp{
 	ofParameter<bool> laserDomePoints;
 	ofParameter<bool> laserOrganPoints;
 	ofParameter<bool> showGuideImage;
+	ofParameter<bool> showCat; 
 	
 	
 	LaserManager& laserManager;
@@ -90,6 +92,12 @@ class ofApp : public ofBaseApp{
 	EffectPipeOrganLines effectPipeOrganLines;
 	EffectParticles effectParticles;
 	
+	ClappyBird clappyBird;
+	ofSoundStream soundStream;
+	vector <float> left;
+	vector <float> right;
+	float smoothedInputVolume; 
+	
 	bool previewProjector; 
 	
 
@@ -99,7 +107,7 @@ class ofApp : public ofBaseApp{
     
 
 	ofImage smashingTitle;
-	ofxSVG nyanSvg; 
+	ofxSVG smashingCatSvg; 
 	
 	float soundPositionMS;
 	float smoothVol;
