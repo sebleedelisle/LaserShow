@@ -668,7 +668,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
      }
     
 
-    if (barfloat >=19.5 && barfloat < 22) {
+    if (barfloat >=19.5 && barfloat < 23) {
         // Second spirograph
         float allrotation = ofMap(barfloat, 19.5,21,90,-90);
         float progress = ofMap(barfloat, 19.75,20, 0, 1, true);
@@ -701,12 +701,38 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         }
     }
 
-    if (barfloat >=22 && barfloat < 23) {
-        //arrows squares build in
+     if (barfloat >=22 && barfloat < 23.5) {
+       
+         //arrow squares building in just a little tease
+         
+         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+         float totalshapes = 8;
+         float progress = ofMap(barfloat, 22.5,22.75, 0, 1, true);
+         float endshapes = floor(progress * totalshapes);
+         
+         ofPushMatrix();
+         ofTranslate(0, 384);
+         ofRotate(45);
+         ofSetRectMode(OF_RECTMODE_CENTER);
+         
+         ofColor c;
+         
+         for(int i = endshapes; i>=0; i--) {
+             c.setHsb(265-i*10, 255, 255);
+             ofSetColor(c*sync.sixteenthPulse);
+             ofRect(0,0,i*200,i*200);
+             
+         }
+         ofPopMatrix();
+         
+     }
+    
+    if (barfloat >=23.5 && barfloat < 24) {
+        //arrows squares build in & trigger
         
         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-        float totalshapes = 5;
-        float progress = ofMap(barfloat, 22,23, 0, 1, true);
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 23.75,24, 0, 1, true);
         float endshapes = floor(progress * totalshapes);
      
             ofPushMatrix();
@@ -717,7 +743,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             ofColor c;
         
          for(int i = endshapes; i>=0; i--) {
-            c.setHsb(255-i*12, 255, 255);
+            c.setHsb(265-i*10, 255, 255);
               ofSetColor(c);
              ofRect(0,0,i*200,i*200);
              
@@ -726,36 +752,11 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
           
     }
     
-    
-    if (barfloat >=23.25 && barfloat < 24) {
-       //arrow square flicker to 16ths
-        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
-        float totalshapes = 5;
-        float progress = ofMap(barfloat, 23.25,23.5, 0, 1, true);
-        float endshapes = floor(progress * totalshapes);
-        
-        ofPushMatrix();
-        ofTranslate(0, 384);
-        ofRotate(45);
-        ofSetRectMode(OF_RECTMODE_CENTER);
-        
-        ofColor c;
-        
-        for(int i = endshapes; i>=0; i--) {
-            c.setHsb(255-i*12, 255, ofMap(sync.sixteenthPulse, 0,1,100,255));
-            ofSetColor(c);
-            ofRect(0,0,i*200,i*200);
-            
-        }
-        ofPopMatrix();
-        
-    }
-    
     if (barfloat >=24 && barfloat < 24.75) {
         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
         
         // arrow squares OUT
-        float totalshapes = 5;
+        float totalshapes = 8;
         float progress = ofMap(barfloat, 24.5,24.75, 1, 0, true);
         float endshapes = floor(progress * totalshapes);
         
@@ -766,7 +767,32 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         
         ofColor c;
         for(int i = endshapes; i>=0; i--) {
-            c.setHsb(255-i*12, 255, 255);
+            c.setHsb(265-i*10, 255, 255);
+            ofSetColor(c);
+            ofRect(0,0,i*200,i*200);
+            
+        }
+        ofPopMatrix();
+    }
+   
+    
+    if (barfloat >=24.5 && barfloat < 25) {
+        //arrows squares build in & trigger
+        
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 24.75,25, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(0, 384);
+        ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        
+        for(int i = endshapes; i>=0; i--) {
+            c.setHsb(265-i*10, 255, 255);
             ofSetColor(c);
             ofRect(0,0,i*200,i*200);
             
@@ -774,10 +800,298 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofPopMatrix();
         
     }
-   
+    
+    if (barfloat >=25 && barfloat < 25.75) {
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        
+        // arrow squares OUT
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 25.5,25.75, 1, 0, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(0, 384);
+        ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        for(int i = endshapes; i>=0; i--) {
+            c.setHsb(265-i*10, 255, 255);
+            ofSetColor(c);
+            ofRect(0,0,i*200,i*200);
+            
+        }
+        ofPopMatrix();
+    }
+    
+    
+    if (barfloat >=25.5 && barfloat < 26) {
+        //arrows squares build in & trigger
+        
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 25.75,26, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(0, 384);
+        ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        
+        for(int i = endshapes; i>=0; i--) {
+            c.setHsb(265-i*10, 255, 255);
+            ofSetColor(c);
+            ofRect(0,0,i*200,i*200);
+            
+        }
+        ofPopMatrix();
+        
+    }
+    
+    if (barfloat >=26 && barfloat < 26.75) {
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        
+        // arrow squares OUT
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 26.5,26.75, 1, 0, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(0, 384);
+        ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        for(int i = endshapes; i>=0; i--) {
+            c.setHsb(265-i*10, 255, 255);
+            ofSetColor(c);
+            ofRect(0,0,i*200,i*200);
+            
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >=26.5 && barfloat < 27) {
+        //arrows squares build in & trigger
+        
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 26.75,27, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(0, 384);
+        ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        
+        for(int i = endshapes; i>=0; i--) {
+            c.setHsb(265-i*10, 255, 255);
+            ofSetColor(c);
+            ofRect(0,0,i*200,i*200);
+            
+        }
+        ofPopMatrix();
+        
+    }
+    
+    if (barfloat >=27 && barfloat < 27.75) {
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        
+        // arrow squares OUT
+        float totalshapes = 8;
+        float progress = ofMap(barfloat, 27.5,27.75, 1, 0, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(0, 384);
+        ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        for(int i = endshapes; i>=0; i--) {
+            c.setHsb(265-i*10, 255, 255);
+            ofSetColor(c);
+            ofRect(0,0,i*200,i*200);
+            
+        }
+        ofPopMatrix();
+    }
+    
+
     // removing accent octos and 3 up shapes to make room for arrows
+    // adding two rounds/ 4 bars of this back in
+    
+    if (barfloat >=28 && barfloat < 28.25) {
+        
+        //half note laser launching centered octo
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(0, 0, ofColor(c));
+        octo1.draw(5*volume, false);
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
+    
+    
+    if (barfloat >=28.25 && barfloat < 29) {
+        
+        // 3 circle lineup pulse
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 28.25,29, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        //ofRotate(45);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,0,sync.eighthPulse*60);
+            
+            ofNoFill();
+            ofCircle(posX,0,volume*60*i);
+            posX += 200;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >=29 && barfloat < 29.5) {
+        
+        //circles cinch in middle
+        float progress = ofMap(barfloat, 29.25, 29.5, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+        
+        ofColor c;
+        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
+        ofSetColor(c);
+        ofPoint end(0,0);
+        ofPoint start(-200,0);
+        ofPoint circlePos = start + ((end-start)*progress);
+        
+        start.set(-200,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        //ofFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+        start.set(0,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        ofFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+        start.set(200,0);
+        ofNoFill();
+        circlePos = start + ((end-start)*progress);
+        //ofFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+    }
+    /*--- REPEAT 2 BARS */
+    
+    if (barfloat >=30 && barfloat < 30.25) {
+        
+        //half note laser launching centered octo
+        ofColor c;
+        c.setHsb(hue, 255, 255);
+        ofSetColor(c);
+        
+        OctoplusShape octo1;
+        octo1.init(0, 0, ofColor(c));
+        octo1.draw(5*volume, false);
+        
+        if (hue < 255 ){
+            hue= hue +50;
+        } else {
+            hue =0;
+        }
+    }
+    
+    
+    if (barfloat >=30.25 && barfloat < 31) {
+        
+        // 3 circle lineup pulse
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 30.25,31, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,0,sync.eighthPulse*60);
+            
+            ofNoFill();
+            ofCircle(posX,0,volume*60*i);
+            posX += 200;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >=31 && barfloat < 31.5) {
+        
+        float progress = ofMap(barfloat, 31.25, 31.5, 0,1);
+        
+        progress*=progress;
+        progress*=progress;
+        
+        ofColor c;
+        c.setHsb(ofMap(progress, 0,1, 220,255), 255, 255);
+        ofSetColor(c);
+        
+        ofPoint end(0,0);
+        ofPoint start(-200,0);
+        ofPoint circlePos = start + ((end-start)*progress);
+        
+        start.set(-200,0);
+        circlePos = start + ((end-start)*progress);
+        ofNoFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        
+        start.set(0,0);
+        circlePos = start + ((end-start)*progress);
+        ofNoFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+        start.set(200,0);
+        
+        circlePos = start + ((end-start)*progress);
+        ofNoFill();
+        ofCircle(circlePos,sync.beatPulse*60);
+    }
 
-
+    
+    
+    
     // end of cut
     
     if (barfloat >=32 && barfloat < 35) {
@@ -988,17 +1302,314 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     }
 
     
-    if (barfloat >=43 && barfloat < 45.75) {
+    if (barfloat >=42.5 && barfloat < 45.75) {
         //first spirograph - second round
+       
+        float allrotation = ofMap(barfloat, 42.5,44.5,0, -180);
+        float progress = ofMap(barfloat, 42.5,43.75, 0, 1, true);
+        float totalshapes = 36;
+        int endshapesnum = progress * totalshapes;
+        int startshapesnum = ofMap(barfloat, 45.5,45.75, 0, totalshapes, true);
+        
+        CurveSquare mySq;
+        mySq.init(0, 0, ofColor());
+        
+        ofColor c;
+        
+        for(int i = startshapesnum; i<endshapesnum; i++) {
+            ofPushMatrix();
+            ofTranslate(-200, 200, ofMap(barfloat,42, 46, -300,300));
+            
+            ofRotate(ofMap(i, 0, totalshapes, allrotation, 360+ allrotation));
+            ofTranslate(200,0, (totalshapes - i)*-10);
+            c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
+            mySq.colour = c;
+            float scalar = ofMap(volumes[i], 0, 1, 0.9,1.1);
+            ofScale(scalar, scalar);
+            mySq.draw(8, true);
+            
+            ofPopMatrix();
+            }
         
         }
     
     
-    if (barfloat >=45.5 && barfloat < 49) {
-        // Second spirograph - second round
-     
+    if (barfloat >=45.5 && barfloat < 50) {
+    
+
+        // Second spirograph
+        
+        float allrotation = ofMap(barfloat, 45.5,47.5,0, -180);
+        float progress = ofMap(barfloat, 45.5,48, 0, 1, true);
+        float totalshapes = 36;
+        int endshapesnum = progress * totalshapes;
+        int startshapesnum = ofMap(barfloat, 49.75,50, 0, totalshapes, true);
+        
+        CurveSquare mySq;
+        mySq.init(0, 0, ofColor());
+        
+        ofColor c;
+        
+        for(int i = startshapesnum; i<endshapesnum; i++) {
+            ofPushMatrix();
+            ofTranslate(0, 400, ofMap(barfloat,45, 48, -300,300));
+            
+            ofRotate(ofMap(i, 0, totalshapes, allrotation, 360+ allrotation));
+            ofTranslate(400,0, (totalshapes - i)*-10);
+            c.setHsb(ofMap(i,0,totalshapes, 0, 255), 230, 50);
+            mySq.colour = c;
+            float scalar = ofMap(volumes[i], 0, 1, 0.9,1.1);
+            ofScale(scalar, scalar);
+            mySq.draw(10, true);
+            
+            ofPopMatrix();
+        }
     }
 
+    if (barfloat >= 50 && barfloat < 51){
+       ofEnableBlendMode(OF_BLENDMODE_ADD);
+        
+        // 4 circle  16th pulse - blue hue
+        float totalshapes = 3;
+        float progress = ofMap(barfloat, 50,50.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(235-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,50*i,sync.sixteenthPulse*20);
+            
+            ofNoFill();
+            ofCircle(posX,-50*i,volume*20*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >= 51 && barfloat < 52){
+        
+        // 3 square 8th pulse - blue hue
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        float totalshapes = 5;
+        float progress = ofMap(barfloat, 51,51.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*10, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofRect(posX,ofRandom(0,50),sync.eighthPulse*20, sync.eighthPulse*20);
+            
+            ofNoFill();
+            ofRect(posX,ofRandom(-50,0),volume*40*i,volume*40*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >= 52 && barfloat < 53){
+        
+        // 4 circle  16th pulse - blue hue
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        float totalshapes = 6;
+        float progress = ofMap(barfloat, 52,52.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(235-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,ofRandom(0,100),sync.eighthPulse*25);
+            
+            ofNoFill();
+            ofCircle(posX,ofRandom(-100,0),volume*20*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+    }
+
+    
+    if (barfloat >= 53 && barfloat < 54){
+        
+        // 3 square 8th pulse - blue hue
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 53,53.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(265-i*15, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofRect(posX,100*i,sync.eighthPulse*20, sync.sixteenthPulse*20);
+            
+            ofNoFill();
+            ofRect(posX,-100*i,volume*20*i,volume*20*i);
+            posX += 300;
+        }
+        ofPopMatrix();
+    }
+    
+    
+    if (barfloat >= 54 && barfloat < 55){
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        
+        // 4 circle  16th pulse - blue hue
+        float totalshapes = 3;
+        float progress = ofMap(barfloat, 54,54.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(235-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,50*i,sync.sixteenthPulse*20);
+            
+            ofNoFill();
+            ofCircle(posX,-50*i,volume*20*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >= 55 && barfloat < 56){
+        
+        // 3 square 8th pulse - blue hue
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        float totalshapes = 5;
+        float progress = ofMap(barfloat, 55,55.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(255-i*10, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofRect(posX,ofRandom(0,50),sync.eighthPulse*20, sync.eighthPulse*20);
+            
+            ofNoFill();
+            ofRect(posX,ofRandom(-50,0),volume*40*i,volume*40*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+    }
+    
+    if (barfloat >= 56 && barfloat < 57){
+        
+        // 4 circle  16th pulse - blue hue
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        float totalshapes = 6;
+        float progress = ofMap(barfloat, 56,57.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(235-i*12, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofCircle(posX,ofRandom(0,100),sync.eighthPulse*25);
+            
+            ofNoFill();
+            ofCircle(posX,ofRandom(-100,0),volume*20*i);
+            posX += 400;
+        }
+        ofPopMatrix();
+    }
+    
+    
+    if (barfloat >= 57 && barfloat < 58){
+        
+        // 3 square 8th pulse - blue hue
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
+        float totalshapes = 4;
+        float progress = ofMap(barfloat, 57,58.5, 0, 1, true);
+        float endshapes = floor(progress * totalshapes);
+        
+        ofPushMatrix();
+        ofTranslate(-200, 0);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        
+        ofColor c;
+        float posX =0;
+        float posY =0;
+        for(int i = endshapes; i>0; i--) {
+            c.setHsb(265-i*15, 255, 255);
+            ofSetColor(c);
+            
+            //draw our squares
+            ofFill();
+            ofRect(posX,100*i,sync.eighthPulse*20, sync.sixteenthPulse*20);
+            
+            ofNoFill();
+            ofRect(posX,-100*i,volume*20*i,volume*20*i);
+            posX += 300;
+        }
+        ofPopMatrix();
+    }
+    
+    
     
     // moving cut up to 63
     
