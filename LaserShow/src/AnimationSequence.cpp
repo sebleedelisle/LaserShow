@@ -12,7 +12,7 @@ AnimationSequence::AnimationSequence () {
     
     //load type
     proximaNovaL.loadFont("Proxima Nova Light", 26, true, true);
-	proximaNovaL.setLineHeight(62.0f);
+	//proximaNovaL.setLineHeight(62.0f);
 	proximaNovaL.setLetterSpacing(1);
     proximaNovaL.setSpaceSize(.4);
     
@@ -2230,6 +2230,22 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         
         ofPopMatrix();
     }
+    
+    
+    if (barfloat > 76 && barfloat < 80 ) {
+        
+        float progress = ofMap(barfloat, 76, 78, 0, 255);
+         proximaNovaL.setSpaceSize(.8);
+        ofSetColor(0,255,255,progress);
+        ofPushMatrix();
+        ofTranslate(0, 200);
+        writeinPNL("MADE BY: SEB LEE-DELISLE & VAL HEAD");
+        ofPopMatrix();
+    
+    }
+    
+    
+
 
     
     ///end of moved cut
