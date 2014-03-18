@@ -2239,7 +2239,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofSetColor(0,255,255,progress);
         ofPushMatrix();
         ofTranslate(0, 200);
-        writeinPNL("MADE BY: SEB LEE-DELISLE & VAL HEAD");
+        writeinPNL("MADE BY: @SEB_LY & @VLH");
         ofPopMatrix();
     
     }
