@@ -63,7 +63,7 @@ void EffectParticles:: makeRainbowBurst() {
 }
 
 
-void EffectParticles:: makeStarBurst() {
+void EffectParticles:: makeStarBurst(float timespeed ) {
 	
 	if(pipeOrganData == NULL) return; 
 	
@@ -79,8 +79,8 @@ void EffectParticles:: makeStarBurst() {
 		//pss.emitMode = PARTICLE_EMIT_BURST;
 		pss.emitCount = 20;
 		pss.renderer = new ParticleRendererLaser();
-		pss.speedMin = 2200 ;
-		pss.speedMax = 3050;
+		pss.speedMin = 2000 ;
+		pss.speedMax = 2650;
 		pss.drag = 0.90;
 		pss.gravity.set(0,600,0);
 		
@@ -100,7 +100,7 @@ void EffectParticles:: makeStarBurst() {
 		pss.lifeMin = 2;
 		pss.lifeMax = 3;
 		pss.shimmerMin = 0;
-		pss.timeSpeed = 0.5;
+		pss.timeSpeed = timespeed;
 	
 		pss.emitDelay = ofRandom(0.1);
 

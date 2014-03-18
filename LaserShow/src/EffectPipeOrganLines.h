@@ -75,12 +75,8 @@ class EffectPipeOrganLines {
 	void draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak);
 	
 	void setObjects(PipeOrganData* pipeOrganData, ParticleSystemManager* psm);
-//	void makeParticleForPipe(int pipeindex);
-//	
-//	void makeRainbowBurst();
-//	void makeStarBurst();
-//	
-	
+
+	void setMode(int newmode); 
 	
 	PipeOrganData* pipeOrganData = NULL;
 	ParticleSystemManager* particleSystemManager  = NULL;
@@ -90,6 +86,8 @@ class EffectPipeOrganLines {
 	int currentPipeIndex = 0; 
 	
 	float hue;
+	
+	protected :
 	int mode=2; // 0 : off
 	
 

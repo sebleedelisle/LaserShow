@@ -26,7 +26,7 @@ class EffectParticles {
 	void makeParticleForPipe(int pipeindex);
 	
 	void makeRainbowBurst();
-	void makeStarBurst();
+	void makeStarBurst(float timespeed = 0.5);
 	
 	void setObjects(PipeOrganData* pipeorgandata, DomeData* domedata); 
 

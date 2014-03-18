@@ -60,16 +60,24 @@ class EffectDomeLines {
 	
 	public :
 	
+	EffectDomeLines();
+	
 	void update(float deltaTime);
 	void draw(Synchroniser& sync, float volume, LaserManager& lm);
 	
-	void setDomeData(DomeData* domedata); 
+	void setDomeData(DomeData* domedata);
+	void setMode(int mode); 
 	
 	DomeData* domeData = NULL;
 	deque <DomeLine> lines; 
 	
 	float hue;
 	int mode=3; // off
+	
+	deque<float> volumes;
+	
+	vector<ofColor> ringColours;
+	int currentColourIndex = 0;
 	
 
 };

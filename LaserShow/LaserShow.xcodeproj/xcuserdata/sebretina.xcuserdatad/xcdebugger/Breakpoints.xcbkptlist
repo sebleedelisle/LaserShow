@@ -13,7 +13,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "71"
          endingLineNumber = "71"
-         landmarkName = "EffectParticles:: makeStarBurst()"
+         landmarkName = "EffectParticles:: makeStarBurst(float timespeed )"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -28,6 +28,32 @@
          endingLineNumber = "754"
          landmarkName = "ofPushStyle()"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/EffectDomeLines.cpp"
+         timestampString = "416793287.915561"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
+         landmarkName = "EffectDomeLines::draw(Synchroniser&amp; sync, float volume, LaserManager&amp; lm)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "src/ofApp.cpp"
+         timestampString = "416793771.117473"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "379"
+         endingLineNumber = "379"
+         landmarkName = "ofApp :: drawEffects()"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

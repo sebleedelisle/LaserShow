@@ -296,67 +296,88 @@ void ofApp::draw(){
 
 void ofApp :: drawEffects() {
 	
+	if((sync.currentBar>=24) && (sync.currentBar<32)) {
+		//if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(4);
+	}
+	// SOLO
+	if((sync.currentBar >= 32) && (sync.currentBar < 40)) {
+		effectPipeOrganLines.setMode(2);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+	}
+	if((sync.currentBar >= 40) && (sync.currentBar < 41)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+	}
+	if((sync.currentBar >= 41) && (sync.currentBar < 42)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(3);
+	}// POST SOLO BUILD (DOME RINGS)
+	if((sync.currentBar >= 42) && (sync.currentBar < 46)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(1);
+	}
+	// POST SOLO BUILD (DOME LINES)
+	if((sync.currentBar >= 46) && (sync.currentBar < 50)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(2);
+	}
+	// MELLOW DROP OUT - WHITE LASER BEAMS
+	if((sync.currentBar >= 50) && (sync.currentBar < 54)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 1;
+		effectDomeLines.setMode(0);
+	}
+	// COLOURED LASER BEAMS
+	if((sync.currentBar >= 54) && (sync.currentBar < 56)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 2;
+		effectDomeLines.setMode(0);
+	}
+	// DROP OUT BEFORE OUTRO
+	if((sync.currentBar >= 57) && (sync.currentBar < 59)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(3);
+	}
+	
+	if((sync.currentBar>=59) && (sync.currentBar<74)) {
+		if ((sync.barTriggered) && ((sync.currentBar==59)||(sync.currentBar == 63))) effectParticles.makeStarBurst();
+			
+		effectPipeOrganLines.setMode(3);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+	}
+	//effectDomeLines.setMode(3;
+	if((sync.currentBar >= 74) && (sync.currentBar < 75)) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(3);
+		
+	}
+	if(sync.currentBar == 75) {
+		effectPipeOrganLines.setMode(0);
+		effectLaserBeams.mode = 0;
+		effectDomeLines.setMode(0);
+		if ((sync.barTriggered)) {
+			effectParticles.makeStarBurst(0.5);
+			effectParticles.makeStarBurst(0.3);
+		}
+		
+	}
+	
 	particleSystemManager.draw();
 	effectLaserBeams.draw(laserManager,smoothVol);
 	effectDomeLines.draw(sync, smoothVol, laserManager);
 	effectPipeOrganLines.draw(sync, smoothVol, laserManager, currentPeakFrequency);
-	if((sync.currentBar>=24) && (sync.currentBar<32)) {
-		//if ((sync.barTriggered) && (sync.currentBar%2==0)) effectParticles.makeStarBurst();
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 4;
-	}
-	// SOLO
-	if((sync.currentBar >= 32) && (sync.currentBar < 42)) {
-		effectPipeOrganLines.mode = 2;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 0;
-	}
-	// POST SOLO BUILD (DOME LINES TURNING)
-	if((sync.currentBar >= 42) && (sync.currentBar < 50)) {
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 1;
-	}
-	// MELLOW DROP OUT
-	if((sync.currentBar >= 50) && (sync.currentBar < 54)) {
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 1;
-		effectDomeLines.mode = 0;
-	}
-	if((sync.currentBar >= 54) && (sync.currentBar < 56)) {
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 2;
-		effectDomeLines.mode = 0;
-	}
-	if((sync.currentBar >= 57) && (sync.currentBar < 59)) {
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 3;
-	}
-	
-	if((sync.currentBar>=59) && (sync.currentBar<74)) {
-		if ((sync.barTriggered) && (sync.currentBar%2==1)) effectParticles.makeRainbowBurst();
-		effectPipeOrganLines.mode = 1;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 0;
-	}
-	//effectDomeLines.mode = 3;
-	if((sync.currentBar >= 74) && (sync.currentBar < 75)) {
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 3;
-		
-	}
-	if(sync.currentBar == 75) {
-		effectPipeOrganLines.mode = 0;
-		effectLaserBeams.mode = 0;
-		effectDomeLines.mode = 0;
-		if ((sync.barTriggered)) {
-			effectParticles.makeStarBurst();
-		}
-		
-	}
+
 
 }
 
@@ -417,45 +438,45 @@ void ofApp::keyPressed(int key){
 
 	if(key == '1') {
 		effectLaserBeams.mode = 0;
-		effectPipeOrganLines.mode = 0;
-		effectDomeLines.mode = 1;
+		effectPipeOrganLines.setMode(0);
+		effectDomeLines.setMode(1);
 	}
 	if(key == '2') {
 		effectLaserBeams.mode = 0;
-		effectPipeOrganLines.mode = 0;
-		effectDomeLines.mode = 2;
+		effectPipeOrganLines.setMode(0);
+		effectDomeLines.setMode(2);
 	}
 	if(key == '3') {
 		effectLaserBeams.mode = 1;
-		effectPipeOrganLines.mode = 0;
-		effectDomeLines.mode = 0;
+		effectPipeOrganLines.setMode(0);
+		effectDomeLines.setMode(0);
 	}
 	if(key == '4') {
 		effectLaserBeams.mode = 2;
-		effectPipeOrganLines.mode = 0;
-		effectDomeLines.mode = 0;
+		effectPipeOrganLines.setMode(0);
+		effectDomeLines.setMode(0);
 	}
 	if(key == '5') {
 		effectLaserBeams.mode = 0;
-		effectPipeOrganLines.mode = 1;
-		effectDomeLines.mode = 0;
+		effectPipeOrganLines.setMode(1);
+		effectDomeLines.setMode(0);
 	}
 	if(key == '6') {
 		effectLaserBeams.mode = 0;
-		effectPipeOrganLines.mode = 2;
-		effectDomeLines.mode = 0;
+		effectPipeOrganLines.setMode(2);
+		effectDomeLines.setMode(0);
 	}
 	if(key == '7') {
 	
 		effectLaserBeams.mode = 0;
-		effectPipeOrganLines.mode = 3;
-		effectDomeLines.mode = 0;
+		effectPipeOrganLines.setMode(3);
+		effectDomeLines.setMode(0);
 	}
 	
 	if(key == '0') {
 		effectLaserBeams.mode = 0;
-		effectPipeOrganLines.mode = 0;
-		effectDomeLines.mode = 0;
+		effectPipeOrganLines.setMode(0);
+		effectDomeLines.setMode(0);
 	}
 	
 

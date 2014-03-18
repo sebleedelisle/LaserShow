@@ -23,7 +23,12 @@ void EffectPipeOrganLines:: update(float deltaTime) {
 	
 	
 }
-
+void EffectPipeOrganLines::setMode(int newmode) {
+	if(mode == newmode) return;
+	mode = newmode;
+	hue = 0; 
+	
+}
 // also gonna need : LaserManager
 void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& lm, float currentPeak) {
 
@@ -32,7 +37,7 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 	
 	// domeData gives us position, rotation, scale and bezier data
 	
-	if(mode ==0) return;
+	//if(mode ==0) return;
 	// MODE 1 is 4 bands on the first beat
 	
 	ofPolyline poly;
@@ -49,7 +54,7 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 		if(currentPipeIndex <= numpipes) {
 		// make a new line!
 			ofColor col;
-			col.setHsb(hue,255,255);
+			col.setHsb((int)hue%255,255,255);
 			hue+=3;
 			PipeOrganLine& line = lines[numpipes+currentPipeIndex];
 			line.set( col, 1,0,1,1,0.2 );
@@ -64,7 +69,7 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 
 			}
 			
-			if(hue>255) hue -= 255;
+			//if(hue>255) hue -= 255;
 			currentPipeIndex++;
 			
 		}
@@ -85,7 +90,7 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 		if((currentPipeIndex <= numpipes) ){//&&(sync.sixteenthTriggered)) {
 			// make a new line!
 			ofColor col;
-			col.setHsb(hue,255,255);
+			col.setHsb((int)hue%255,255,255);
 			hue+=3;
 			
 			//Pipe& pipe = pipeOrganData->pipes[numpipes + currentPipeIndex];
@@ -102,12 +107,46 @@ void EffectPipeOrganLines::draw(Synchroniser& sync, float volume, LaserManager& 
 			}
 
 			
-			if(hue>255) hue -= 255;
+			//if(hue>255) hue -= 255;
 						
 		}
 		
+	
+	} else if(mode ==3) {
+		//DRUM BEAT MODE
 		
-	} 	
+		
+		if((sync.beatTriggered) && (sync.currentBeat%2==0)) {
+			lines[0].set(ofColor::magenta, 0.75, 0.25, 0.5, 0.5,0.1);
+			lines[1].set(ofColor::magenta, 1, 0, 0.5, 0.5,0.2);
+			lines[2].set(ofColor::magenta, 0.75, 0.25, 0.5, 0.5,0.1);
+			
+		}
+		if((sync.beatTriggered) && (sync.currentBeat%2==1)) {
+			lines[lines.size()-1].set(ofColor::cyan, 0.75, 0.25, 0.5, 0.5,0.1);
+			lines[lines.size()-2].set(ofColor::cyan, 1, 0, 0.5, 0.5,0.2);
+			lines[lines.size()-3].set(ofColor::cyan, 0.75, 0.25, 0.5, 0.5,0.1);
+		}
+		if(sync.sixteenthTriggered) {
+			//lines[lines.size()/2 -1].set(ofColor::red, 0.75, 0.25, 0.5, 0.5,0.05);
+			lines[lines.size()/2 + sync.current16th -8 ].set(ofColor(100,0,255), 1, 0, 1, 1,0.1);
+			//lines[lines.size()/2 + 1].set(ofColor::red, 0.75, 0.25, 0.5, 0.5,0.05);
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	for(int i = 0; i<lines.size(); i++) {
 		
 		PipeOrganLine& line = lines[i];	
