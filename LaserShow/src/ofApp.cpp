@@ -109,8 +109,11 @@ void ofApp::setup(){
 	smoothVol = 0;
 	
 	calculateScreenSizes();
-	
-	}
+
+	soundStream.setup(this, 0, 2, 48000, 1024, 1);
+	left.resize(1024);
+	right.resize(1024);
+}
 
 
 //--------------------------------------------------------------
@@ -228,6 +231,10 @@ void ofApp::draw(){
 
 	ofRect((numBands+1)*barWidth, 0, barWidth-1, vol*100 );
 	ofSetColor(255);
+	ofRect((numBands+2)*barWidth, 0, barWidth-1, smoothedInputVolume*1000 );
+	ofSetColor(255);
+	
+	
 	
 	ofNoFill();
 	
@@ -674,7 +681,32 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::audioIn(float * input, int bufferSize, int numChannels){
+	float curVol = 0.0;
 	
+	// samples are "interleaved"
+	int numCounted = 0;
+	
+	//lets go through each sample and calculate the root mean square which is a rough way to calculate volume
+	for (int i = 0; i < bufferSize; i++){
+		left[i]		= input[i*2]*0.5;
+		right[i]	= input[i*2+1]*0.5;
+		
+		curVol += left[i] * left[i];
+		curVol += right[i] * right[i];
+		numCounted+=2;
+	}
+	
+	//this is how we get the mean of rms :)
+	curVol /= (float)numCounted;
+	
+	// this is how we get the root of rms :)
+	curVol = sqrt( curVol );
+	
+	smoothedInputVolume *= 0.8;
+	smoothedInputVolume += 0.5 * curVol;
+	smoothedInputVolume = curVol;
+	//bufferCounter++;
+
 		
 }
 
@@ -719,3 +751,4 @@ void ofApp::exit() {
 	laserManager.warp.saveSettings();
 
 }
+

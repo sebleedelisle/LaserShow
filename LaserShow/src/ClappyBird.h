@@ -12,16 +12,11 @@
 
 class ClappyBird {
 
+	public:
 	
+	ClappyBird() : laserManager(*LaserManager::instance()) {};
 
-
-
-
-
-
-
-
-
+	LaserManager& laserManager;
 
 
 

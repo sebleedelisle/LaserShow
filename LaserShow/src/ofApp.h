@@ -18,6 +18,7 @@
 #include "EffectPipeOrganLines.h"
 #include "EffectParticles.h"
 #include "ColourSystemGradient.h"
+#include "ClappyBird.h"
 
 
 #include <GLFW/glfw3.h>
@@ -90,6 +91,12 @@ class ofApp : public ofBaseApp{
 	EffectDomeLines effectDomeLines;
 	EffectPipeOrganLines effectPipeOrganLines;
 	EffectParticles effectParticles;
+	
+	ClappyBird clappyBird;
+	ofSoundStream soundStream;
+	vector <float> left;
+	vector <float> right;
+	float smoothedInputVolume; 
 	
 	bool previewProjector; 
 	
