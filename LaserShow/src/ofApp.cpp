@@ -325,11 +325,13 @@ void ofApp::draw(){
 	redGui.draw();
 	greenGui.draw();
 	blueGui.draw();
-	
-
 }
 
 void ofApp :: drawEffects() {
+	
+	//ofColor col;
+	//col.setHsb((ofGetElapsedTimeMillis()/4)%255, 255, 255);
+	//laserManager.addLaserText(" ANDY CLARKE!", ofPoint(640,480), 10,col, true);
 	
 	if((sync.currentBar>=24) && (sync.currentBar<28)) {
 		// CHEVRONS
@@ -604,6 +606,9 @@ void ofApp::keyPressed(int key){
 		effectDomeLines.setMode(0);
 	}
 	
+	if(key == 's') {
+		effectParticles.makeStarBurst(0.5);
+	}
 
 }
 
