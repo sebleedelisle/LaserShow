@@ -872,7 +872,7 @@ void LaserManager:: drawLaserCircle(LaserCircle &circle){
 }
 
 
-void LaserManager::addLaserText(string line, ofVec3f pos, float size, ofColor& colour, bool centred) {
+void LaserManager::addLaserText(string line, ofVec3f pos, float size, ofColor colour, bool centred) {
 
 	textWriter.colour = colour;
 

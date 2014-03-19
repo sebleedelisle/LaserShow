@@ -76,8 +76,6 @@ class ofApp : public ofBaseApp{
 	ofParameter<bool> laserDomePoints;
 	ofParameter<bool> laserOrganPoints;
 	ofParameter<bool> showGuideImage;
-	ofParameter<bool> showCat; 
-	
 	
 	LaserManager& laserManager;
 	ParticleSystemManager& particleSystemManager;
@@ -108,7 +106,8 @@ class ofApp : public ofBaseApp{
     
 
 	ofImage smashingTitle;
-	ofxSVG smashingCatSvg; 
+	vector <ofxSVG> svgs;
+	int currentSVG = -1;
 	
 	float soundPositionMS;
 	float smoothVol;

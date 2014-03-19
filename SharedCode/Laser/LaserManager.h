@@ -70,7 +70,7 @@ class LaserManager {
 	void moveLaser(const ofPoint & currentPosition, const ofPoint & targetpoint);
 
 	
-	void addLaserText(string line, ofVec3f pos, float size, ofColor& colour, bool centred);
+	void addLaserText(string line, ofVec3f pos, float size, ofColor colour, bool centred);
 	
 	void drawShapes();
 	

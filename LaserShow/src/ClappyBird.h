@@ -12,14 +12,15 @@
 
 struct Column {
 	
-	Column(float x, float y)  {
+	Column(float x, float gapheight, float gapsize)  {
 		xpos = x;
-		gapHeight = y;
+		
+		gapHeight = gapheight;
+		gapSize = gapsize; 
 		
 	};
 	
-	float xpos, gapHeight;
-	
+	float xpos, gapHeight, gapSize;
 	
 };
 
@@ -29,26 +30,59 @@ class ClappyBird {
 	
 	ClappyBird() : laserManager(*LaserManager::instance()) {
 	
-		top = 400;
+		top = 300;
 		bottom = 700;
 		ypos = top;
-		xpos = 340;
+		xpos = 400;
 		yvel = 0;
+		radius = 30; 
 		
-		elapsedTime = -3;
-		columnsMade = 0; 
-	
+		sensitivity = 1;
+		
+		columnsPerSecond= 0.4;
+		
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy bird.svg");
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy bird.svg");
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy wing up.svg");
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy wing up.svg");
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy bird.svg");
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy bird.svg");
+		birdSVGs.push_back(ofxSVG());
+		birdSVGs.back().load("flappy wing down.svg");
+		currentBirdSVG = 0;
+		birdSVGs.back().load("flappy wing down.svg");
+		currentBirdSVG = 0;
+		
+		reset(); 
+		
 	}
 
 	LaserManager& laserManager;
 	
 	void update(float inputlevel, float deltatime);
 	void draw() ;
+	void reset(); 
 	
 	float top, bottom, ypos, yvel, xpos ;
 	float elapsedTime;
 	int columnsMade;
-	float columnsPerSecond = 0.5;
-	deque<Column> columns; 
+	float columnsPerSecond;
+	float radius;
+	
+	ofParameter<float> sensitivity; 
+	deque<Column> columns;
+	
+	bool alive;
+	
+	int score; 
+	
+	vector<ofxSVG> birdSVGs;
+	int currentBirdSVG; 
 
 };

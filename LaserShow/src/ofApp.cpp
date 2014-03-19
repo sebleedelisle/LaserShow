@@ -14,8 +14,24 @@ void ofApp::setup(){
 	guideImage.loadImage("img/LaserableArea2.jpg");
 	music.loadSound("../../../Music/Down the Road Edit.aif");
 	
-	smashingCatSvg.load("SmashingCat.svg");
+	//smashingCatSvg.load("SmashingCat.svg");
 	//smashingCatSvg.load("NyanCat.svg");
+	svgs.push_back(ofxSVG());
+	svgs.back().load("SmashingCat.svg");
+	svgs.push_back(ofxSVG());
+	
+	svgs.back().load("BladeRunner_BR_logo.svg");
+	svgs.push_back(ofxSVG());
+	
+	svgs.back().load("Internet_Explorer_10_logo.svg");
+	svgs.push_back(ofxSVG());
+
+	svgs.back().load("tardis.svg");
+	svgs.push_back(ofxSVG());
+	
+	svgs.back().load("large_unicorn.svg");
+	svgs.push_back(ofxSVG());
+
 	
 	previewProjector = false;
 	
@@ -64,7 +80,8 @@ void ofApp::setup(){
 	appGui.add(laserDomePoints.set("laser dome points", false));
 	appGui.add(laserOrganPoints.set("laser organ points", false));
 	appGui.add(showGuideImage.set("show guide image", true));
-	appGui.add(showCat.set("show cat!", false));
+	//appGui.add(showCat.set("show cat!", false));
+	appGui.add(clappyBird.sensitivity.set("flappy sensitivity", 1,0,10)); 
 	
 	redGui.setup("Laser Red", "laserred.xml");
 	redGui.add(laserManager.redParams );
@@ -135,6 +152,7 @@ void ofApp::update(){
 	effectPipeOrganLines.update(deltaTime);
 	
 	if(clappyBirdActive) clappyBird.update(smoothedInputVolume, deltaTime);
+	else clappyBird.reset();
 }
 
 //--------------------------------------------------------------
@@ -208,7 +226,6 @@ void ofApp::draw(){
 			}
 		}
 
-
 	} else {
 		ofSetColor(255);
 		ofRect(screenWidth/2 - projectorFbo.getWidth()/2 -1, screenHeight/2 - projectorFbo.getHeight()/2-1, projectorFbo.getWidth()+2, projectorFbo.getHeight()+2);
@@ -278,8 +295,11 @@ void ofApp::draw(){
 	// EFFECTS ---------------------------------------------
 	
 	drawEffects();
-	if(showCat) laserManager.addLaserSVG(smashingCatSvg, ofPoint(990,580),ofPoint(0.5,0.5));
-	
+	if((currentSVG>=0) && (currentSVG<svgs.size())) {
+		laserManager.addLaserSVG(svgs[currentSVG], ofPoint(950,580),ofPoint(0.5,0.5));
+		laserManager.addLaserSVG(svgs[currentSVG], ofPoint(390,580),ofPoint(0.5,0.5));
+		
+	}
 	if(clappyBirdActive) clappyBird.draw();
 	
 	
@@ -395,14 +415,19 @@ void ofApp :: drawEffects() {
 		effectDomeLines.setMode(3);
 		
 	}
-	if(sync.currentBar == 75) {
+	if((sync.currentBar == 74) && (sync.currentBeat == 3) && (sync.eighthTriggered)){
+
+		effectParticles.makeStarBurst(0.5);
+		effectParticles.makeStarBurst(0.3);
+	}
+	
+	if(sync.currentBar > 75) {
 		effectPipeOrganLines.setMode(0);
 		effectLaserBeams.mode = 0;
 		effectDomeLines.setMode(0);
-		if ((sync.barTriggered)) {
-			effectParticles.makeStarBurst(0.5);
-			effectParticles.makeStarBurst(0.3);
-		}
+		ofColor col;
+		col.setHsb((ofGetElapsedTimeMillis()/4)%255, 255, 255);
+		laserManager.addLaserText(" THANKS!", ofPoint(640,480), 10,col, true);
 		
 	}
 	
@@ -516,8 +541,11 @@ void ofApp::keyPressed(int key){
 		}
 	
 	}
-	if(key=='c') showCat = !showCat;
-	if(key=='f') clappyBirdActive = !clappyBirdActive;
+	if(key=='c') {
+		currentSVG++;
+		if(currentSVG>=svgs.size()) currentSVG = -1; 
+	}
+	if(key=='v') clappyBirdActive = !clappyBirdActive;
     
 
 	if(key == '1') {
