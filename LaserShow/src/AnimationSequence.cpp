@@ -77,70 +77,34 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
 
     // WHERE THE MAGIC HAPPENS
-    if (barfloat >0 && barfloat <0.25) {
-      //  smashingTitle.resize(30,30);
-        //smashingTitle.draw(0,0);
-    }
     
-    if (barfloat >0.5 && barfloat <1) {
-        //smashingTitle.resize(30,30);
-        //smashingTitle.draw(0,0);
-    }
-    
-    if (barfloat > 0.25 && barfloat < 1) {
-        //fake fade out our image!
-        for (int i = 1024; i <0; i--) {
-            ofSetColor(ofMap(i, 0, 1024, 0, 255));
-        }
-    }
-    
-    if (barfloat > 1 && bar < 3) {
-        
+    if (barfloat > 0 && bar < 2.5) {
         //fade in the text colour
-        float op = 1;
-        for (int i = 0; i < 1024; i++) {
-            ofSetColor(225, 255,255,op);
-            op = i;
-        }
-        
-       writeinPNL("MARCH 18 & 19");
-        
+        float progress = ofMap(barfloat, 0, 1, 0,255);
+        ofSetColor(225, 255,255,progress);
+       writeinPNL("HI SMASHING CONF");
     }
     
-    if (bar >= 3 && bar < 4) {
-        float op = 255;
-        for (int i = 255; i > 0; i--) {
-            ofSetColor(225, 255,255,op);
-            op = i;
-        }
-        
-        writeinPNL("MARCH 18 & 19");
+    if (bar >= 2.75 && bar < 3) {
+        //fade out the text colour
+        float progress = ofMap(barfloat, 1.75, 2, 255,0);
+        ofSetColor(225, 255,255,progress);
+        writeinPNL("HI SMASHING CONF");
+    }
 
-    }
-    
-    
-    if (barfloat >= 3 && bar < 6) {
-        
+    if (barfloat >=3.5 && bar < 5) {
         //fade in the text colour
-        float op = 1;
-        for (int i = 0; i < 1024; i++) {
-            ofSetColor(225, 255,255,op);
-            op = i;
-        }
-        
-        writeinPNL("#SMASHINGCONF");
+        float progress = ofMap(barfloat, 3.5, 4, 0,255);
+        ofSetColor(225, 255,255,progress);
+        writeinPNL("THE LASER IS BACK!");
         
     }
     
-    if (bar >= 6 && bar < 7) {
-        float op = 255;
-        for (int i = 255; i > 0; i--) {
-            ofSetColor(225, 255,255,op);
-            op = i;
-        }
-        
-        writeinPNL("#SMASHINGCONF");
-        
+    if (bar >= 5.250 && bar < 5.5) {
+        //fade out the text colour
+        float progress = ofMap(barfloat, 5, 5.5, 255,0);
+        ofSetColor(225, 255,255,progress);
+        writeinPNL("THE LASER IS BACK!");
     }
 
     
@@ -287,8 +251,12 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
     
     if (barfloat >= 7.75 && barfloat < 8) {
+        float progress = ofMap(barfloat, 7, 8.5, 0,180);
+        ofPushMatrix();
+        ofRotate(progress);
+        
         ofSetColor(ofColor::cyan);
-        ofNoFill();
+        //ofNoFill();
         ofCircle(0,0, 35);
         ofCircle(0,0, volume*60);
         ofCircle(0,0, ofMap(sync.beatPulse, 0, 1, 40,85));
@@ -300,10 +268,17 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             ofSetColor(ofColor::purple);
             ofCircle(0,0, volume*60);
         }
+        
+        ofPopMatrix();
     }
     
     if (barfloat >=8 && barfloat < 8.25) {
         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        
+        float progress1 = ofMap(barfloat, 7, 8.5, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
+        
         //four shapes move
         ofSetColor(ofColor::cyan);
         ofNoFill();
@@ -338,10 +313,18 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofSetColor(ofColor::cyan);
         ofNoFill();
         ofRect(circlePos, 60,60);
+        
+        ofPopMatrix();
     }
     
     if (barfloat >=8.25 && barfloat < 8.5) {
-       ofEnableBlendMode(OF_BLENDMODE_DISABLED);
+        
+        
+        float progress = ofMap(barfloat, 7, 8.5, 0,180);
+        ofPushMatrix();
+        ofRotate(progress);
+        
+        ofEnableBlendMode(OF_BLENDMODE_DISABLED);
         //four shapes in center
         ofFill();
         ofSetColor(0,0,0);
@@ -357,10 +340,16 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofSetColor(ofColor::cyan);
         ofNoFill();
         ofRect(0,0,60,60);
+        
+        ofPopMatrix();
+        
     }
     
     
     if (barfloat >=8.5 && barfloat < 9.25) {
+        float progress = ofMap(barfloat, 8.5, 9, 0,180);
+        ofPushMatrix();
+        ofRotate(progress);
         
         ofEnableBlendMode(OF_BLENDMODE_ADD);
         //square pulse center
@@ -377,10 +366,12 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             ofRect(0,0,ofMap(sync.sixteenthPulse, 0, 1, 60,50),ofMap(sync.sixteenthPulse, 0, 1, 60,50));
             ofPopMatrix();
         }
-        
+        ofPopMatrix();
         }
     
     if (barfloat >=9 && barfloat < 9.25) {
+       
+        
         ofEnableBlendMode(OF_BLENDMODE_DISABLED);
         //four shapes to corner
         ofSetColor(0,255,171);
@@ -432,6 +423,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     }
 
     if (barfloat >=9.4 && barfloat < 9.75) {
+        
         
         ofEnableBlendMode(OF_BLENDMODE_ADD);
         
@@ -517,8 +509,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
     if (barfloat >=9.25 && barfloat < 11.75) {
         
-         ofEnableBlendMode(OF_BLENDMODE_ADD);
-        
+        ofEnableBlendMode(OF_BLENDMODE_ADD);
         
         ofSetColor(ofColor::cyan);
         ofNoFill();
@@ -544,6 +535,10 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
 
     if (barfloat >=11.75 && barfloat < 12) {
         //four shapes back in to center
+        
+        float progress1 = ofMap(barfloat, 8.5, 9, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
         
         float progress = ofMap(barfloat, 11.75, 12, 0,1);
         
@@ -584,6 +579,8 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         ofNoFill();
         circlePos = start + ((end-start)*progress);
         ofRect(circlePos, 60,60);
+        
+        ofPopMatrix();
     }
     
     
@@ -1386,6 +1383,10 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     if (barfloat >= 50 && barfloat < 51){
        ofEnableBlendMode(OF_BLENDMODE_ADD);
         
+        float progress1 = ofMap(barfloat, 50, 56, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
+        
         // 4 circle  16th pulse - blue hue
         float totalshapes = 3;
         float progress = ofMap(barfloat, 50,50.5, 0, 1, true);
@@ -1411,9 +1412,15 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             posX += 400;
         }
         ofPopMatrix();
+        
+        ofPopMatrix() ;
     }
     
     if (barfloat >= 51 && barfloat < 52){
+        
+        float progress1 = ofMap(barfloat, 50, 56, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
         
         // square 8th pulse - blue hue
         ofEnableBlendMode(OF_BLENDMODE_ADD);
@@ -1441,9 +1448,15 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             posX += 400;
         }
         ofPopMatrix();
+        
+        ofPopMatrix()  ;
     }
     
     if (barfloat >= 52 && barfloat < 53){
+        
+        float progress1 = ofMap(barfloat, 50, 56, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
         
         // 4 circle  16th pulse - blue hue
         ofEnableBlendMode(OF_BLENDMODE_ADD);
@@ -1472,10 +1485,14 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         
         }
         ofPopMatrix();
+        ofPopMatrix();
     }
 
     
     if (barfloat >= 53 && barfloat < 54){
+        float progress1 = ofMap(barfloat, 50, 56, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
         
         // 3 square 8th pulse - blue hue
         ofEnableBlendMode(OF_BLENDMODE_ADD);
@@ -1503,10 +1520,16 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             posX += 300;
         }
         ofPopMatrix();
+        
+        ofPopMatrix();
     }
     
     
     if (barfloat >= 54 && barfloat < 55){
+        float progress1 = ofMap(barfloat, 50, 56, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
+        
         ofEnableBlendMode(OF_BLENDMODE_ADD);
         
         // 4 circle  16th pulse - blue hue
@@ -1533,6 +1556,8 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             ofCircle(posX,-50*i,volume*20*i);
             posX += 400;
         }
+        ofPopMatrix();
+        
         ofPopMatrix();
     }
     
@@ -2118,6 +2143,10 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
     
     if (barfloat >=72 && barfloat < 73) {
         
+        float progress1 = ofMap(barfloat, 83, 74, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
+        
         // 3 squares lineup pulse
         float totalshapes = 4;
         float progress = ofMap(barfloat, 72.25,73, 0, 1, true);
@@ -2144,10 +2173,16 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             posX += 200;
         }
         ofPopMatrix();
+        
+        ofPopMatrix();
 
     }
     
     if (barfloat >=73 && barfloat < 74) {
+        
+        float progress1 = ofMap(barfloat, 83, 74, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
         
         // 3 squares lineup pulse
         float totalshapes = 8;
@@ -2175,10 +2210,16 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
             posX += 200;
         }
         ofPopMatrix();
+        
+        ofPopMatrix();
 
     }
     
     if (barfloat >=74 && barfloat < 74.5) {
+        
+        float progress1 = ofMap(barfloat, 83, 74, 0,180);
+        ofPushMatrix();
+        ofRotate(progress1);
         
         //circles cinch in middle
         float progress = ofMap(barfloat, 74, 74.5, 0,1);
@@ -2210,6 +2251,8 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         circlePos = start + ((end-start)*progress);
         //ofFill();
         ofRect(circlePos,sync.beatPulse*60,sync.beatPulse*60);
+        
+        ofPopMatrix();
         
     }
 
