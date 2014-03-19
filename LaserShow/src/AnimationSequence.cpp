@@ -96,7 +96,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         //fade in the text colour
         float progress = ofMap(barfloat, 3.5, 4, 0,255);
         ofSetColor(225, 255,255,progress);
-        writeinPNL("THE LASER IS BACK!");
+        writeinPNL("LAZZZZORRRS ARE BACK!");
         
     }
     
@@ -104,7 +104,7 @@ void AnimationSequence:: draw(Synchroniser& sync, float volume) {
         //fade out the text colour
         float progress = ofMap(barfloat, 5, 5.5, 255,0);
         ofSetColor(225, 255,255,progress);
-        writeinPNL("THE LASER IS BACK!");
+        writeinPNL("LAZZZZORRRS ARE BACK!");
     }
 
     

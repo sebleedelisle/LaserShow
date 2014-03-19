@@ -467,7 +467,20 @@ void ofApp ::  drawSpirograph(ofPoint pos, int numrevolutions, float smallradius
 		poly.addVertex(p);
 		int hue = ((int)ofMap(i,0,totaldivisions, 0, 255))%255;
 		ofColor c;
-		c.setHsb(hue, 255,255); 
+		
+		float brightness = 255;
+		float fadedistance = 5; 
+		
+		if(i<totaldivisions*start+20) {
+			brightness = ofMap(i, totaldivisions*start,totaldivisions*start+20, 0,255 );
+			
+		}
+
+		if(i>totaldivisions*end-20) {
+			brightness = ofMap(i, totaldivisions*end,totaldivisions*end-20, 0,255 );
+			
+		}
+		c.setHsb(hue, 255,brightness);
 		grad->addColourStop(c, ofMap(i,totaldivisions*start,totaldivisions*end, 0, 1));
 		
 		
