@@ -96,7 +96,8 @@ class ofApp : public ofBaseApp{
 	ofSoundStream soundStream;
 	vector <float> left;
 	vector <float> right;
-	float smoothedInputVolume; 
+	float smoothedInputVolume;
+	bool clappyBirdActive; 
 	
 	bool previewProjector; 
 	
